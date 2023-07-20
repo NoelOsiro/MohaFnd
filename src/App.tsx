@@ -1,26 +1,39 @@
-import React from 'react';
-import logo from './logo.svg';
-import './App.css';
+import React, { useEffect, useState } from 'react';
+import { Amplify, API, Auth, graphqlOperation } from 'aws-amplify';
+import { Button, TextField, View, withAuthenticator, Text, Heading } from '@aws-amplify/ui-react';
+import '@aws-amplify/ui-react/styles.css';
 
-function App() {
+
+import {
+  SideBar,
+  ProfileCard, 
+  NavBar
+ } from './ui-components';
+
+import awsExports from "./aws-exports";
+import  './App.css';
+import Sidebar from './Components/Sidebar/Sidebar';
+import HeaderBar from './Components/Header/Header';
+import { BrowserRouter } from 'react-router-dom';
+Amplify.configure(awsExports);
+
+
+const App: React.FC = () => {
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.tsx</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+    <BrowserRouter>
+    <div className="app">
+      <Sidebar />
+      <div className="main-content">
+        <HeaderBar />
+        {/* Add other main content components here */}
+      </div>
     </div>
+    </BrowserRouter>
+    
   );
-}
+};
 
-export default App;
+
+
+export default withAuthenticator(App);
+
