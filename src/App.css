@@ -1,8 +1,0 @@
-/* src/App.css */
-.app {
-  display: flex;
-}
-.main-content {
-  flex: 1; /* This will make the main-content cover the remaining space */
-  padding: 0px 5px; /* Optional: Add padding to the main content area */
-}

@@ -6,7 +6,15 @@ body {
   -moz-osx-font-smoothing: grayscale;
 }
 
-code {
-  font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
-    monospace;
-}
+.dropdown-notifications-item-icon.bg-warning {
+  margin-right: 20px;
+  margin-bottom: 4px;
+  font-size: 25px;
+  border-radius: 50%;
+  width: 35px;
+  text-align: center
+};
+
+.dropdown-notifications-item-icon.bg-warning>svg {
+  margin-bottom: 5px;
+};

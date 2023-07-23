@@ -1,64 +1,92 @@
-// components/Sidebar.tsx
 import React from 'react';
-import { NavLink } from 'react-router-dom';
-import { FcBusinessman, FcDepartment, FcFilingCabinet, FcSettings } from 'react-icons/fc';
-import './siderbarStyles.css'
-import { NavbarBrand } from 'react-bootstrap';
-import { HomenavigationLinks, OfficenavigationLinks } from './Links';
+import './siderbarStyles.css';
+import { IconType } from 'react-icons';
+import { FaAngleDown } from 'react-icons/fa';
+import { accountItems, coreItems, customItems, uiToolkitItems } from './Links';
 
+interface MenuItemProps {
+  title: string;
+  icon: IconType;
+  subItems?:  {
+    title: string;
+    icon: IconType;
+    link: string;
+  }[];
+}
+
+const SidebarItem: React.FC<MenuItemProps> = (props:MenuItemProps) => {
+  return (
+    <div>
+      <a
+        className={`nav-link ${props.subItems ? 'collapsed' : 'd-sm-none'}`}
+        href="/"
+        data-bs-toggle={props.subItems ? 'collapse' : ''}
+        data-bs-target={props.subItems ? `#collapse${props.title.replace(' ', '')}` : ''}
+        aria-expanded="false"
+        aria-controls={props.subItems ? `collapse${props.title.replace(' ', '')}` : ''}
+      >
+        <div className="nav-link-icon">{React.createElement(props.icon)}</div>
+        {props.title}
+        {props.subItems && (
+          <div className="sidenav-collapse-arrow">
+            <FaAngleDown />
+          </div>
+        )}
+        
+      </a>
+      {props.subItems && (
+        <div
+          className="collapse"
+          id={`collapse${props.title.replace(' ', '')}`}
+          data-bs-parent="#accordionSidenav"
+        >
+          <nav className="sidenav-menu-nested nav accordion">
+            {props.subItems.map((subItem, subIndex) => (
+              <a className="nav-link" key={subIndex} href={subItem.link}>
+                <span className='me-2'><subItem.icon/></span> {subItem.title}</a>
+            ))}
+          </nav>
+        </div>
+      )}
+    </div>
+  );
+};
 
 const Sidebar: React.FC = () => {
-  
-
   return (
-    <aside className="sidebar">
-        <div className='brand'>
-            <NavbarBrand>DentalArt Center</NavbarBrand>
+    <div id="layoutSidenav_nav">
+      <nav className="sidenav shadow-right sidenav-light">
+        <div className="sidenav-menu">
+          <div className="nav accordion" id="accordionSidenav">
+            <div className="sidenav-menu-heading d-sm-none">Account</div>
+            {accountItems.map((item, index) => (
+              <SidebarItem key={index} title={item.title} icon={item.icon} subItems={item.subItems} />
+            ))}
+
+            <div className="sidenav-menu-heading">Main</div>
+            {coreItems.map((item, index) => (
+              <SidebarItem key={index} title={item.title} icon={item.icon} subItems={item.subItems} />
+            ))}
+
+            <div className="sidenav-menu-heading">Office</div>
+            {customItems.map((item, index) => (
+              <SidebarItem key={index} title={item.title} icon={item.icon} subItems={item.subItems} />
+            ))}
+
+            <div className="sidenav-menu-heading">Account</div>
+            {uiToolkitItems.map((item, index) => (
+              <SidebarItem key={index} title={item.title} icon={item.icon} subItems={item.subItems} />
+            ))}
+          </div>
         </div>
-        <div className='sidebarTitle'>
-            <FcFilingCabinet/>
-            <text>Home</text>
-            </div>
-        <div className='sidebarDivider'></div>
-        
-      <ul>
-        {HomenavigationLinks.map((link) => (
-          <li key={link.path}>
-            <NavLink  to={link.path} className="active">
-              {<link.icon/>}
-              <span>{link.label}</span>
-            </NavLink>
-          </li>
-        ))}
-      </ul>
-      <div className='sidebarTitle'>
-            <FcDepartment/>
-            <text>Office</text>
-            </div>
-        <div className='sidebarDivider'></div>
-        <ul>
-        {OfficenavigationLinks.map((link) => (
-          <li key={link.path}>
-            <NavLink  to={link.path} className="active">
-              {<link.icon/>}
-              <span>{link.label}</span>
-            </NavLink>
-          </li>
-          
-        ))}
-      </ul>
-      <div className='sidebarDivider'></div>
-      <div className='d-flex'>
-        <div>
-            <FcBusinessman/>
+        <div className="sidenav-footer">
+          <div className="sidenav-footer-content">
+            <div className="sidenav-footer-subtitle">Logged in as:</div>
+            <div className="sidenav-footer-title">Valerie Luna</div>
+          </div>
         </div>
-        <div>
-            Username<br/>
-            SignOut
-        </div>
-        <FcSettings/>
-      </div>
-    </aside>
+      </nav>
+    </div>
   );
 };
 
