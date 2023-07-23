@@ -15,6 +15,7 @@ import  './App.css';
 import Sidebar from './Components/Sidebar/Sidebar';
 import HeaderBar from './Components/Header/Header';
 import { BrowserRouter } from 'react-router-dom';
+import Dash from './Pages/Dashboard/Dash';
 Amplify.configure(awsExports);
 
 
@@ -25,7 +26,7 @@ const App: React.FC = () => {
       <Sidebar />
       <div className="main-content">
         <HeaderBar />
-        {/* Add other main content components here */}
+        <Dash/>
       </div>
     </div>
     </BrowserRouter>
