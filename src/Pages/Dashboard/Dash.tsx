@@ -1,73 +1,22 @@
 import React from 'react'
+import { FiActivity, FiBook, FiLayout, FiPackage } from 'react-icons/fi'
+import DashboardHeader from '../../Components/Header/DashBoardHeader'
+import Footer from '../../Components/Footer/Footer'
+import { cards } from '../../Components/Cards/CardData'
+import Card from '../../Components/Cards/DasCard'
 
 
 const Dash = () => {
     return (
         <div id="layoutSidenav_content">
             <main>
-                <header className="page-header page-header-dark bg-gradient-primary-to-secondary pb-10">
-                    <div className="container-xl px-4">
-                        <div className="page-header-content pt-4">
-                            <div className="row align-items-center justify-content-between">
-                                <div className="col-auto mt-4">
-                                    <h1 className="page-header-title">
-                                        <div className="page-header-icon"><i data-feather="activity"></i></div>
-                                        Dashboard
-                                    </h1>
-                                    <div className="page-header-subtitle">Example dashboard overview and content summary</div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </header>
+                <DashboardHeader />
                 {/* <!-- Main page content--> */}
                 <div className="container-xl px-4 mt-n10">
                     <div className="row">
-                        <div className="col-xl-4 mb-4">
-                            {/* <!-- Dashboard example card 1--> */}
-                            <a className="card lift h-100" href="#!">
-                                <div className="card-body d-flex justify-content-center flex-column">
-                                    <div className="d-flex align-items-center justify-content-between">
-                                        <div className="me-3">
-                                            <i className="feather-xl text-primary mb-3" data-feather="package"></i>
-                                            <h5>Powerful Components</h5>
-                                            <div className="text-muted small">To create informative visual elements on your pages</div>
-                                        </div>
-                                        <img alt='' src="assets/img/illustrations/browser-stats.svg" style={{ width: "8rem" }} />
-                                    </div>
-                                </div>
-                            </a>
-                        </div>
-                        <div className="col-xl-4 mb-4">
-                            {/* <!-- Dashboard example card 2--> */}
-                            <a className="card lift h-100" href="#!">
-                                <div className="card-body d-flex justify-content-center flex-column">
-                                    <div className="d-flex align-items-center justify-content-between">
-                                        <div className="me-3">
-                                            <i className="feather-xl text-secondary mb-3" data-feather="book"></i>
-                                            <h5>Documentation</h5>
-                                            <div className="text-muted small">To keep you on track when working with our toolkit</div>
-                                        </div>
-                                        <img alt='' src="assets/img/illustrations/processing.svg" style={{ width: "8rem" }} />
-                                    </div>
-                                </div>
-                            </a>
-                        </div>
-                        <div className="col-xl-4 mb-4">
-                            {/* <!-- Dashboard example card 3--> */}
-                            <a className="card lift h-100" href="#!">
-                                <div className="card-body d-flex justify-content-center flex-column">
-                                    <div className="d-flex align-items-center justify-content-between">
-                                        <div className="me-3">
-                                            <i className="feather-xl text-green mb-3" data-feather="layout"></i>
-                                            <h5>Pages &amp; Layouts</h5>
-                                            <div className="text-muted small">To help get you started when building your new UI</div>
-                                        </div>
-                                        <img alt='' src="assets/img/illustrations/windows.svg" style={{ width: "8rem" }} />
-                                    </div>
-                                </div>
-                            </a>
-                        </div>
+                        {cards.map((card, index) => (
+                            <Card key={index} {...card} />
+                        ))}
                     </div>
                     <div className="row">
                         <div className="col-xxl-8">
@@ -551,18 +500,7 @@ const Dash = () => {
                     </div>
                 </div>
             </main>
-            <footer className="footer-admin mt-auto footer-light">
-                <div className="container-xl px-4">
-                    <div className="row">
-                        <div className="col-md-6 small">Copyright &copy; Your Website 2021</div>
-                        <div className="col-md-6 text-md-end small">
-                            <a href="#!">Privacy Policy</a>
-                            &middot;
-                            <a href="#!">Terms &amp; Conditions</a>
-                        </div>
-                    </div>
-                </div>
-            </footer>
+            <Footer />
         </div>
     )
 }
