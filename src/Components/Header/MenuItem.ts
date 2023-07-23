@@ -1,4 +1,4 @@
-import { FcAddressBook, FcAlarmClock, FcBiohazard, FcCdLogo, FcDataRecovery, FcInfo } from "react-icons/fc";
+import { FcAddressBook,FcBiohazard, FcCdLogo, FcDataRecovery} from "react-icons/fc";
 import { FiAlertCircle, FiInfo, FiMail, FiStopCircle } from "react-icons/fi";
 import { IconType } from "react-icons/lib";
 

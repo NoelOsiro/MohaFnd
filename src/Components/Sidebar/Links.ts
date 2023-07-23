@@ -1,6 +1,6 @@
 import { IconType } from 'react-icons';
-import { FiBell, FiMail, FiActivity, FiGrid, FiGlobe, FiRepeat, FiLayout, FiPackage, FiTool, FiBarChart, FiFilter, FiHome, FiBarChart2, FiUsers, FiUserCheck, FiCalendar, FiHeart, FiEyeOff, FiBookOpen, FiRefreshCcw, FiDatabase, FiCreditCard, FiSpeaker, FiTablet, FiEye, FiLock, FiUserX, FiClipboard } from 'react-icons/fi';
-import { FaAngleDown } from 'react-icons/fa';
+import { FiBell, FiMail, FiActivity, FiGlobe,FiLayout, FiPackage, FiTool, FiBarChart,FiHome, FiBarChart2, FiUsers, FiUserCheck, FiCalendar, FiHeart, FiEyeOff, FiBookOpen, FiRefreshCcw, FiDatabase, FiCreditCard, FiSpeaker, FiTablet, FiEye, FiLock, FiUserX, FiClipboard } from 'react-icons/fi';
+
 
 interface MenuItem {
   title: string;

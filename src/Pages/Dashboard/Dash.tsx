@@ -1,18 +1,4 @@
 import React from 'react'
-import Card2 from 'react-bootstrap/Card';
-import {
-    Card,
-    Image,
-    View,
-    Heading,
-    Flex,
-    Badge,
-    Text,
-    Button,
-} from '@aws-amplify/ui-react';
-import { FcBinoculars, FcPhoneAndroid } from 'react-icons/fc';
-import './Dash.css'
-import { Col, Container, Row } from 'react-bootstrap';
 
 
 const Dash = () => {
