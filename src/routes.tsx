@@ -2,6 +2,14 @@ import { createBrowserRouter } from "react-router-dom";
 import Layout from "./Layout/layout";
 import Dash from "./Pages/Dashboard/Dash";
 import ErrorPage from "./Pages/ErrorPage/ErrorPage";
+import Team from "./Pages/Team/Team";
+import Patients from "./Pages/Customers/Patients";
+import Appts from "./Pages/Appointments/Appts";
+import Payments from "./Pages/Payments/Payments";
+import Profile from "./Pages/Account/Profile";
+import Notifs from "./Pages/Account/Notifs";
+import Messages from "./Pages/Account/Messages";
+import Tasks from "./Pages/Account/Tasks";
 
 export const router = createBrowserRouter([
     {
@@ -12,27 +20,7 @@ export const router = createBrowserRouter([
         {
           path: "home",
           element: <Dash />,
-        },
-        {
-          path: "staff/team",
-          element: <Dash />,
-        },
-        {
-          path: "staff/roster",
-          element: <Dash />,
-        },
-        {
-          path: "customer/patients",
-          element: <Dash />,
-        },
-        {
-          path: "customer/records",
-          element: <Dash />,
-        },
-        {
-          path: "appointments",
-          element: <Dash />,
-        },
+        }
       ],
     },
     {
@@ -42,11 +30,11 @@ export const router = createBrowserRouter([
       children: [
         {
           path: "team",
-          element: <Dash />,
+          element: <Team />,
         },
         {
           path: "roster",
-          element: <Dash />,
+          element: <Team />,
         },
       ],
     },
@@ -57,11 +45,11 @@ export const router = createBrowserRouter([
       children: [
         {
           path: "patients",
-          element: <Dash />,
+          element: <Patients />,
         },
         {
           path: "records",
-          element: <Dash />,
+          element: <Patients />,
         },
       ],
     },
@@ -72,15 +60,15 @@ export const router = createBrowserRouter([
       children: [
         {
           path: "view",
-          element: <Dash />,
+          element: <Appts />,
         },
         {
           path: "book",
-          element: <Dash />,
+          element: <Appts />,
         },
         {
           path: "reschedule",
-          element: <Dash />,
+          element: <Appts />,
         },
       ],
     },
@@ -91,15 +79,15 @@ export const router = createBrowserRouter([
       children: [
         {
           path: "overview",
-          element: <Dash />,
+          element: <Payments />,
         },
         {
           path: "insurance",
-          element: <Dash />,
+          element: <Payments />,
         },
         {
           path: "make",
-          element: <Dash />,
+          element: <Payments />,
         }
       ],
     },
@@ -110,7 +98,7 @@ export const router = createBrowserRouter([
       children: [
         {
           path: "profile",
-          element: <Dash />,
+          element: <Profile />,
         },
         {
           path: "billing",
@@ -118,19 +106,19 @@ export const router = createBrowserRouter([
         },
         {
           path: "notifications",
-          element: <Dash />,
+          element: <Notifs />,
         },
         {
           path: "messages",
-          element: <Dash />,
+          element: <Messages />,
         },
         {
           path: "alerts",
-          element: <Dash />,
+          element: <Notifs />,
         },
         {
           path: "tasks",
-          element: <Dash />,
+          element: <Tasks />,
         },
       ],
     },

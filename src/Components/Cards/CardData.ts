@@ -5,6 +5,7 @@ import { FiPackage, FiBook, FiLayout } from 'react-icons/fi';
 export interface CardData {
   title: string;
   icon: IconType;
+  stat: number;
   colorClass: string;
   description: string;
   imageSrc: string;
@@ -12,24 +13,27 @@ export interface CardData {
 
 export const cards: CardData[] = [
   {
-    title: 'Powerful Components',
+    title: 'Appointments',
     icon: FiPackage,
+    stat: 46,
     colorClass: 'text-primary',
-    description: 'To create informative visual elements on your pages',
+    description: 'This week',
     imageSrc: 'assets/img/illustrations/browser-stats.svg',
   },
   {
-    title: 'Documentation',
+    title: 'Missed',
     icon: FiBook,
-    colorClass: 'text-primary',
-    description: 'To keep you on track when working with our toolkit',
+    stat: 4,
+    colorClass: 'text-danger',
+    description: 'Missed',
     imageSrc: 'assets/img/illustrations/processing.svg',
   },
   {
-    title: 'Pages & Layouts',
+    title: 'Tasks',
     icon: FiLayout,
+    stat: 15,
     colorClass: 'text-green',
-    description: 'To help get you started when building your new UI',
+    description: 'New Items!',
     imageSrc: 'assets/img/illustrations/windows.svg',
   },
 ];

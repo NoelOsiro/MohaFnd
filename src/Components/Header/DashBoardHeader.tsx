@@ -1,7 +1,10 @@
 import React from 'react';
 import { FiActivity } from 'react-icons/fi';
+interface Iprops {
+  title: string;
+}
 
-const DashboardHeader: React.FC = () => {
+const DashboardHeader: React.FC<Iprops> = (props:Iprops) => {
   return (
     <header className="page-header page-header-dark bg-gradient-primary-to-secondary pb-10">
       <div className="container-xl px-4">
@@ -12,10 +15,10 @@ const DashboardHeader: React.FC = () => {
                 <div className="page-header-icon">
                   <FiActivity />
                 </div>
-                Dashboard
+                {props.title}
               </h1>
               <div className="page-header-subtitle">
-                Example dashboard overview and content summary
+                Overview
               </div>
             </div>
           </div>
