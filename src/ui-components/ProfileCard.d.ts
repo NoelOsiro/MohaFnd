@@ -21,6 +21,9 @@ export declare type ProfileCardOverridesProps = {
     Button?: PrimitiveOverrideProps<ButtonProps>;
 } & EscapeHatchProps;
 export declare type ProfileCardProps = React.PropsWithChildren<Partial<FlexProps> & {
+    cardTitle?: String;
+    cadrText?: String;
+} & {
     overrides?: ProfileCardOverridesProps | undefined | null;
 }>;
 export default function ProfileCard(props: ProfileCardProps): React.ReactElement;
