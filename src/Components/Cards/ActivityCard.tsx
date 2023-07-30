@@ -6,7 +6,16 @@ const ActivityCard = () => {
             <div className="card-header">
                 Recent Activity
                 <div className="dropdown no-caret">
-                    <button className="btn btn-transparent-dark btn-icon dropdown-toggle" id="dropdownMenuButton" type="button" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false"><i className="text-gray-500" data-feather="more-vertical"></i></button>
+                    <button 
+                        className="btn btn-transparent-dark btn-icon dropdown-toggle" 
+                        id="dropdownMenuButton" 
+                        type="button" 
+                        data-bs-toggle="dropdown" 
+                        aria-haspopup="true" 
+                        aria-expanded="false"
+                        title="More options">
+                        <i className="text-gray-500" data-feather="more-vertical"></i>
+                    </button>
                     <div className="dropdown-menu dropdown-menu-end animated--fade-in-up" aria-labelledby="dropdownMenuButton">
                         <h6 className="dropdown-header">Filter Activity:</h6>
                         <a className="dropdown-item" href="#!"><span className="badge bg-green-soft text-green my-1">Commerce</span></a>

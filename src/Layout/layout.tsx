@@ -10,12 +10,14 @@ const Layout: React.FC = () => {
         <div className="dashboard-layout">
             <HeaderBar />
             <div id="layoutSidenav">
-                <Sidebar />
+                <Sidebar /> 
                 <div id="layoutSidenav_content">
                     <Outlet />
                     <Footer />
                 </div>
             </div>
+            
+
         </div>
     );
 };

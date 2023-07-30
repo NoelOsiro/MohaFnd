@@ -2,269 +2,317 @@
 /* eslint-disable */
 // this is an auto generated file. This will be overwritten
 
-export const onCreateBlog = /* GraphQL */ `
-  subscription OnCreateBlog($filter: ModelSubscriptionBlogFilterInput) {
-    onCreateBlog(filter: $filter) {
+export const onCreateStaff = /* GraphQL */ `
+  subscription OnCreateStaff($filter: ModelSubscriptionStaffFilterInput) {
+    onCreateStaff(filter: $filter) {
       id
-      name
-      posts {
+      first_name
+      last_name
+      email
+      username
+      phone_number
+      role
+      staff_appointments {
         items {
           id
-          title
+          appointment_date
+          created_at
+          start_time
+          end_time
+          status
+          assigned_to
+          patientID
+          staffID
           createdAt
           updatedAt
-          blogPostsId
+          _version
+          _deleted
+          _lastChangedAt
           __typename
         }
         nextToken
+        startedAt
         __typename
       }
       createdAt
       updatedAt
+      _version
+      _deleted
+      _lastChangedAt
       __typename
     }
   }
 `;
-export const onUpdateBlog = /* GraphQL */ `
-  subscription OnUpdateBlog($filter: ModelSubscriptionBlogFilterInput) {
-    onUpdateBlog(filter: $filter) {
+export const onUpdateStaff = /* GraphQL */ `
+  subscription OnUpdateStaff($filter: ModelSubscriptionStaffFilterInput) {
+    onUpdateStaff(filter: $filter) {
       id
-      name
-      posts {
+      first_name
+      last_name
+      email
+      username
+      phone_number
+      role
+      staff_appointments {
         items {
           id
-          title
+          appointment_date
+          created_at
+          start_time
+          end_time
+          status
+          assigned_to
+          patientID
+          staffID
           createdAt
           updatedAt
-          blogPostsId
+          _version
+          _deleted
+          _lastChangedAt
           __typename
         }
         nextToken
+        startedAt
         __typename
       }
       createdAt
       updatedAt
+      _version
+      _deleted
+      _lastChangedAt
       __typename
     }
   }
 `;
-export const onDeleteBlog = /* GraphQL */ `
-  subscription OnDeleteBlog($filter: ModelSubscriptionBlogFilterInput) {
-    onDeleteBlog(filter: $filter) {
+export const onDeleteStaff = /* GraphQL */ `
+  subscription OnDeleteStaff($filter: ModelSubscriptionStaffFilterInput) {
+    onDeleteStaff(filter: $filter) {
       id
-      name
-      posts {
+      first_name
+      last_name
+      email
+      username
+      phone_number
+      role
+      staff_appointments {
         items {
           id
-          title
+          appointment_date
+          created_at
+          start_time
+          end_time
+          status
+          assigned_to
+          patientID
+          staffID
           createdAt
           updatedAt
-          blogPostsId
+          _version
+          _deleted
+          _lastChangedAt
           __typename
         }
         nextToken
+        startedAt
         __typename
       }
       createdAt
       updatedAt
+      _version
+      _deleted
+      _lastChangedAt
       __typename
     }
   }
 `;
-export const onCreatePost = /* GraphQL */ `
-  subscription OnCreatePost($filter: ModelSubscriptionPostFilterInput) {
-    onCreatePost(filter: $filter) {
+export const onCreateAppointments = /* GraphQL */ `
+  subscription OnCreateAppointments(
+    $filter: ModelSubscriptionAppointmentsFilterInput
+  ) {
+    onCreateAppointments(filter: $filter) {
       id
-      title
-      blog {
-        id
-        name
-        posts {
-          nextToken
-          __typename
-        }
-        createdAt
-        updatedAt
-        __typename
-      }
-      comments {
+      appointment_date
+      created_at
+      start_time
+      end_time
+      status
+      assigned_to
+      patientID
+      staffID
+      createdAt
+      updatedAt
+      _version
+      _deleted
+      _lastChangedAt
+      __typename
+    }
+  }
+`;
+export const onUpdateAppointments = /* GraphQL */ `
+  subscription OnUpdateAppointments(
+    $filter: ModelSubscriptionAppointmentsFilterInput
+  ) {
+    onUpdateAppointments(filter: $filter) {
+      id
+      appointment_date
+      created_at
+      start_time
+      end_time
+      status
+      assigned_to
+      patientID
+      staffID
+      createdAt
+      updatedAt
+      _version
+      _deleted
+      _lastChangedAt
+      __typename
+    }
+  }
+`;
+export const onDeleteAppointments = /* GraphQL */ `
+  subscription OnDeleteAppointments(
+    $filter: ModelSubscriptionAppointmentsFilterInput
+  ) {
+    onDeleteAppointments(filter: $filter) {
+      id
+      appointment_date
+      created_at
+      start_time
+      end_time
+      status
+      assigned_to
+      patientID
+      staffID
+      createdAt
+      updatedAt
+      _version
+      _deleted
+      _lastChangedAt
+      __typename
+    }
+  }
+`;
+export const onCreatePatient = /* GraphQL */ `
+  subscription OnCreatePatient($filter: ModelSubscriptionPatientFilterInput) {
+    onCreatePatient(filter: $filter) {
+      id
+      first_name
+      last_name
+      email
+      date_of_birth
+      phone_number
+      pat_appointments {
         items {
           id
-          content
+          appointment_date
+          created_at
+          start_time
+          end_time
+          status
+          assigned_to
+          patientID
+          staffID
           createdAt
           updatedAt
-          postCommentsId
+          _version
+          _deleted
+          _lastChangedAt
           __typename
         }
         nextToken
+        startedAt
         __typename
       }
+      gender
       createdAt
       updatedAt
-      blogPostsId
+      _version
+      _deleted
+      _lastChangedAt
       __typename
     }
   }
 `;
-export const onUpdatePost = /* GraphQL */ `
-  subscription OnUpdatePost($filter: ModelSubscriptionPostFilterInput) {
-    onUpdatePost(filter: $filter) {
+export const onUpdatePatient = /* GraphQL */ `
+  subscription OnUpdatePatient($filter: ModelSubscriptionPatientFilterInput) {
+    onUpdatePatient(filter: $filter) {
       id
-      title
-      blog {
-        id
-        name
-        posts {
-          nextToken
-          __typename
-        }
-        createdAt
-        updatedAt
-        __typename
-      }
-      comments {
+      first_name
+      last_name
+      email
+      date_of_birth
+      phone_number
+      pat_appointments {
         items {
           id
-          content
+          appointment_date
+          created_at
+          start_time
+          end_time
+          status
+          assigned_to
+          patientID
+          staffID
           createdAt
           updatedAt
-          postCommentsId
+          _version
+          _deleted
+          _lastChangedAt
           __typename
         }
         nextToken
+        startedAt
         __typename
       }
+      gender
       createdAt
       updatedAt
-      blogPostsId
+      _version
+      _deleted
+      _lastChangedAt
       __typename
     }
   }
 `;
-export const onDeletePost = /* GraphQL */ `
-  subscription OnDeletePost($filter: ModelSubscriptionPostFilterInput) {
-    onDeletePost(filter: $filter) {
+export const onDeletePatient = /* GraphQL */ `
+  subscription OnDeletePatient($filter: ModelSubscriptionPatientFilterInput) {
+    onDeletePatient(filter: $filter) {
       id
-      title
-      blog {
-        id
-        name
-        posts {
-          nextToken
-          __typename
-        }
-        createdAt
-        updatedAt
-        __typename
-      }
-      comments {
+      first_name
+      last_name
+      email
+      date_of_birth
+      phone_number
+      pat_appointments {
         items {
           id
-          content
+          appointment_date
+          created_at
+          start_time
+          end_time
+          status
+          assigned_to
+          patientID
+          staffID
           createdAt
           updatedAt
-          postCommentsId
+          _version
+          _deleted
+          _lastChangedAt
           __typename
         }
         nextToken
+        startedAt
         __typename
       }
+      gender
       createdAt
       updatedAt
-      blogPostsId
-      __typename
-    }
-  }
-`;
-export const onCreateComment = /* GraphQL */ `
-  subscription OnCreateComment($filter: ModelSubscriptionCommentFilterInput) {
-    onCreateComment(filter: $filter) {
-      id
-      post {
-        id
-        title
-        blog {
-          id
-          name
-          createdAt
-          updatedAt
-          __typename
-        }
-        comments {
-          nextToken
-          __typename
-        }
-        createdAt
-        updatedAt
-        blogPostsId
-        __typename
-      }
-      content
-      createdAt
-      updatedAt
-      postCommentsId
-      __typename
-    }
-  }
-`;
-export const onUpdateComment = /* GraphQL */ `
-  subscription OnUpdateComment($filter: ModelSubscriptionCommentFilterInput) {
-    onUpdateComment(filter: $filter) {
-      id
-      post {
-        id
-        title
-        blog {
-          id
-          name
-          createdAt
-          updatedAt
-          __typename
-        }
-        comments {
-          nextToken
-          __typename
-        }
-        createdAt
-        updatedAt
-        blogPostsId
-        __typename
-      }
-      content
-      createdAt
-      updatedAt
-      postCommentsId
-      __typename
-    }
-  }
-`;
-export const onDeleteComment = /* GraphQL */ `
-  subscription OnDeleteComment($filter: ModelSubscriptionCommentFilterInput) {
-    onDeleteComment(filter: $filter) {
-      id
-      post {
-        id
-        title
-        blog {
-          id
-          name
-          createdAt
-          updatedAt
-          __typename
-        }
-        comments {
-          nextToken
-          __typename
-        }
-        createdAt
-        updatedAt
-        blogPostsId
-        __typename
-      }
-      content
-      createdAt
-      updatedAt
-      postCommentsId
+      _version
+      _deleted
+      _lastChangedAt
       __typename
     }
   }

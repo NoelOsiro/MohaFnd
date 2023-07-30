@@ -1,6 +1,5 @@
 import React from 'react'
 import DashboardHeader from '../../Components/Header/DashBoardHeader'
-import Footer from '../../Components/Footer/Footer'
 import { cards } from '../../Components/Cards/CardData'
 import Card from '../../Components/Cards/DasCard'
 import TabDashBoard from '../../Components/Tabs/TabDashBoard'
@@ -13,7 +12,6 @@ import TaskTrackerCard from '../../Components/Cards/TaskTrackerCard'
 
 const Dash = () => {
     return (
-        <div id="layoutSidenav_content">
             <main>
                 <DashboardHeader title='Home' />
                 {/* <!-- Main page content--> */}
@@ -50,8 +48,7 @@ const Dash = () => {
                     </div>
                 </div>
             </main>
-            <Footer />
-        </div>
+
     )
 }
 

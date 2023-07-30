@@ -2,173 +2,391 @@
 /* eslint-disable */
 // this is an auto generated file. This will be overwritten
 
-export const getBlog = /* GraphQL */ `
-  query GetBlog($id: ID!) {
-    getBlog(id: $id) {
+export const getStaff = /* GraphQL */ `
+  query GetStaff($id: ID!) {
+    getStaff(id: $id) {
       id
-      name
-      posts {
+      first_name
+      last_name
+      email
+      username
+      phone_number
+      role
+      staff_appointments {
         items {
           id
-          title
+          appointment_date
+          created_at
+          start_time
+          end_time
+          status
+          assigned_to
+          patientID
+          staffID
           createdAt
           updatedAt
-          blogPostsId
+          _version
+          _deleted
+          _lastChangedAt
           __typename
         }
         nextToken
+        startedAt
         __typename
       }
       createdAt
       updatedAt
+      _version
+      _deleted
+      _lastChangedAt
       __typename
     }
   }
 `;
-export const listBlogs = /* GraphQL */ `
-  query ListBlogs(
-    $filter: ModelBlogFilterInput
+export const listStaff = /* GraphQL */ `
+  query ListStaff(
+    $filter: ModelStaffFilterInput
     $limit: Int
     $nextToken: String
   ) {
-    listBlogs(filter: $filter, limit: $limit, nextToken: $nextToken) {
+    listStaff(filter: $filter, limit: $limit, nextToken: $nextToken) {
       items {
         id
-        name
-        posts {
+        first_name
+        last_name
+        email
+        username
+        phone_number
+        role
+        staff_appointments {
           nextToken
+          startedAt
           __typename
         }
         createdAt
         updatedAt
+        _version
+        _deleted
+        _lastChangedAt
         __typename
       }
       nextToken
+      startedAt
       __typename
     }
   }
 `;
-export const getPost = /* GraphQL */ `
-  query GetPost($id: ID!) {
-    getPost(id: $id) {
-      id
-      title
-      blog {
+export const syncStaff = /* GraphQL */ `
+  query SyncStaff(
+    $filter: ModelStaffFilterInput
+    $limit: Int
+    $nextToken: String
+    $lastSync: AWSTimestamp
+  ) {
+    syncStaff(
+      filter: $filter
+      limit: $limit
+      nextToken: $nextToken
+      lastSync: $lastSync
+    ) {
+      items {
         id
-        name
-        posts {
+        first_name
+        last_name
+        email
+        username
+        phone_number
+        role
+        staff_appointments {
           nextToken
+          startedAt
           __typename
         }
         createdAt
         updatedAt
+        _version
+        _deleted
+        _lastChangedAt
         __typename
       }
-      comments {
+      nextToken
+      startedAt
+      __typename
+    }
+  }
+`;
+export const getAppointments = /* GraphQL */ `
+  query GetAppointments($id: ID!) {
+    getAppointments(id: $id) {
+      id
+      appointment_date
+      created_at
+      start_time
+      end_time
+      status
+      assigned_to
+      patientID
+      staffID
+      createdAt
+      updatedAt
+      _version
+      _deleted
+      _lastChangedAt
+      __typename
+    }
+  }
+`;
+export const listAppointments = /* GraphQL */ `
+  query ListAppointments(
+    $filter: ModelAppointmentsFilterInput
+    $limit: Int
+    $nextToken: String
+  ) {
+    listAppointments(filter: $filter, limit: $limit, nextToken: $nextToken) {
+      items {
+        id
+        appointment_date
+        created_at
+        start_time
+        end_time
+        status
+        assigned_to
+        patientID
+        staffID
+        createdAt
+        updatedAt
+        _version
+        _deleted
+        _lastChangedAt
+        __typename
+      }
+      nextToken
+      startedAt
+      __typename
+    }
+  }
+`;
+export const syncAppointments = /* GraphQL */ `
+  query SyncAppointments(
+    $filter: ModelAppointmentsFilterInput
+    $limit: Int
+    $nextToken: String
+    $lastSync: AWSTimestamp
+  ) {
+    syncAppointments(
+      filter: $filter
+      limit: $limit
+      nextToken: $nextToken
+      lastSync: $lastSync
+    ) {
+      items {
+        id
+        appointment_date
+        created_at
+        start_time
+        end_time
+        status
+        assigned_to
+        patientID
+        staffID
+        createdAt
+        updatedAt
+        _version
+        _deleted
+        _lastChangedAt
+        __typename
+      }
+      nextToken
+      startedAt
+      __typename
+    }
+  }
+`;
+export const appointmentsByPatientID = /* GraphQL */ `
+  query AppointmentsByPatientID(
+    $patientID: ID!
+    $sortDirection: ModelSortDirection
+    $filter: ModelAppointmentsFilterInput
+    $limit: Int
+    $nextToken: String
+  ) {
+    appointmentsByPatientID(
+      patientID: $patientID
+      sortDirection: $sortDirection
+      filter: $filter
+      limit: $limit
+      nextToken: $nextToken
+    ) {
+      items {
+        id
+        appointment_date
+        created_at
+        start_time
+        end_time
+        status
+        assigned_to
+        patientID
+        staffID
+        createdAt
+        updatedAt
+        _version
+        _deleted
+        _lastChangedAt
+        __typename
+      }
+      nextToken
+      startedAt
+      __typename
+    }
+  }
+`;
+export const appointmentsByStaffID = /* GraphQL */ `
+  query AppointmentsByStaffID(
+    $staffID: ID!
+    $sortDirection: ModelSortDirection
+    $filter: ModelAppointmentsFilterInput
+    $limit: Int
+    $nextToken: String
+  ) {
+    appointmentsByStaffID(
+      staffID: $staffID
+      sortDirection: $sortDirection
+      filter: $filter
+      limit: $limit
+      nextToken: $nextToken
+    ) {
+      items {
+        id
+        appointment_date
+        created_at
+        start_time
+        end_time
+        status
+        assigned_to
+        patientID
+        staffID
+        createdAt
+        updatedAt
+        _version
+        _deleted
+        _lastChangedAt
+        __typename
+      }
+      nextToken
+      startedAt
+      __typename
+    }
+  }
+`;
+export const getPatient = /* GraphQL */ `
+  query GetPatient($id: ID!) {
+    getPatient(id: $id) {
+      id
+      first_name
+      last_name
+      email
+      date_of_birth
+      phone_number
+      pat_appointments {
         items {
           id
-          content
+          appointment_date
+          created_at
+          start_time
+          end_time
+          status
+          assigned_to
+          patientID
+          staffID
           createdAt
           updatedAt
-          postCommentsId
+          _version
+          _deleted
+          _lastChangedAt
           __typename
         }
         nextToken
+        startedAt
         __typename
       }
+      gender
       createdAt
       updatedAt
-      blogPostsId
+      _version
+      _deleted
+      _lastChangedAt
       __typename
     }
   }
 `;
-export const listPosts = /* GraphQL */ `
-  query ListPosts(
-    $filter: ModelPostFilterInput
+export const listPatients = /* GraphQL */ `
+  query ListPatients(
+    $filter: ModelPatientFilterInput
     $limit: Int
     $nextToken: String
   ) {
-    listPosts(filter: $filter, limit: $limit, nextToken: $nextToken) {
+    listPatients(filter: $filter, limit: $limit, nextToken: $nextToken) {
       items {
         id
-        title
-        blog {
-          id
-          name
-          createdAt
-          updatedAt
-          __typename
-        }
-        comments {
+        first_name
+        last_name
+        email
+        date_of_birth
+        phone_number
+        pat_appointments {
           nextToken
+          startedAt
           __typename
         }
+        gender
         createdAt
         updatedAt
-        blogPostsId
+        _version
+        _deleted
+        _lastChangedAt
         __typename
       }
       nextToken
+      startedAt
       __typename
     }
   }
 `;
-export const getComment = /* GraphQL */ `
-  query GetComment($id: ID!) {
-    getComment(id: $id) {
-      id
-      post {
-        id
-        title
-        blog {
-          id
-          name
-          createdAt
-          updatedAt
-          __typename
-        }
-        comments {
-          nextToken
-          __typename
-        }
-        createdAt
-        updatedAt
-        blogPostsId
-        __typename
-      }
-      content
-      createdAt
-      updatedAt
-      postCommentsId
-      __typename
-    }
-  }
-`;
-export const listComments = /* GraphQL */ `
-  query ListComments(
-    $filter: ModelCommentFilterInput
+export const syncPatients = /* GraphQL */ `
+  query SyncPatients(
+    $filter: ModelPatientFilterInput
     $limit: Int
     $nextToken: String
+    $lastSync: AWSTimestamp
   ) {
-    listComments(filter: $filter, limit: $limit, nextToken: $nextToken) {
+    syncPatients(
+      filter: $filter
+      limit: $limit
+      nextToken: $nextToken
+      lastSync: $lastSync
+    ) {
       items {
         id
-        post {
-          id
-          title
-          createdAt
-          updatedAt
-          blogPostsId
+        first_name
+        last_name
+        email
+        date_of_birth
+        phone_number
+        pat_appointments {
+          nextToken
+          startedAt
           __typename
         }
-        content
+        gender
         createdAt
         updatedAt
-        postCommentsId
+        _version
+        _deleted
+        _lastChangedAt
         __typename
       }
       nextToken
+      startedAt
       __typename
     }
   }

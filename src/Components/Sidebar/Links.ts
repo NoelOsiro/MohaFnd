@@ -31,7 +31,7 @@ export const coreItems: MenuItem[] = [
       {
         title: 'Home',
         icon: FiHome,
-        link:'/home',
+        link:'/',
       },
       {
         title: 'Report',

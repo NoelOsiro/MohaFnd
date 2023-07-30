@@ -1,7 +1,7 @@
 import React from 'react';
-import { activities } from '../Tables/Activities';
-import MyDataTable from '../Tables/ActivityTable';
-import AreaChart from '../Charts/DashCharts';
+// import { activities } from '../Tables/Activities';
+// import MyDataTable from '../Tables/ActivityTable';
+// import AreaChart from '../Charts/DashCharts';
 
 const TabDashBoard = () => {
   const tabs = [
@@ -13,6 +13,7 @@ const TabDashBoard = () => {
     <div className="card mb-4">
       <div className="card-header border-bottom">
         {/* Dashboard card navigation */}
+        
         <ul className="nav nav-tabs card-header-tabs" id="dashboardNav" role="tablist">
           {tabs.map((tab) => (
             <li className="nav-item me-1" key={tab.id}>
@@ -41,13 +42,13 @@ const TabDashBoard = () => {
               aria-labelledby={`${tab.id}-pill`}
               key={tab.id}
             >
-              {tab.id === 'overview' ? (
+              {/* {tab.id === 'overview' ? (
                 <div className="chart-area mb-4 mb-lg-0" style={{ height: '20rem' }}>
                   <AreaChart/>
                 </div>
               ) : (
                 <MyDataTable/>
-              )}
+              )} */}
             </div>
           ))}
         </div>

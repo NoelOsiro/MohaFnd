@@ -2,16 +2,37 @@
 /* eslint-disable */
 //  This file was automatically generated and should not be edited.
 
-export type CreateBlogInput = {
+export type CreateStaffInput = {
   id?: string | null,
-  name: string,
+  first_name?: string | null,
+  last_name?: string | null,
+  email?: string | null,
+  username?: string | null,
+  phone_number?: string | null,
+  role?: StaffRoleEnum | null,
+  _version?: number | null,
 };
 
-export type ModelBlogConditionInput = {
-  name?: ModelStringInput | null,
-  and?: Array< ModelBlogConditionInput | null > | null,
-  or?: Array< ModelBlogConditionInput | null > | null,
-  not?: ModelBlogConditionInput | null,
+export enum StaffRoleEnum {
+  DOCTOR = "DOCTOR",
+  RECEPTIONIST = "RECEPTIONIST",
+  NURSE = "NURSE",
+  NURSEAID = "NURSEAID",
+  ASSISTANT = "ASSISTANT",
+}
+
+
+export type ModelStaffConditionInput = {
+  first_name?: ModelStringInput | null,
+  last_name?: ModelStringInput | null,
+  email?: ModelStringInput | null,
+  username?: ModelStringInput | null,
+  phone_number?: ModelStringInput | null,
+  role?: ModelStaffRoleEnumInput | null,
+  and?: Array< ModelStaffConditionInput | null > | null,
+  or?: Array< ModelStaffConditionInput | null > | null,
+  not?: ModelStaffConditionInput | null,
+  _deleted?: ModelBooleanInput | null,
 };
 
 export type ModelStringInput = {
@@ -43,7 +64,6 @@ export enum ModelAttributeTypes {
   _null = "_null",
 }
 
-
 export type ModelSizeInput = {
   ne?: number | null,
   eq?: number | null,
@@ -54,69 +74,115 @@ export type ModelSizeInput = {
   between?: Array< number | null > | null,
 };
 
-export type Blog = {
-  __typename: "Blog",
-  id: string,
-  name: string,
-  posts?: ModelPostConnection | null,
-  createdAt: string,
-  updatedAt: string,
+export type ModelStaffRoleEnumInput = {
+  eq?: StaffRoleEnum | null,
+  ne?: StaffRoleEnum | null,
 };
 
-export type ModelPostConnection = {
-  __typename: "ModelPostConnection",
-  items:  Array<Post | null >,
+export type ModelBooleanInput = {
+  ne?: boolean | null,
+  eq?: boolean | null,
+  attributeExists?: boolean | null,
+  attributeType?: ModelAttributeTypes | null,
+};
+
+export type Staff = {
+  __typename: "Staff",
+  id: string,
+  first_name?: string | null,
+  last_name?: string | null,
+  email?: string | null,
+  username?: string | null,
+  phone_number?: string | null,
+  role?: StaffRoleEnum | null,
+  staff_appointments?: ModelAppointmentsConnection | null,
+  createdAt: string,
+  updatedAt: string,
+  _version: number,
+  _deleted?: boolean | null,
+  _lastChangedAt: number,
+};
+
+export type ModelAppointmentsConnection = {
+  __typename: "ModelAppointmentsConnection",
+  items:  Array<Appointments | null >,
   nextToken?: string | null,
+  startedAt?: number | null,
 };
 
-export type Post = {
-  __typename: "Post",
+export type Appointments = {
+  __typename: "Appointments",
   id: string,
-  title: string,
-  blog?: Blog | null,
-  comments?: ModelCommentConnection | null,
+  appointment_date?: string | null,
+  created_at?: string | null,
+  start_time?: string | null,
+  end_time?: string | null,
+  status?: AppointmentStatusEnum | null,
+  assigned_to?: string | null,
+  patientID: string,
+  staffID: string,
   createdAt: string,
   updatedAt: string,
-  blogPostsId?: string | null,
+  _version: number,
+  _deleted?: boolean | null,
+  _lastChangedAt: number,
 };
 
-export type ModelCommentConnection = {
-  __typename: "ModelCommentConnection",
-  items:  Array<Comment | null >,
-  nextToken?: string | null,
-};
+export enum AppointmentStatusEnum {
+  DONE = "DONE",
+  PENDING = "PENDING",
+  MISSED = "MISSED",
+  RESCHEDULED = "RESCHEDULED",
+}
 
-export type Comment = {
-  __typename: "Comment",
+
+export type UpdateStaffInput = {
   id: string,
-  post?: Post | null,
-  content: string,
-  createdAt: string,
-  updatedAt: string,
-  postCommentsId?: string | null,
+  first_name?: string | null,
+  last_name?: string | null,
+  email?: string | null,
+  username?: string | null,
+  phone_number?: string | null,
+  role?: StaffRoleEnum | null,
+  _version?: number | null,
 };
 
-export type UpdateBlogInput = {
+export type DeleteStaffInput = {
   id: string,
-  name?: string | null,
+  _version?: number | null,
 };
 
-export type DeleteBlogInput = {
-  id: string,
-};
-
-export type CreatePostInput = {
+export type CreateAppointmentsInput = {
   id?: string | null,
-  title: string,
-  blogPostsId?: string | null,
+  appointment_date?: string | null,
+  created_at?: string | null,
+  start_time?: string | null,
+  end_time?: string | null,
+  status?: AppointmentStatusEnum | null,
+  assigned_to?: string | null,
+  patientID: string,
+  staffID: string,
+  _version?: number | null,
 };
 
-export type ModelPostConditionInput = {
-  title?: ModelStringInput | null,
-  and?: Array< ModelPostConditionInput | null > | null,
-  or?: Array< ModelPostConditionInput | null > | null,
-  not?: ModelPostConditionInput | null,
-  blogPostsId?: ModelIDInput | null,
+export type ModelAppointmentsConditionInput = {
+  appointment_date?: ModelStringInput | null,
+  created_at?: ModelStringInput | null,
+  start_time?: ModelStringInput | null,
+  end_time?: ModelStringInput | null,
+  status?: ModelAppointmentStatusEnumInput | null,
+  assigned_to?: ModelStringInput | null,
+  patientID?: ModelIDInput | null,
+  staffID?: ModelIDInput | null,
+  and?: Array< ModelAppointmentsConditionInput | null > | null,
+  or?: Array< ModelAppointmentsConditionInput | null > | null,
+  not?: ModelAppointmentsConditionInput | null,
+  _deleted?: ModelBooleanInput | null,
+};
+
+export type ModelAppointmentStatusEnumInput = {
+  eq?: AppointmentStatusEnum | null,
+  ne?: AppointmentStatusEnum | null,
 };
 
 export type ModelIDInput = {
@@ -135,77 +201,155 @@ export type ModelIDInput = {
   size?: ModelSizeInput | null,
 };
 
-export type UpdatePostInput = {
+export type UpdateAppointmentsInput = {
   id: string,
-  title?: string | null,
-  blogPostsId?: string | null,
+  appointment_date?: string | null,
+  created_at?: string | null,
+  start_time?: string | null,
+  end_time?: string | null,
+  status?: AppointmentStatusEnum | null,
+  assigned_to?: string | null,
+  patientID?: string | null,
+  staffID?: string | null,
+  _version?: number | null,
 };
 
-export type DeletePostInput = {
+export type DeleteAppointmentsInput = {
   id: string,
+  _version?: number | null,
 };
 
-export type CreateCommentInput = {
+export type CreatePatientInput = {
   id?: string | null,
-  content: string,
-  postCommentsId?: string | null,
+  first_name?: string | null,
+  last_name?: string | null,
+  email?: string | null,
+  date_of_birth?: string | null,
+  phone_number?: string | null,
+  gender?: string | null,
+  _version?: number | null,
 };
 
-export type ModelCommentConditionInput = {
-  content?: ModelStringInput | null,
-  and?: Array< ModelCommentConditionInput | null > | null,
-  or?: Array< ModelCommentConditionInput | null > | null,
-  not?: ModelCommentConditionInput | null,
-  postCommentsId?: ModelIDInput | null,
+export type ModelPatientConditionInput = {
+  first_name?: ModelStringInput | null,
+  last_name?: ModelStringInput | null,
+  email?: ModelStringInput | null,
+  date_of_birth?: ModelStringInput | null,
+  phone_number?: ModelStringInput | null,
+  gender?: ModelStringInput | null,
+  and?: Array< ModelPatientConditionInput | null > | null,
+  or?: Array< ModelPatientConditionInput | null > | null,
+  not?: ModelPatientConditionInput | null,
+  _deleted?: ModelBooleanInput | null,
 };
 
-export type UpdateCommentInput = {
+export type Patient = {
+  __typename: "Patient",
   id: string,
-  content?: string | null,
-  postCommentsId?: string | null,
+  first_name?: string | null,
+  last_name?: string | null,
+  email?: string | null,
+  date_of_birth?: string | null,
+  phone_number?: string | null,
+  pat_appointments?: ModelAppointmentsConnection | null,
+  gender?: string | null,
+  createdAt: string,
+  updatedAt: string,
+  _version: number,
+  _deleted?: boolean | null,
+  _lastChangedAt: number,
 };
 
-export type DeleteCommentInput = {
+export type UpdatePatientInput = {
   id: string,
+  first_name?: string | null,
+  last_name?: string | null,
+  email?: string | null,
+  date_of_birth?: string | null,
+  phone_number?: string | null,
+  gender?: string | null,
+  _version?: number | null,
 };
 
-export type ModelBlogFilterInput = {
+export type DeletePatientInput = {
+  id: string,
+  _version?: number | null,
+};
+
+export type ModelStaffFilterInput = {
   id?: ModelIDInput | null,
-  name?: ModelStringInput | null,
-  and?: Array< ModelBlogFilterInput | null > | null,
-  or?: Array< ModelBlogFilterInput | null > | null,
-  not?: ModelBlogFilterInput | null,
+  first_name?: ModelStringInput | null,
+  last_name?: ModelStringInput | null,
+  email?: ModelStringInput | null,
+  username?: ModelStringInput | null,
+  phone_number?: ModelStringInput | null,
+  role?: ModelStaffRoleEnumInput | null,
+  and?: Array< ModelStaffFilterInput | null > | null,
+  or?: Array< ModelStaffFilterInput | null > | null,
+  not?: ModelStaffFilterInput | null,
+  _deleted?: ModelBooleanInput | null,
 };
 
-export type ModelBlogConnection = {
-  __typename: "ModelBlogConnection",
-  items:  Array<Blog | null >,
+export type ModelStaffConnection = {
+  __typename: "ModelStaffConnection",
+  items:  Array<Staff | null >,
   nextToken?: string | null,
+  startedAt?: number | null,
 };
 
-export type ModelPostFilterInput = {
+export type ModelAppointmentsFilterInput = {
   id?: ModelIDInput | null,
-  title?: ModelStringInput | null,
-  and?: Array< ModelPostFilterInput | null > | null,
-  or?: Array< ModelPostFilterInput | null > | null,
-  not?: ModelPostFilterInput | null,
-  blogPostsId?: ModelIDInput | null,
+  appointment_date?: ModelStringInput | null,
+  created_at?: ModelStringInput | null,
+  start_time?: ModelStringInput | null,
+  end_time?: ModelStringInput | null,
+  status?: ModelAppointmentStatusEnumInput | null,
+  assigned_to?: ModelStringInput | null,
+  patientID?: ModelIDInput | null,
+  staffID?: ModelIDInput | null,
+  and?: Array< ModelAppointmentsFilterInput | null > | null,
+  or?: Array< ModelAppointmentsFilterInput | null > | null,
+  not?: ModelAppointmentsFilterInput | null,
+  _deleted?: ModelBooleanInput | null,
 };
 
-export type ModelCommentFilterInput = {
+export enum ModelSortDirection {
+  ASC = "ASC",
+  DESC = "DESC",
+}
+
+export type ModelPatientFilterInput = {
   id?: ModelIDInput | null,
-  content?: ModelStringInput | null,
-  and?: Array< ModelCommentFilterInput | null > | null,
-  or?: Array< ModelCommentFilterInput | null > | null,
-  not?: ModelCommentFilterInput | null,
-  postCommentsId?: ModelIDInput | null,
+  first_name?: ModelStringInput | null,
+  last_name?: ModelStringInput | null,
+  email?: ModelStringInput | null,
+  date_of_birth?: ModelStringInput | null,
+  phone_number?: ModelStringInput | null,
+  gender?: ModelStringInput | null,
+  and?: Array< ModelPatientFilterInput | null > | null,
+  or?: Array< ModelPatientFilterInput | null > | null,
+  not?: ModelPatientFilterInput | null,
+  _deleted?: ModelBooleanInput | null,
 };
 
-export type ModelSubscriptionBlogFilterInput = {
+export type ModelPatientConnection = {
+  __typename: "ModelPatientConnection",
+  items:  Array<Patient | null >,
+  nextToken?: string | null,
+  startedAt?: number | null,
+};
+
+export type ModelSubscriptionStaffFilterInput = {
   id?: ModelSubscriptionIDInput | null,
-  name?: ModelSubscriptionStringInput | null,
-  and?: Array< ModelSubscriptionBlogFilterInput | null > | null,
-  or?: Array< ModelSubscriptionBlogFilterInput | null > | null,
+  first_name?: ModelSubscriptionStringInput | null,
+  last_name?: ModelSubscriptionStringInput | null,
+  email?: ModelSubscriptionStringInput | null,
+  username?: ModelSubscriptionStringInput | null,
+  phone_number?: ModelSubscriptionStringInput | null,
+  role?: ModelSubscriptionStringInput | null,
+  and?: Array< ModelSubscriptionStaffFilterInput | null > | null,
+  or?: Array< ModelSubscriptionStaffFilterInput | null > | null,
+  _deleted?: ModelBooleanInput | null,
 };
 
 export type ModelSubscriptionIDInput = {
@@ -238,796 +382,1090 @@ export type ModelSubscriptionStringInput = {
   notIn?: Array< string | null > | null,
 };
 
-export type ModelSubscriptionPostFilterInput = {
+export type ModelSubscriptionAppointmentsFilterInput = {
   id?: ModelSubscriptionIDInput | null,
-  title?: ModelSubscriptionStringInput | null,
-  and?: Array< ModelSubscriptionPostFilterInput | null > | null,
-  or?: Array< ModelSubscriptionPostFilterInput | null > | null,
+  appointment_date?: ModelSubscriptionStringInput | null,
+  created_at?: ModelSubscriptionStringInput | null,
+  start_time?: ModelSubscriptionStringInput | null,
+  end_time?: ModelSubscriptionStringInput | null,
+  status?: ModelSubscriptionStringInput | null,
+  assigned_to?: ModelSubscriptionStringInput | null,
+  patientID?: ModelSubscriptionIDInput | null,
+  staffID?: ModelSubscriptionIDInput | null,
+  and?: Array< ModelSubscriptionAppointmentsFilterInput | null > | null,
+  or?: Array< ModelSubscriptionAppointmentsFilterInput | null > | null,
+  _deleted?: ModelBooleanInput | null,
 };
 
-export type ModelSubscriptionCommentFilterInput = {
+export type ModelSubscriptionPatientFilterInput = {
   id?: ModelSubscriptionIDInput | null,
-  content?: ModelSubscriptionStringInput | null,
-  and?: Array< ModelSubscriptionCommentFilterInput | null > | null,
-  or?: Array< ModelSubscriptionCommentFilterInput | null > | null,
+  first_name?: ModelSubscriptionStringInput | null,
+  last_name?: ModelSubscriptionStringInput | null,
+  email?: ModelSubscriptionStringInput | null,
+  date_of_birth?: ModelSubscriptionStringInput | null,
+  phone_number?: ModelSubscriptionStringInput | null,
+  gender?: ModelSubscriptionStringInput | null,
+  and?: Array< ModelSubscriptionPatientFilterInput | null > | null,
+  or?: Array< ModelSubscriptionPatientFilterInput | null > | null,
+  _deleted?: ModelBooleanInput | null,
 };
 
-export type CreateBlogMutationVariables = {
-  input: CreateBlogInput,
-  condition?: ModelBlogConditionInput | null,
+export type CreateStaffMutationVariables = {
+  input: CreateStaffInput,
+  condition?: ModelStaffConditionInput | null,
 };
 
-export type CreateBlogMutation = {
-  createBlog?:  {
-    __typename: "Blog",
+export type CreateStaffMutation = {
+  createStaff?:  {
+    __typename: "Staff",
     id: string,
-    name: string,
-    posts?:  {
-      __typename: "ModelPostConnection",
+    first_name?: string | null,
+    last_name?: string | null,
+    email?: string | null,
+    username?: string | null,
+    phone_number?: string | null,
+    role?: StaffRoleEnum | null,
+    staff_appointments?:  {
+      __typename: "ModelAppointmentsConnection",
       items:  Array< {
-        __typename: "Post",
+        __typename: "Appointments",
         id: string,
-        title: string,
+        appointment_date?: string | null,
+        created_at?: string | null,
+        start_time?: string | null,
+        end_time?: string | null,
+        status?: AppointmentStatusEnum | null,
+        assigned_to?: string | null,
+        patientID: string,
+        staffID: string,
         createdAt: string,
         updatedAt: string,
-        blogPostsId?: string | null,
+        _version: number,
+        _deleted?: boolean | null,
+        _lastChangedAt: number,
       } | null >,
       nextToken?: string | null,
+      startedAt?: number | null,
     } | null,
     createdAt: string,
     updatedAt: string,
+    _version: number,
+    _deleted?: boolean | null,
+    _lastChangedAt: number,
   } | null,
 };
 
-export type UpdateBlogMutationVariables = {
-  input: UpdateBlogInput,
-  condition?: ModelBlogConditionInput | null,
+export type UpdateStaffMutationVariables = {
+  input: UpdateStaffInput,
+  condition?: ModelStaffConditionInput | null,
 };
 
-export type UpdateBlogMutation = {
-  updateBlog?:  {
-    __typename: "Blog",
+export type UpdateStaffMutation = {
+  updateStaff?:  {
+    __typename: "Staff",
     id: string,
-    name: string,
-    posts?:  {
-      __typename: "ModelPostConnection",
+    first_name?: string | null,
+    last_name?: string | null,
+    email?: string | null,
+    username?: string | null,
+    phone_number?: string | null,
+    role?: StaffRoleEnum | null,
+    staff_appointments?:  {
+      __typename: "ModelAppointmentsConnection",
       items:  Array< {
-        __typename: "Post",
+        __typename: "Appointments",
         id: string,
-        title: string,
+        appointment_date?: string | null,
+        created_at?: string | null,
+        start_time?: string | null,
+        end_time?: string | null,
+        status?: AppointmentStatusEnum | null,
+        assigned_to?: string | null,
+        patientID: string,
+        staffID: string,
         createdAt: string,
         updatedAt: string,
-        blogPostsId?: string | null,
+        _version: number,
+        _deleted?: boolean | null,
+        _lastChangedAt: number,
       } | null >,
       nextToken?: string | null,
+      startedAt?: number | null,
     } | null,
     createdAt: string,
     updatedAt: string,
+    _version: number,
+    _deleted?: boolean | null,
+    _lastChangedAt: number,
   } | null,
 };
 
-export type DeleteBlogMutationVariables = {
-  input: DeleteBlogInput,
-  condition?: ModelBlogConditionInput | null,
+export type DeleteStaffMutationVariables = {
+  input: DeleteStaffInput,
+  condition?: ModelStaffConditionInput | null,
 };
 
-export type DeleteBlogMutation = {
-  deleteBlog?:  {
-    __typename: "Blog",
+export type DeleteStaffMutation = {
+  deleteStaff?:  {
+    __typename: "Staff",
     id: string,
-    name: string,
-    posts?:  {
-      __typename: "ModelPostConnection",
+    first_name?: string | null,
+    last_name?: string | null,
+    email?: string | null,
+    username?: string | null,
+    phone_number?: string | null,
+    role?: StaffRoleEnum | null,
+    staff_appointments?:  {
+      __typename: "ModelAppointmentsConnection",
       items:  Array< {
-        __typename: "Post",
+        __typename: "Appointments",
         id: string,
-        title: string,
+        appointment_date?: string | null,
+        created_at?: string | null,
+        start_time?: string | null,
+        end_time?: string | null,
+        status?: AppointmentStatusEnum | null,
+        assigned_to?: string | null,
+        patientID: string,
+        staffID: string,
         createdAt: string,
         updatedAt: string,
-        blogPostsId?: string | null,
+        _version: number,
+        _deleted?: boolean | null,
+        _lastChangedAt: number,
       } | null >,
       nextToken?: string | null,
+      startedAt?: number | null,
     } | null,
     createdAt: string,
     updatedAt: string,
+    _version: number,
+    _deleted?: boolean | null,
+    _lastChangedAt: number,
   } | null,
 };
 
-export type CreatePostMutationVariables = {
-  input: CreatePostInput,
-  condition?: ModelPostConditionInput | null,
+export type CreateAppointmentsMutationVariables = {
+  input: CreateAppointmentsInput,
+  condition?: ModelAppointmentsConditionInput | null,
 };
 
-export type CreatePostMutation = {
-  createPost?:  {
-    __typename: "Post",
+export type CreateAppointmentsMutation = {
+  createAppointments?:  {
+    __typename: "Appointments",
     id: string,
-    title: string,
-    blog?:  {
-      __typename: "Blog",
-      id: string,
-      name: string,
-      posts?:  {
-        __typename: "ModelPostConnection",
-        nextToken?: string | null,
-      } | null,
-      createdAt: string,
-      updatedAt: string,
-    } | null,
-    comments?:  {
-      __typename: "ModelCommentConnection",
+    appointment_date?: string | null,
+    created_at?: string | null,
+    start_time?: string | null,
+    end_time?: string | null,
+    status?: AppointmentStatusEnum | null,
+    assigned_to?: string | null,
+    patientID: string,
+    staffID: string,
+    createdAt: string,
+    updatedAt: string,
+    _version: number,
+    _deleted?: boolean | null,
+    _lastChangedAt: number,
+  } | null,
+};
+
+export type UpdateAppointmentsMutationVariables = {
+  input: UpdateAppointmentsInput,
+  condition?: ModelAppointmentsConditionInput | null,
+};
+
+export type UpdateAppointmentsMutation = {
+  updateAppointments?:  {
+    __typename: "Appointments",
+    id: string,
+    appointment_date?: string | null,
+    created_at?: string | null,
+    start_time?: string | null,
+    end_time?: string | null,
+    status?: AppointmentStatusEnum | null,
+    assigned_to?: string | null,
+    patientID: string,
+    staffID: string,
+    createdAt: string,
+    updatedAt: string,
+    _version: number,
+    _deleted?: boolean | null,
+    _lastChangedAt: number,
+  } | null,
+};
+
+export type DeleteAppointmentsMutationVariables = {
+  input: DeleteAppointmentsInput,
+  condition?: ModelAppointmentsConditionInput | null,
+};
+
+export type DeleteAppointmentsMutation = {
+  deleteAppointments?:  {
+    __typename: "Appointments",
+    id: string,
+    appointment_date?: string | null,
+    created_at?: string | null,
+    start_time?: string | null,
+    end_time?: string | null,
+    status?: AppointmentStatusEnum | null,
+    assigned_to?: string | null,
+    patientID: string,
+    staffID: string,
+    createdAt: string,
+    updatedAt: string,
+    _version: number,
+    _deleted?: boolean | null,
+    _lastChangedAt: number,
+  } | null,
+};
+
+export type CreatePatientMutationVariables = {
+  input: CreatePatientInput,
+  condition?: ModelPatientConditionInput | null,
+};
+
+export type CreatePatientMutation = {
+  createPatient?:  {
+    __typename: "Patient",
+    id: string,
+    first_name?: string | null,
+    last_name?: string | null,
+    email?: string | null,
+    date_of_birth?: string | null,
+    phone_number?: string | null,
+    pat_appointments?:  {
+      __typename: "ModelAppointmentsConnection",
       items:  Array< {
-        __typename: "Comment",
+        __typename: "Appointments",
         id: string,
-        content: string,
+        appointment_date?: string | null,
+        created_at?: string | null,
+        start_time?: string | null,
+        end_time?: string | null,
+        status?: AppointmentStatusEnum | null,
+        assigned_to?: string | null,
+        patientID: string,
+        staffID: string,
         createdAt: string,
         updatedAt: string,
-        postCommentsId?: string | null,
+        _version: number,
+        _deleted?: boolean | null,
+        _lastChangedAt: number,
       } | null >,
       nextToken?: string | null,
+      startedAt?: number | null,
     } | null,
+    gender?: string | null,
     createdAt: string,
     updatedAt: string,
-    blogPostsId?: string | null,
+    _version: number,
+    _deleted?: boolean | null,
+    _lastChangedAt: number,
   } | null,
 };
 
-export type UpdatePostMutationVariables = {
-  input: UpdatePostInput,
-  condition?: ModelPostConditionInput | null,
+export type UpdatePatientMutationVariables = {
+  input: UpdatePatientInput,
+  condition?: ModelPatientConditionInput | null,
 };
 
-export type UpdatePostMutation = {
-  updatePost?:  {
-    __typename: "Post",
+export type UpdatePatientMutation = {
+  updatePatient?:  {
+    __typename: "Patient",
     id: string,
-    title: string,
-    blog?:  {
-      __typename: "Blog",
-      id: string,
-      name: string,
-      posts?:  {
-        __typename: "ModelPostConnection",
-        nextToken?: string | null,
-      } | null,
-      createdAt: string,
-      updatedAt: string,
-    } | null,
-    comments?:  {
-      __typename: "ModelCommentConnection",
+    first_name?: string | null,
+    last_name?: string | null,
+    email?: string | null,
+    date_of_birth?: string | null,
+    phone_number?: string | null,
+    pat_appointments?:  {
+      __typename: "ModelAppointmentsConnection",
       items:  Array< {
-        __typename: "Comment",
+        __typename: "Appointments",
         id: string,
-        content: string,
+        appointment_date?: string | null,
+        created_at?: string | null,
+        start_time?: string | null,
+        end_time?: string | null,
+        status?: AppointmentStatusEnum | null,
+        assigned_to?: string | null,
+        patientID: string,
+        staffID: string,
         createdAt: string,
         updatedAt: string,
-        postCommentsId?: string | null,
+        _version: number,
+        _deleted?: boolean | null,
+        _lastChangedAt: number,
       } | null >,
       nextToken?: string | null,
+      startedAt?: number | null,
     } | null,
+    gender?: string | null,
     createdAt: string,
     updatedAt: string,
-    blogPostsId?: string | null,
+    _version: number,
+    _deleted?: boolean | null,
+    _lastChangedAt: number,
   } | null,
 };
 
-export type DeletePostMutationVariables = {
-  input: DeletePostInput,
-  condition?: ModelPostConditionInput | null,
+export type DeletePatientMutationVariables = {
+  input: DeletePatientInput,
+  condition?: ModelPatientConditionInput | null,
 };
 
-export type DeletePostMutation = {
-  deletePost?:  {
-    __typename: "Post",
+export type DeletePatientMutation = {
+  deletePatient?:  {
+    __typename: "Patient",
     id: string,
-    title: string,
-    blog?:  {
-      __typename: "Blog",
-      id: string,
-      name: string,
-      posts?:  {
-        __typename: "ModelPostConnection",
-        nextToken?: string | null,
-      } | null,
-      createdAt: string,
-      updatedAt: string,
-    } | null,
-    comments?:  {
-      __typename: "ModelCommentConnection",
+    first_name?: string | null,
+    last_name?: string | null,
+    email?: string | null,
+    date_of_birth?: string | null,
+    phone_number?: string | null,
+    pat_appointments?:  {
+      __typename: "ModelAppointmentsConnection",
       items:  Array< {
-        __typename: "Comment",
+        __typename: "Appointments",
         id: string,
-        content: string,
+        appointment_date?: string | null,
+        created_at?: string | null,
+        start_time?: string | null,
+        end_time?: string | null,
+        status?: AppointmentStatusEnum | null,
+        assigned_to?: string | null,
+        patientID: string,
+        staffID: string,
         createdAt: string,
         updatedAt: string,
-        postCommentsId?: string | null,
+        _version: number,
+        _deleted?: boolean | null,
+        _lastChangedAt: number,
       } | null >,
       nextToken?: string | null,
+      startedAt?: number | null,
     } | null,
+    gender?: string | null,
     createdAt: string,
     updatedAt: string,
-    blogPostsId?: string | null,
+    _version: number,
+    _deleted?: boolean | null,
+    _lastChangedAt: number,
   } | null,
 };
 
-export type CreateCommentMutationVariables = {
-  input: CreateCommentInput,
-  condition?: ModelCommentConditionInput | null,
-};
-
-export type CreateCommentMutation = {
-  createComment?:  {
-    __typename: "Comment",
-    id: string,
-    post?:  {
-      __typename: "Post",
-      id: string,
-      title: string,
-      blog?:  {
-        __typename: "Blog",
-        id: string,
-        name: string,
-        createdAt: string,
-        updatedAt: string,
-      } | null,
-      comments?:  {
-        __typename: "ModelCommentConnection",
-        nextToken?: string | null,
-      } | null,
-      createdAt: string,
-      updatedAt: string,
-      blogPostsId?: string | null,
-    } | null,
-    content: string,
-    createdAt: string,
-    updatedAt: string,
-    postCommentsId?: string | null,
-  } | null,
-};
-
-export type UpdateCommentMutationVariables = {
-  input: UpdateCommentInput,
-  condition?: ModelCommentConditionInput | null,
-};
-
-export type UpdateCommentMutation = {
-  updateComment?:  {
-    __typename: "Comment",
-    id: string,
-    post?:  {
-      __typename: "Post",
-      id: string,
-      title: string,
-      blog?:  {
-        __typename: "Blog",
-        id: string,
-        name: string,
-        createdAt: string,
-        updatedAt: string,
-      } | null,
-      comments?:  {
-        __typename: "ModelCommentConnection",
-        nextToken?: string | null,
-      } | null,
-      createdAt: string,
-      updatedAt: string,
-      blogPostsId?: string | null,
-    } | null,
-    content: string,
-    createdAt: string,
-    updatedAt: string,
-    postCommentsId?: string | null,
-  } | null,
-};
-
-export type DeleteCommentMutationVariables = {
-  input: DeleteCommentInput,
-  condition?: ModelCommentConditionInput | null,
-};
-
-export type DeleteCommentMutation = {
-  deleteComment?:  {
-    __typename: "Comment",
-    id: string,
-    post?:  {
-      __typename: "Post",
-      id: string,
-      title: string,
-      blog?:  {
-        __typename: "Blog",
-        id: string,
-        name: string,
-        createdAt: string,
-        updatedAt: string,
-      } | null,
-      comments?:  {
-        __typename: "ModelCommentConnection",
-        nextToken?: string | null,
-      } | null,
-      createdAt: string,
-      updatedAt: string,
-      blogPostsId?: string | null,
-    } | null,
-    content: string,
-    createdAt: string,
-    updatedAt: string,
-    postCommentsId?: string | null,
-  } | null,
-};
-
-export type GetBlogQueryVariables = {
+export type GetStaffQueryVariables = {
   id: string,
 };
 
-export type GetBlogQuery = {
-  getBlog?:  {
-    __typename: "Blog",
+export type GetStaffQuery = {
+  getStaff?:  {
+    __typename: "Staff",
     id: string,
-    name: string,
-    posts?:  {
-      __typename: "ModelPostConnection",
+    first_name?: string | null,
+    last_name?: string | null,
+    email?: string | null,
+    username?: string | null,
+    phone_number?: string | null,
+    role?: StaffRoleEnum | null,
+    staff_appointments?:  {
+      __typename: "ModelAppointmentsConnection",
       items:  Array< {
-        __typename: "Post",
+        __typename: "Appointments",
         id: string,
-        title: string,
+        appointment_date?: string | null,
+        created_at?: string | null,
+        start_time?: string | null,
+        end_time?: string | null,
+        status?: AppointmentStatusEnum | null,
+        assigned_to?: string | null,
+        patientID: string,
+        staffID: string,
         createdAt: string,
         updatedAt: string,
-        blogPostsId?: string | null,
+        _version: number,
+        _deleted?: boolean | null,
+        _lastChangedAt: number,
       } | null >,
       nextToken?: string | null,
+      startedAt?: number | null,
     } | null,
     createdAt: string,
     updatedAt: string,
+    _version: number,
+    _deleted?: boolean | null,
+    _lastChangedAt: number,
   } | null,
 };
 
-export type ListBlogsQueryVariables = {
-  filter?: ModelBlogFilterInput | null,
+export type ListStaffQueryVariables = {
+  filter?: ModelStaffFilterInput | null,
   limit?: number | null,
   nextToken?: string | null,
 };
 
-export type ListBlogsQuery = {
-  listBlogs?:  {
-    __typename: "ModelBlogConnection",
+export type ListStaffQuery = {
+  listStaff?:  {
+    __typename: "ModelStaffConnection",
     items:  Array< {
-      __typename: "Blog",
+      __typename: "Staff",
       id: string,
-      name: string,
-      posts?:  {
-        __typename: "ModelPostConnection",
+      first_name?: string | null,
+      last_name?: string | null,
+      email?: string | null,
+      username?: string | null,
+      phone_number?: string | null,
+      role?: StaffRoleEnum | null,
+      staff_appointments?:  {
+        __typename: "ModelAppointmentsConnection",
         nextToken?: string | null,
+        startedAt?: number | null,
       } | null,
       createdAt: string,
       updatedAt: string,
+      _version: number,
+      _deleted?: boolean | null,
+      _lastChangedAt: number,
     } | null >,
     nextToken?: string | null,
+    startedAt?: number | null,
   } | null,
 };
 
-export type GetPostQueryVariables = {
+export type SyncStaffQueryVariables = {
+  filter?: ModelStaffFilterInput | null,
+  limit?: number | null,
+  nextToken?: string | null,
+  lastSync?: number | null,
+};
+
+export type SyncStaffQuery = {
+  syncStaff?:  {
+    __typename: "ModelStaffConnection",
+    items:  Array< {
+      __typename: "Staff",
+      id: string,
+      first_name?: string | null,
+      last_name?: string | null,
+      email?: string | null,
+      username?: string | null,
+      phone_number?: string | null,
+      role?: StaffRoleEnum | null,
+      staff_appointments?:  {
+        __typename: "ModelAppointmentsConnection",
+        nextToken?: string | null,
+        startedAt?: number | null,
+      } | null,
+      createdAt: string,
+      updatedAt: string,
+      _version: number,
+      _deleted?: boolean | null,
+      _lastChangedAt: number,
+    } | null >,
+    nextToken?: string | null,
+    startedAt?: number | null,
+  } | null,
+};
+
+export type GetAppointmentsQueryVariables = {
   id: string,
 };
 
-export type GetPostQuery = {
-  getPost?:  {
-    __typename: "Post",
+export type GetAppointmentsQuery = {
+  getAppointments?:  {
+    __typename: "Appointments",
     id: string,
-    title: string,
-    blog?:  {
-      __typename: "Blog",
-      id: string,
-      name: string,
-      posts?:  {
-        __typename: "ModelPostConnection",
-        nextToken?: string | null,
-      } | null,
-      createdAt: string,
-      updatedAt: string,
-    } | null,
-    comments?:  {
-      __typename: "ModelCommentConnection",
-      items:  Array< {
-        __typename: "Comment",
-        id: string,
-        content: string,
-        createdAt: string,
-        updatedAt: string,
-        postCommentsId?: string | null,
-      } | null >,
-      nextToken?: string | null,
-    } | null,
+    appointment_date?: string | null,
+    created_at?: string | null,
+    start_time?: string | null,
+    end_time?: string | null,
+    status?: AppointmentStatusEnum | null,
+    assigned_to?: string | null,
+    patientID: string,
+    staffID: string,
     createdAt: string,
     updatedAt: string,
-    blogPostsId?: string | null,
+    _version: number,
+    _deleted?: boolean | null,
+    _lastChangedAt: number,
   } | null,
 };
 
-export type ListPostsQueryVariables = {
-  filter?: ModelPostFilterInput | null,
+export type ListAppointmentsQueryVariables = {
+  filter?: ModelAppointmentsFilterInput | null,
   limit?: number | null,
   nextToken?: string | null,
 };
 
-export type ListPostsQuery = {
-  listPosts?:  {
-    __typename: "ModelPostConnection",
+export type ListAppointmentsQuery = {
+  listAppointments?:  {
+    __typename: "ModelAppointmentsConnection",
     items:  Array< {
-      __typename: "Post",
+      __typename: "Appointments",
       id: string,
-      title: string,
-      blog?:  {
-        __typename: "Blog",
-        id: string,
-        name: string,
-        createdAt: string,
-        updatedAt: string,
-      } | null,
-      comments?:  {
-        __typename: "ModelCommentConnection",
-        nextToken?: string | null,
-      } | null,
+      appointment_date?: string | null,
+      created_at?: string | null,
+      start_time?: string | null,
+      end_time?: string | null,
+      status?: AppointmentStatusEnum | null,
+      assigned_to?: string | null,
+      patientID: string,
+      staffID: string,
       createdAt: string,
       updatedAt: string,
-      blogPostsId?: string | null,
+      _version: number,
+      _deleted?: boolean | null,
+      _lastChangedAt: number,
     } | null >,
     nextToken?: string | null,
+    startedAt?: number | null,
   } | null,
 };
 
-export type GetCommentQueryVariables = {
-  id: string,
+export type SyncAppointmentsQueryVariables = {
+  filter?: ModelAppointmentsFilterInput | null,
+  limit?: number | null,
+  nextToken?: string | null,
+  lastSync?: number | null,
 };
 
-export type GetCommentQuery = {
-  getComment?:  {
-    __typename: "Comment",
-    id: string,
-    post?:  {
-      __typename: "Post",
+export type SyncAppointmentsQuery = {
+  syncAppointments?:  {
+    __typename: "ModelAppointmentsConnection",
+    items:  Array< {
+      __typename: "Appointments",
       id: string,
-      title: string,
-      blog?:  {
-        __typename: "Blog",
-        id: string,
-        name: string,
-        createdAt: string,
-        updatedAt: string,
-      } | null,
-      comments?:  {
-        __typename: "ModelCommentConnection",
-        nextToken?: string | null,
-      } | null,
+      appointment_date?: string | null,
+      created_at?: string | null,
+      start_time?: string | null,
+      end_time?: string | null,
+      status?: AppointmentStatusEnum | null,
+      assigned_to?: string | null,
+      patientID: string,
+      staffID: string,
       createdAt: string,
       updatedAt: string,
-      blogPostsId?: string | null,
-    } | null,
-    content: string,
-    createdAt: string,
-    updatedAt: string,
-    postCommentsId?: string | null,
+      _version: number,
+      _deleted?: boolean | null,
+      _lastChangedAt: number,
+    } | null >,
+    nextToken?: string | null,
+    startedAt?: number | null,
   } | null,
 };
 
-export type ListCommentsQueryVariables = {
-  filter?: ModelCommentFilterInput | null,
+export type AppointmentsByPatientIDQueryVariables = {
+  patientID: string,
+  sortDirection?: ModelSortDirection | null,
+  filter?: ModelAppointmentsFilterInput | null,
   limit?: number | null,
   nextToken?: string | null,
 };
 
-export type ListCommentsQuery = {
-  listComments?:  {
-    __typename: "ModelCommentConnection",
+export type AppointmentsByPatientIDQuery = {
+  appointmentsByPatientID?:  {
+    __typename: "ModelAppointmentsConnection",
     items:  Array< {
-      __typename: "Comment",
+      __typename: "Appointments",
       id: string,
-      post?:  {
-        __typename: "Post",
-        id: string,
-        title: string,
-        createdAt: string,
-        updatedAt: string,
-        blogPostsId?: string | null,
-      } | null,
-      content: string,
+      appointment_date?: string | null,
+      created_at?: string | null,
+      start_time?: string | null,
+      end_time?: string | null,
+      status?: AppointmentStatusEnum | null,
+      assigned_to?: string | null,
+      patientID: string,
+      staffID: string,
       createdAt: string,
       updatedAt: string,
-      postCommentsId?: string | null,
+      _version: number,
+      _deleted?: boolean | null,
+      _lastChangedAt: number,
     } | null >,
     nextToken?: string | null,
+    startedAt?: number | null,
   } | null,
 };
 
-export type OnCreateBlogSubscriptionVariables = {
-  filter?: ModelSubscriptionBlogFilterInput | null,
+export type AppointmentsByStaffIDQueryVariables = {
+  staffID: string,
+  sortDirection?: ModelSortDirection | null,
+  filter?: ModelAppointmentsFilterInput | null,
+  limit?: number | null,
+  nextToken?: string | null,
 };
 
-export type OnCreateBlogSubscription = {
-  onCreateBlog?:  {
-    __typename: "Blog",
-    id: string,
-    name: string,
-    posts?:  {
-      __typename: "ModelPostConnection",
-      items:  Array< {
-        __typename: "Post",
-        id: string,
-        title: string,
-        createdAt: string,
-        updatedAt: string,
-        blogPostsId?: string | null,
-      } | null >,
-      nextToken?: string | null,
-    } | null,
-    createdAt: string,
-    updatedAt: string,
-  } | null,
-};
-
-export type OnUpdateBlogSubscriptionVariables = {
-  filter?: ModelSubscriptionBlogFilterInput | null,
-};
-
-export type OnUpdateBlogSubscription = {
-  onUpdateBlog?:  {
-    __typename: "Blog",
-    id: string,
-    name: string,
-    posts?:  {
-      __typename: "ModelPostConnection",
-      items:  Array< {
-        __typename: "Post",
-        id: string,
-        title: string,
-        createdAt: string,
-        updatedAt: string,
-        blogPostsId?: string | null,
-      } | null >,
-      nextToken?: string | null,
-    } | null,
-    createdAt: string,
-    updatedAt: string,
-  } | null,
-};
-
-export type OnDeleteBlogSubscriptionVariables = {
-  filter?: ModelSubscriptionBlogFilterInput | null,
-};
-
-export type OnDeleteBlogSubscription = {
-  onDeleteBlog?:  {
-    __typename: "Blog",
-    id: string,
-    name: string,
-    posts?:  {
-      __typename: "ModelPostConnection",
-      items:  Array< {
-        __typename: "Post",
-        id: string,
-        title: string,
-        createdAt: string,
-        updatedAt: string,
-        blogPostsId?: string | null,
-      } | null >,
-      nextToken?: string | null,
-    } | null,
-    createdAt: string,
-    updatedAt: string,
-  } | null,
-};
-
-export type OnCreatePostSubscriptionVariables = {
-  filter?: ModelSubscriptionPostFilterInput | null,
-};
-
-export type OnCreatePostSubscription = {
-  onCreatePost?:  {
-    __typename: "Post",
-    id: string,
-    title: string,
-    blog?:  {
-      __typename: "Blog",
+export type AppointmentsByStaffIDQuery = {
+  appointmentsByStaffID?:  {
+    __typename: "ModelAppointmentsConnection",
+    items:  Array< {
+      __typename: "Appointments",
       id: string,
-      name: string,
-      posts?:  {
-        __typename: "ModelPostConnection",
-        nextToken?: string | null,
-      } | null,
+      appointment_date?: string | null,
+      created_at?: string | null,
+      start_time?: string | null,
+      end_time?: string | null,
+      status?: AppointmentStatusEnum | null,
+      assigned_to?: string | null,
+      patientID: string,
+      staffID: string,
       createdAt: string,
       updatedAt: string,
-    } | null,
-    comments?:  {
-      __typename: "ModelCommentConnection",
+      _version: number,
+      _deleted?: boolean | null,
+      _lastChangedAt: number,
+    } | null >,
+    nextToken?: string | null,
+    startedAt?: number | null,
+  } | null,
+};
+
+export type GetPatientQueryVariables = {
+  id: string,
+};
+
+export type GetPatientQuery = {
+  getPatient?:  {
+    __typename: "Patient",
+    id: string,
+    first_name?: string | null,
+    last_name?: string | null,
+    email?: string | null,
+    date_of_birth?: string | null,
+    phone_number?: string | null,
+    pat_appointments?:  {
+      __typename: "ModelAppointmentsConnection",
       items:  Array< {
-        __typename: "Comment",
+        __typename: "Appointments",
         id: string,
-        content: string,
+        appointment_date?: string | null,
+        created_at?: string | null,
+        start_time?: string | null,
+        end_time?: string | null,
+        status?: AppointmentStatusEnum | null,
+        assigned_to?: string | null,
+        patientID: string,
+        staffID: string,
         createdAt: string,
         updatedAt: string,
-        postCommentsId?: string | null,
+        _version: number,
+        _deleted?: boolean | null,
+        _lastChangedAt: number,
       } | null >,
       nextToken?: string | null,
+      startedAt?: number | null,
     } | null,
+    gender?: string | null,
     createdAt: string,
     updatedAt: string,
-    blogPostsId?: string | null,
+    _version: number,
+    _deleted?: boolean | null,
+    _lastChangedAt: number,
   } | null,
 };
 
-export type OnUpdatePostSubscriptionVariables = {
-  filter?: ModelSubscriptionPostFilterInput | null,
+export type ListPatientsQueryVariables = {
+  filter?: ModelPatientFilterInput | null,
+  limit?: number | null,
+  nextToken?: string | null,
 };
 
-export type OnUpdatePostSubscription = {
-  onUpdatePost?:  {
-    __typename: "Post",
-    id: string,
-    title: string,
-    blog?:  {
-      __typename: "Blog",
+export type ListPatientsQuery = {
+  listPatients?:  {
+    __typename: "ModelPatientConnection",
+    items:  Array< {
+      __typename: "Patient",
       id: string,
-      name: string,
-      posts?:  {
-        __typename: "ModelPostConnection",
+      first_name?: string | null,
+      last_name?: string | null,
+      email?: string | null,
+      date_of_birth?: string | null,
+      phone_number?: string | null,
+      pat_appointments?:  {
+        __typename: "ModelAppointmentsConnection",
         nextToken?: string | null,
+        startedAt?: number | null,
       } | null,
+      gender?: string | null,
       createdAt: string,
       updatedAt: string,
-    } | null,
-    comments?:  {
-      __typename: "ModelCommentConnection",
+      _version: number,
+      _deleted?: boolean | null,
+      _lastChangedAt: number,
+    } | null >,
+    nextToken?: string | null,
+    startedAt?: number | null,
+  } | null,
+};
+
+export type SyncPatientsQueryVariables = {
+  filter?: ModelPatientFilterInput | null,
+  limit?: number | null,
+  nextToken?: string | null,
+  lastSync?: number | null,
+};
+
+export type SyncPatientsQuery = {
+  syncPatients?:  {
+    __typename: "ModelPatientConnection",
+    items:  Array< {
+      __typename: "Patient",
+      id: string,
+      first_name?: string | null,
+      last_name?: string | null,
+      email?: string | null,
+      date_of_birth?: string | null,
+      phone_number?: string | null,
+      pat_appointments?:  {
+        __typename: "ModelAppointmentsConnection",
+        nextToken?: string | null,
+        startedAt?: number | null,
+      } | null,
+      gender?: string | null,
+      createdAt: string,
+      updatedAt: string,
+      _version: number,
+      _deleted?: boolean | null,
+      _lastChangedAt: number,
+    } | null >,
+    nextToken?: string | null,
+    startedAt?: number | null,
+  } | null,
+};
+
+export type OnCreateStaffSubscriptionVariables = {
+  filter?: ModelSubscriptionStaffFilterInput | null,
+};
+
+export type OnCreateStaffSubscription = {
+  onCreateStaff?:  {
+    __typename: "Staff",
+    id: string,
+    first_name?: string | null,
+    last_name?: string | null,
+    email?: string | null,
+    username?: string | null,
+    phone_number?: string | null,
+    role?: StaffRoleEnum | null,
+    staff_appointments?:  {
+      __typename: "ModelAppointmentsConnection",
       items:  Array< {
-        __typename: "Comment",
+        __typename: "Appointments",
         id: string,
-        content: string,
+        appointment_date?: string | null,
+        created_at?: string | null,
+        start_time?: string | null,
+        end_time?: string | null,
+        status?: AppointmentStatusEnum | null,
+        assigned_to?: string | null,
+        patientID: string,
+        staffID: string,
         createdAt: string,
         updatedAt: string,
-        postCommentsId?: string | null,
+        _version: number,
+        _deleted?: boolean | null,
+        _lastChangedAt: number,
       } | null >,
       nextToken?: string | null,
+      startedAt?: number | null,
     } | null,
     createdAt: string,
     updatedAt: string,
-    blogPostsId?: string | null,
+    _version: number,
+    _deleted?: boolean | null,
+    _lastChangedAt: number,
   } | null,
 };
 
-export type OnDeletePostSubscriptionVariables = {
-  filter?: ModelSubscriptionPostFilterInput | null,
+export type OnUpdateStaffSubscriptionVariables = {
+  filter?: ModelSubscriptionStaffFilterInput | null,
 };
 
-export type OnDeletePostSubscription = {
-  onDeletePost?:  {
-    __typename: "Post",
+export type OnUpdateStaffSubscription = {
+  onUpdateStaff?:  {
+    __typename: "Staff",
     id: string,
-    title: string,
-    blog?:  {
-      __typename: "Blog",
-      id: string,
-      name: string,
-      posts?:  {
-        __typename: "ModelPostConnection",
-        nextToken?: string | null,
-      } | null,
-      createdAt: string,
-      updatedAt: string,
-    } | null,
-    comments?:  {
-      __typename: "ModelCommentConnection",
+    first_name?: string | null,
+    last_name?: string | null,
+    email?: string | null,
+    username?: string | null,
+    phone_number?: string | null,
+    role?: StaffRoleEnum | null,
+    staff_appointments?:  {
+      __typename: "ModelAppointmentsConnection",
       items:  Array< {
-        __typename: "Comment",
+        __typename: "Appointments",
         id: string,
-        content: string,
+        appointment_date?: string | null,
+        created_at?: string | null,
+        start_time?: string | null,
+        end_time?: string | null,
+        status?: AppointmentStatusEnum | null,
+        assigned_to?: string | null,
+        patientID: string,
+        staffID: string,
         createdAt: string,
         updatedAt: string,
-        postCommentsId?: string | null,
+        _version: number,
+        _deleted?: boolean | null,
+        _lastChangedAt: number,
       } | null >,
       nextToken?: string | null,
+      startedAt?: number | null,
     } | null,
     createdAt: string,
     updatedAt: string,
-    blogPostsId?: string | null,
+    _version: number,
+    _deleted?: boolean | null,
+    _lastChangedAt: number,
   } | null,
 };
 
-export type OnCreateCommentSubscriptionVariables = {
-  filter?: ModelSubscriptionCommentFilterInput | null,
+export type OnDeleteStaffSubscriptionVariables = {
+  filter?: ModelSubscriptionStaffFilterInput | null,
 };
 
-export type OnCreateCommentSubscription = {
-  onCreateComment?:  {
-    __typename: "Comment",
+export type OnDeleteStaffSubscription = {
+  onDeleteStaff?:  {
+    __typename: "Staff",
     id: string,
-    post?:  {
-      __typename: "Post",
-      id: string,
-      title: string,
-      blog?:  {
-        __typename: "Blog",
+    first_name?: string | null,
+    last_name?: string | null,
+    email?: string | null,
+    username?: string | null,
+    phone_number?: string | null,
+    role?: StaffRoleEnum | null,
+    staff_appointments?:  {
+      __typename: "ModelAppointmentsConnection",
+      items:  Array< {
+        __typename: "Appointments",
         id: string,
-        name: string,
+        appointment_date?: string | null,
+        created_at?: string | null,
+        start_time?: string | null,
+        end_time?: string | null,
+        status?: AppointmentStatusEnum | null,
+        assigned_to?: string | null,
+        patientID: string,
+        staffID: string,
         createdAt: string,
         updatedAt: string,
-      } | null,
-      comments?:  {
-        __typename: "ModelCommentConnection",
-        nextToken?: string | null,
-      } | null,
-      createdAt: string,
-      updatedAt: string,
-      blogPostsId?: string | null,
+        _version: number,
+        _deleted?: boolean | null,
+        _lastChangedAt: number,
+      } | null >,
+      nextToken?: string | null,
+      startedAt?: number | null,
     } | null,
-    content: string,
     createdAt: string,
     updatedAt: string,
-    postCommentsId?: string | null,
+    _version: number,
+    _deleted?: boolean | null,
+    _lastChangedAt: number,
   } | null,
 };
 
-export type OnUpdateCommentSubscriptionVariables = {
-  filter?: ModelSubscriptionCommentFilterInput | null,
+export type OnCreateAppointmentsSubscriptionVariables = {
+  filter?: ModelSubscriptionAppointmentsFilterInput | null,
 };
 
-export type OnUpdateCommentSubscription = {
-  onUpdateComment?:  {
-    __typename: "Comment",
+export type OnCreateAppointmentsSubscription = {
+  onCreateAppointments?:  {
+    __typename: "Appointments",
     id: string,
-    post?:  {
-      __typename: "Post",
-      id: string,
-      title: string,
-      blog?:  {
-        __typename: "Blog",
-        id: string,
-        name: string,
-        createdAt: string,
-        updatedAt: string,
-      } | null,
-      comments?:  {
-        __typename: "ModelCommentConnection",
-        nextToken?: string | null,
-      } | null,
-      createdAt: string,
-      updatedAt: string,
-      blogPostsId?: string | null,
-    } | null,
-    content: string,
+    appointment_date?: string | null,
+    created_at?: string | null,
+    start_time?: string | null,
+    end_time?: string | null,
+    status?: AppointmentStatusEnum | null,
+    assigned_to?: string | null,
+    patientID: string,
+    staffID: string,
     createdAt: string,
     updatedAt: string,
-    postCommentsId?: string | null,
+    _version: number,
+    _deleted?: boolean | null,
+    _lastChangedAt: number,
   } | null,
 };
 
-export type OnDeleteCommentSubscriptionVariables = {
-  filter?: ModelSubscriptionCommentFilterInput | null,
+export type OnUpdateAppointmentsSubscriptionVariables = {
+  filter?: ModelSubscriptionAppointmentsFilterInput | null,
 };
 
-export type OnDeleteCommentSubscription = {
-  onDeleteComment?:  {
-    __typename: "Comment",
+export type OnUpdateAppointmentsSubscription = {
+  onUpdateAppointments?:  {
+    __typename: "Appointments",
     id: string,
-    post?:  {
-      __typename: "Post",
-      id: string,
-      title: string,
-      blog?:  {
-        __typename: "Blog",
-        id: string,
-        name: string,
-        createdAt: string,
-        updatedAt: string,
-      } | null,
-      comments?:  {
-        __typename: "ModelCommentConnection",
-        nextToken?: string | null,
-      } | null,
-      createdAt: string,
-      updatedAt: string,
-      blogPostsId?: string | null,
-    } | null,
-    content: string,
+    appointment_date?: string | null,
+    created_at?: string | null,
+    start_time?: string | null,
+    end_time?: string | null,
+    status?: AppointmentStatusEnum | null,
+    assigned_to?: string | null,
+    patientID: string,
+    staffID: string,
     createdAt: string,
     updatedAt: string,
-    postCommentsId?: string | null,
+    _version: number,
+    _deleted?: boolean | null,
+    _lastChangedAt: number,
+  } | null,
+};
+
+export type OnDeleteAppointmentsSubscriptionVariables = {
+  filter?: ModelSubscriptionAppointmentsFilterInput | null,
+};
+
+export type OnDeleteAppointmentsSubscription = {
+  onDeleteAppointments?:  {
+    __typename: "Appointments",
+    id: string,
+    appointment_date?: string | null,
+    created_at?: string | null,
+    start_time?: string | null,
+    end_time?: string | null,
+    status?: AppointmentStatusEnum | null,
+    assigned_to?: string | null,
+    patientID: string,
+    staffID: string,
+    createdAt: string,
+    updatedAt: string,
+    _version: number,
+    _deleted?: boolean | null,
+    _lastChangedAt: number,
+  } | null,
+};
+
+export type OnCreatePatientSubscriptionVariables = {
+  filter?: ModelSubscriptionPatientFilterInput | null,
+};
+
+export type OnCreatePatientSubscription = {
+  onCreatePatient?:  {
+    __typename: "Patient",
+    id: string,
+    first_name?: string | null,
+    last_name?: string | null,
+    email?: string | null,
+    date_of_birth?: string | null,
+    phone_number?: string | null,
+    pat_appointments?:  {
+      __typename: "ModelAppointmentsConnection",
+      items:  Array< {
+        __typename: "Appointments",
+        id: string,
+        appointment_date?: string | null,
+        created_at?: string | null,
+        start_time?: string | null,
+        end_time?: string | null,
+        status?: AppointmentStatusEnum | null,
+        assigned_to?: string | null,
+        patientID: string,
+        staffID: string,
+        createdAt: string,
+        updatedAt: string,
+        _version: number,
+        _deleted?: boolean | null,
+        _lastChangedAt: number,
+      } | null >,
+      nextToken?: string | null,
+      startedAt?: number | null,
+    } | null,
+    gender?: string | null,
+    createdAt: string,
+    updatedAt: string,
+    _version: number,
+    _deleted?: boolean | null,
+    _lastChangedAt: number,
+  } | null,
+};
+
+export type OnUpdatePatientSubscriptionVariables = {
+  filter?: ModelSubscriptionPatientFilterInput | null,
+};
+
+export type OnUpdatePatientSubscription = {
+  onUpdatePatient?:  {
+    __typename: "Patient",
+    id: string,
+    first_name?: string | null,
+    last_name?: string | null,
+    email?: string | null,
+    date_of_birth?: string | null,
+    phone_number?: string | null,
+    pat_appointments?:  {
+      __typename: "ModelAppointmentsConnection",
+      items:  Array< {
+        __typename: "Appointments",
+        id: string,
+        appointment_date?: string | null,
+        created_at?: string | null,
+        start_time?: string | null,
+        end_time?: string | null,
+        status?: AppointmentStatusEnum | null,
+        assigned_to?: string | null,
+        patientID: string,
+        staffID: string,
+        createdAt: string,
+        updatedAt: string,
+        _version: number,
+        _deleted?: boolean | null,
+        _lastChangedAt: number,
+      } | null >,
+      nextToken?: string | null,
+      startedAt?: number | null,
+    } | null,
+    gender?: string | null,
+    createdAt: string,
+    updatedAt: string,
+    _version: number,
+    _deleted?: boolean | null,
+    _lastChangedAt: number,
+  } | null,
+};
+
+export type OnDeletePatientSubscriptionVariables = {
+  filter?: ModelSubscriptionPatientFilterInput | null,
+};
+
+export type OnDeletePatientSubscription = {
+  onDeletePatient?:  {
+    __typename: "Patient",
+    id: string,
+    first_name?: string | null,
+    last_name?: string | null,
+    email?: string | null,
+    date_of_birth?: string | null,
+    phone_number?: string | null,
+    pat_appointments?:  {
+      __typename: "ModelAppointmentsConnection",
+      items:  Array< {
+        __typename: "Appointments",
+        id: string,
+        appointment_date?: string | null,
+        created_at?: string | null,
+        start_time?: string | null,
+        end_time?: string | null,
+        status?: AppointmentStatusEnum | null,
+        assigned_to?: string | null,
+        patientID: string,
+        staffID: string,
+        createdAt: string,
+        updatedAt: string,
+        _version: number,
+        _deleted?: boolean | null,
+        _lastChangedAt: number,
+      } | null >,
+      nextToken?: string | null,
+      startedAt?: number | null,
+    } | null,
+    gender?: string | null,
+    createdAt: string,
+    updatedAt: string,
+    _version: number,
+    _deleted?: boolean | null,
+    _lastChangedAt: number,
   } | null,
 };
