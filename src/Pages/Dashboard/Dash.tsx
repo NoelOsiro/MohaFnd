@@ -14,7 +14,6 @@ const Dash = () => {
     return (
             <main>
                 <DashboardHeader title='Home' />
-                {/* <!-- Main page content--> */}
                 <div className="container-xl px-4 mt-n10">
                     <div className="row">
                         {cards.map((card, index) => (
@@ -24,7 +23,6 @@ const Dash = () => {
                     <div className="row">
                         <div className="col-xxl-8">
                             <TabDashBoard />
-                            <Illustrate />
                             <div className="row">
                                 <div className="col-xl-6 mb-4">
                                     <ActivityCard />
@@ -35,15 +33,17 @@ const Dash = () => {
                         <div className="col-xxl-4">
                             <div className="row">
                                 <div className="col-xl-6 col-xxl-12">
-                                    {/* <!-- Team members / people dashboard card example--> */}
+                                   
                                     <PeopleCard/>
                                 </div>
                                 <div className="col-xl-6 col-xxl-12">
-                                    {/* <!-- Project tracker card example--> */}
+                                    
                                     <TaskTrackerCard/>
                                 </div>
-                            </div>
-                            
+                            </div>   
+                        </div>
+                        <div className='col-12'>
+                            <Illustrate />
                         </div>
                     </div>
                 </div>

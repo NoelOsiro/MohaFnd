@@ -5,7 +5,7 @@
  **************************************************************************/
 
 import * as React from "react";
-import { GridProps, TextFieldProps } from "@aws-amplify/ui-react";
+import { GridProps, SelectFieldProps, TextFieldProps } from "@aws-amplify/ui-react";
 import { EscapeHatchProps } from "@aws-amplify/ui-react/internal";
 export declare type ValidationResponse = {
     hasError: boolean;
@@ -36,7 +36,7 @@ export declare type PatientCreateFormOverridesProps = {
     email?: PrimitiveOverrideProps<TextFieldProps>;
     date_of_birth?: PrimitiveOverrideProps<TextFieldProps>;
     phone_number?: PrimitiveOverrideProps<TextFieldProps>;
-    gender?: PrimitiveOverrideProps<TextFieldProps>;
+    gender?: PrimitiveOverrideProps<SelectFieldProps>;
 } & EscapeHatchProps;
 export declare type PatientCreateFormProps = React.PropsWithChildren<{
     overrides?: PatientCreateFormOverridesProps | undefined | null;
@@ -45,6 +45,7 @@ export declare type PatientCreateFormProps = React.PropsWithChildren<{
     onSubmit?: (fields: PatientCreateFormInputValues) => PatientCreateFormInputValues;
     onSuccess?: (fields: PatientCreateFormInputValues) => void;
     onError?: (fields: PatientCreateFormInputValues, errorMessage: string) => void;
+    onCancel?: () => void;
     onChange?: (fields: PatientCreateFormInputValues) => PatientCreateFormInputValues;
     onValidate?: PatientCreateFormValidationValues;
 } & React.CSSProperties>;

@@ -1,6 +1,6 @@
 import { ModelInit, MutableModel, __modelMeta__, ManagedIdentifier } from "@aws-amplify/datastore";
 // @ts-ignore
-import { LazyLoading, LazyLoadingDisabled, AsyncCollection } from "@aws-amplify/datastore";
+import { LazyLoading, LazyLoadingDisabled, AsyncCollection, AsyncItem } from "@aws-amplify/datastore";
 
 export enum StaffRoleEnum {
   DOCTOR = "DOCTOR",
@@ -19,6 +19,42 @@ export enum AppointmentStatusEnum {
 
 
 
+type EagerTasks = {
+  readonly [__modelMeta__]: {
+    identifier: ManagedIdentifier<Tasks, 'id'>;
+    readOnlyFields: 'createdAt' | 'updatedAt';
+  };
+  readonly id: string;
+  readonly title?: string | null;
+  readonly date_created?: string | null;
+  readonly date_due?: string | null;
+  readonly details?: string | null;
+  readonly staff_assigned?: (TasksStaff | null)[] | null;
+  readonly createdAt?: string | null;
+  readonly updatedAt?: string | null;
+}
+
+type LazyTasks = {
+  readonly [__modelMeta__]: {
+    identifier: ManagedIdentifier<Tasks, 'id'>;
+    readOnlyFields: 'createdAt' | 'updatedAt';
+  };
+  readonly id: string;
+  readonly title?: string | null;
+  readonly date_created?: string | null;
+  readonly date_due?: string | null;
+  readonly details?: string | null;
+  readonly staff_assigned: AsyncCollection<TasksStaff>;
+  readonly createdAt?: string | null;
+  readonly updatedAt?: string | null;
+}
+
+export declare type Tasks = LazyLoading extends LazyLoadingDisabled ? EagerTasks : LazyTasks
+
+export declare const Tasks: (new (init: ModelInit<Tasks>) => Tasks) & {
+  copyOf(source: Tasks, mutator: (draft: MutableModel<Tasks>) => MutableModel<Tasks> | void): Tasks;
+}
+
 type EagerStaff = {
   readonly [__modelMeta__]: {
     identifier: ManagedIdentifier<Staff, 'id'>;
@@ -32,6 +68,7 @@ type EagerStaff = {
   readonly phone_number?: string | null;
   readonly role?: StaffRoleEnum | keyof typeof StaffRoleEnum | null;
   readonly staff_appointments?: (Appointments | null)[] | null;
+  readonly taskss?: (TasksStaff | null)[] | null;
   readonly createdAt?: string | null;
   readonly updatedAt?: string | null;
 }
@@ -49,6 +86,7 @@ type LazyStaff = {
   readonly phone_number?: string | null;
   readonly role?: StaffRoleEnum | keyof typeof StaffRoleEnum | null;
   readonly staff_appointments: AsyncCollection<Appointments>;
+  readonly taskss: AsyncCollection<TasksStaff>;
   readonly createdAt?: string | null;
   readonly updatedAt?: string | null;
 }
@@ -139,4 +177,38 @@ export declare type Patient = LazyLoading extends LazyLoadingDisabled ? EagerPat
 
 export declare const Patient: (new (init: ModelInit<Patient>) => Patient) & {
   copyOf(source: Patient, mutator: (draft: MutableModel<Patient>) => MutableModel<Patient> | void): Patient;
+}
+
+type EagerTasksStaff = {
+  readonly [__modelMeta__]: {
+    identifier: ManagedIdentifier<TasksStaff, 'id'>;
+    readOnlyFields: 'createdAt' | 'updatedAt';
+  };
+  readonly id: string;
+  readonly tasksId?: string | null;
+  readonly staffId?: string | null;
+  readonly tasks: Tasks;
+  readonly staff: Staff;
+  readonly createdAt?: string | null;
+  readonly updatedAt?: string | null;
+}
+
+type LazyTasksStaff = {
+  readonly [__modelMeta__]: {
+    identifier: ManagedIdentifier<TasksStaff, 'id'>;
+    readOnlyFields: 'createdAt' | 'updatedAt';
+  };
+  readonly id: string;
+  readonly tasksId?: string | null;
+  readonly staffId?: string | null;
+  readonly tasks: AsyncItem<Tasks>;
+  readonly staff: AsyncItem<Staff>;
+  readonly createdAt?: string | null;
+  readonly updatedAt?: string | null;
+}
+
+export declare type TasksStaff = LazyLoading extends LazyLoadingDisabled ? EagerTasksStaff : LazyTasksStaff
+
+export declare const TasksStaff: (new (init: ModelInit<TasksStaff>) => TasksStaff) & {
+  copyOf(source: TasksStaff, mutator: (draft: MutableModel<TasksStaff>) => MutableModel<TasksStaff> | void): TasksStaff;
 }

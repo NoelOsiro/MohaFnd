@@ -2,7 +2,7 @@
 import React from 'react';
 import HeaderNavbar from './HeaderNavbar';
 import HeaderSearch from './HeaderSearch';
-import HeaderDropdowns from './HeaderDropdowns';
+import HeaderDropdowns from './HeaderDropdown';
 import './Header.css';
 
 const HeaderBar: React.FC = () => {

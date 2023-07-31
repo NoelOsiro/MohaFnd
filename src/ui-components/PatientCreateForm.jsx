@@ -6,7 +6,13 @@
 
 /* eslint-disable */
 import * as React from "react";
-import { Button, Flex, Grid, TextField } from "@aws-amplify/ui-react";
+import {
+  Button,
+  Flex,
+  Grid,
+  SelectField,
+  TextField,
+} from "@aws-amplify/ui-react";
 import { getOverrideProps } from "@aws-amplify/ui-react/internal";
 import { Patient } from "../models";
 import { fetchByPath, validateField } from "./utils";
@@ -17,6 +23,7 @@ export default function PatientCreateForm(props) {
     onSuccess,
     onError,
     onSubmit,
+    onCancel,
     onValidate,
     onChange,
     overrides,
@@ -51,12 +58,12 @@ export default function PatientCreateForm(props) {
     setErrors({});
   };
   const validations = {
-    first_name: [],
-    last_name: [],
+    first_name: [{ type: "Required" }],
+    last_name: [{ type: "Required" }],
     email: [{ type: "Email" }],
-    date_of_birth: [],
-    phone_number: [{ type: "Phone" }],
-    gender: [],
+    date_of_birth: [{ type: "Required" }],
+    phone_number: [{ type: "Required" }, { type: "Phone" }],
+    gender: [{ type: "Required" }],
   };
   const runValidationTasks = async (
     fieldName,
@@ -136,8 +143,13 @@ export default function PatientCreateForm(props) {
       {...rest}
     >
       <TextField
-        label="First name"
-        isRequired={false}
+        label={
+          <span style={{ display: "inline-flex" }}>
+            <span>First name</span>
+            <span style={{ color: "red" }}>*</span>
+          </span>
+        }
+        isRequired={true}
         isReadOnly={false}
         value={first_name}
         onChange={(e) => {
@@ -165,8 +177,13 @@ export default function PatientCreateForm(props) {
         {...getOverrideProps(overrides, "first_name")}
       ></TextField>
       <TextField
-        label="Last name"
-        isRequired={false}
+        label={
+          <span style={{ display: "inline-flex" }}>
+            <span>Last name</span>
+            <span style={{ color: "red" }}>*</span>
+          </span>
+        }
+        isRequired={true}
         isReadOnly={false}
         value={last_name}
         onChange={(e) => {
@@ -223,8 +240,13 @@ export default function PatientCreateForm(props) {
         {...getOverrideProps(overrides, "email")}
       ></TextField>
       <TextField
-        label="Date of birth"
-        isRequired={false}
+        label={
+          <span style={{ display: "inline-flex" }}>
+            <span>Date of birth</span>
+            <span style={{ color: "red" }}>*</span>
+          </span>
+        }
+        isRequired={true}
         isReadOnly={false}
         type="date"
         value={date_of_birth}
@@ -253,8 +275,13 @@ export default function PatientCreateForm(props) {
         {...getOverrideProps(overrides, "date_of_birth")}
       ></TextField>
       <TextField
-        label="Phone number"
-        isRequired={false}
+        label={
+          <span style={{ display: "inline-flex" }}>
+            <span>Phone number</span>
+            <span style={{ color: "red" }}>*</span>
+          </span>
+        }
+        isRequired={true}
         isReadOnly={false}
         type="tel"
         value={phone_number}
@@ -282,10 +309,10 @@ export default function PatientCreateForm(props) {
         hasError={errors.phone_number?.hasError}
         {...getOverrideProps(overrides, "phone_number")}
       ></TextField>
-      <TextField
+      <SelectField
         label="Gender"
-        isRequired={false}
-        isReadOnly={false}
+        placeholder="Please select an option"
+        isDisabled={false}
         value={gender}
         onChange={(e) => {
           let { value } = e.target;
@@ -310,7 +337,23 @@ export default function PatientCreateForm(props) {
         errorMessage={errors.gender?.errorMessage}
         hasError={errors.gender?.hasError}
         {...getOverrideProps(overrides, "gender")}
-      ></TextField>
+      >
+        <option
+          children="Male"
+          value="Male"
+          {...getOverrideProps(overrides, "genderoption0")}
+        ></option>
+        <option
+          children="Female"
+          value="Female"
+          {...getOverrideProps(overrides, "genderoption1")}
+        ></option>
+        <option
+          children="Other"
+          value="Other"
+          {...getOverrideProps(overrides, "genderoption2")}
+        ></option>
+      </SelectField>
       <Flex
         justifyContent="space-between"
         {...getOverrideProps(overrides, "CTAFlex")}
@@ -329,7 +372,15 @@ export default function PatientCreateForm(props) {
           {...getOverrideProps(overrides, "RightAlignCTASubFlex")}
         >
           <Button
-            children="Submit"
+            children="Cancel"
+            type="button"
+            onClick={() => {
+              onCancel && onCancel();
+            }}
+            {...getOverrideProps(overrides, "CancelButton")}
+          ></Button>
+          <Button
+            children="Save"
             type="submit"
             variation="primary"
             isDisabled={Object.values(errors).some((e) => e?.hasError)}

@@ -7,6 +7,7 @@
 export { default as Ampligram } from "./Ampligram";
 export { default as CommentCard } from "./CommentCard";
 export { default as ContactUs } from "./ContactUs";
+export { default as CreateAppointmentForm } from "./CreateAppointmentForm";
 export { default as EditProfile } from "./EditProfile";
 export { default as FAQItem } from "./FAQItem";
 export { default as Features2x2 } from "./Features2x2";
@@ -35,4 +36,6 @@ export { default as StaffCreateForm } from "./StaffCreateForm";
 export { default as StaffUpdateForm } from "./StaffUpdateForm";
 export { default as StandardCard } from "./StandardCard";
 export { default as TallCard } from "./TallCard";
+export { default as TasksCreateForm } from "./TasksCreateForm";
+export { default as TasksUpdateForm } from "./TasksUpdateForm";
 export { default as studioTheme } from "./studioTheme";

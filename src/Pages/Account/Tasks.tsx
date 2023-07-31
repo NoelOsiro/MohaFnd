@@ -1,8 +1,14 @@
 import React from 'react'
+import DashboardHeader from '../../Components/Header/DashBoardHeader'
 
 const Tasks = () => {
   return (
-    <div>Tasks</div>
+    <main>
+            <DashboardHeader title='Tasks' />
+            {/* <!-- Main page content--> */}
+            <div className="container-xl px-4 mt-n10">
+            </div>
+        </main>
   )
 }
 

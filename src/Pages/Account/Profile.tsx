@@ -4,7 +4,7 @@ import DashboardHeader from '../../Components/Header/DashBoardHeader'
 const Profile = () => {
     return (
         <main>
-            <DashboardHeader title='My Team' />
+            <DashboardHeader title='Profile' />
             {/* <!-- Main page content--> */}
             <div className="container-xl px-4 mt-n10">
             </div>
