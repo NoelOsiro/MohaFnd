@@ -117,7 +117,6 @@ const Sidebar: React.FC = () => {
                 <div className="sidenav-footer-subtitle">Logged in as:</div>
                 <div className="sidenav-footer-title">{`${getFirstName(userDetails?.getSignInUserSession())} ${getLastName(userDetails?.getSignInUserSession())}`}</div></>
             ) : null}
-
           </div>
         </div>
       </nav>
