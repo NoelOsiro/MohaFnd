@@ -21,8 +21,8 @@ Welcome to the frontend repository for the Dental Clinic Management System! This
 1. Clone the repository to your local machine:
 
 ```bash
-git clone https://github.com/YourUsername/dental-clinic-management-frontend.git
-cd dental-clinic-management-frontend
+git clone https://github.com/NoelOsiro/DentalArt.git
+cd DentalArt
 ```
 
 2. Install the dependencies:
