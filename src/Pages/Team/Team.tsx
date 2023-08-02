@@ -21,7 +21,7 @@ const Team = () => {
                                 Staff
                             </div>
                             <div className="card-body">
-                                <div className="tab-content" id="dashboardNavContent">
+                                <div className="tab-content">
                                     <TeamsTable />
                                 </div>
                             </div>
@@ -35,7 +35,7 @@ const Team = () => {
                                 Add New Staff
                             </div>
                             <div className="card-body">
-                                <div className="tab-content" id="dashboardNavContent">
+                                <div className="tab-content">
                                     <StaffCreateForm />
                                 </div>
                             </div>

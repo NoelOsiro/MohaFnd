@@ -4,7 +4,6 @@ import { IconType } from 'react-icons';
 import { FaAngleDown } from 'react-icons/fa';
 import { accountItems, coreItems, customItems, uiToolkitItems } from './Links';
 import { Auth } from 'aws-amplify';
-import { CognitoUser, CognitoUserSession } from 'amazon-cognito-identity-js';
 import { Rings } from 'react-loader-spinner';
 
 interface MenuItemProps {
@@ -56,7 +55,7 @@ const SidebarItem: React.FC<MenuItemProps> = (props: MenuItemProps) => {
 };
 
 const Sidebar: React.FC = () => {
-  const [userDetails, setUserDetails] = useState<CognitoUser | null>(null);
+  const [userDetails, setUserDetails] = useState<any>(null);
   const [isLoading, setIsLoading] = useState(true);
 
   useEffect(() => {
@@ -73,13 +72,7 @@ const Sidebar: React.FC = () => {
       setIsLoading(false);
     }
   };
-  const getFirstName = (session: CognitoUserSession | null) => {
-    return session?.getIdToken()?.payload?.first_name || '';
-  };
-
-  const getLastName = (session: CognitoUserSession | null) => {
-    return session?.getIdToken()?.payload?.family_name || '';
-  };
+  
   return (
     <div id="layoutSidenav_nav">
       <nav className="sidenav shadow-right sidenav-light">
@@ -115,7 +108,7 @@ const Sidebar: React.FC = () => {
             ) : userDetails ? (
               <>
                 <div className="sidenav-footer-subtitle">Logged in as:</div>
-                <div className="sidenav-footer-title">{`${getFirstName(userDetails?.getSignInUserSession())} ${getLastName(userDetails?.getSignInUserSession())}`}</div></>
+                <div className="sidenav-footer-title">{userDetails.attributes.name}</div></>
             ) : null}
           </div>
         </div>
