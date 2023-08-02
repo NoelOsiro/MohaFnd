@@ -1,6 +1,4 @@
-Sure! Here's an expanded section on AWS Amplify and AWS configuration setup for your frontend repository's `README.md`:
 
-```markdown
 # Dental Clinic Management System - Frontend
 
 ![Dental Clinic Management System](/path/to/your/logo.png)
@@ -84,7 +82,6 @@ The app will be accessible at `http://localhost:3000`.
 ## Folder Structure
 
 ...
-```
 
 ## Contributing
 
@@ -109,4 +106,4 @@ Noel OSiro
 - Twitter: [@Osiroski](https://twitter.com/NoelOsiro)
 
 Happy coding! 🚀🏥🦷
-```
+
