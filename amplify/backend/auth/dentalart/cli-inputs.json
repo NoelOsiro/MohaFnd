@@ -3,8 +3,8 @@
   "cognitoConfig": {
     "identityPoolName": "testAuthIdentityPool",
     "allowUnauthenticatedIdentities": false,
-    "resourceNameTruncated": "dental48be90e8",
-    "userPoolName": "dentalart",
+    "resourceNameTruncated": "dental0c1325ad",
+    "userPoolName": "DentalArt",
     "autoVerifiedAttributes": [
       "email"
     ],
@@ -26,20 +26,22 @@
     ],
     "requiredAttributes": [
       "email",
-      "name",
-      "phone_number",
+      "address",
       "gender",
-      "family_name"
+      "family_name",
+      "given_name",
+      "preferred_username",
+      "phone_number"
     ],
     "aliasAttributes": [],
     "userpoolClientGenerateSecret": false,
     "userpoolClientRefreshTokenValidity": 30,
     "userpoolClientWriteAttributes": [],
     "userpoolClientReadAttributes": [],
-    "userpoolClientLambdaRole": "dental48be90e8_userpoolclient_lambda_role",
+    "userpoolClientLambdaRole": "Dental0c1325ad_userpoolclient_lambda_role",
     "userpoolClientSetAttributes": false,
-    "sharedId": "48be90e8",
-    "resourceName": "dentalart",
+    "sharedId": "0c1325ad",
+    "resourceName": "DentalArt",
     "authSelections": "identityPoolAndUserPool",
     "serviceName": "Cognito",
     "usernameAttributes": [

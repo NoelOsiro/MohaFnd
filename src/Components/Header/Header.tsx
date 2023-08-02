@@ -5,10 +5,14 @@ import HeaderSearch from './HeaderSearch';
 import HeaderDropdowns from './HeaderDropdown';
 import './Header.css';
 
-const HeaderBar: React.FC = () => {
+interface HeaderNavbarProps {
+  toggleSidebar: () => void;
+}
+
+const HeaderBar: React.FC<HeaderNavbarProps> = ({ toggleSidebar }) => {
   return (
     <nav className="topnav navbar navbar-expand shadow justify-content-between justify-content-sm-start navbar-light bg-white" id="sidenavAccordion">
-      <HeaderNavbar />
+      <HeaderNavbar toggleSidebar={toggleSidebar} />
       <HeaderSearch />
       <HeaderDropdowns />
     </nav>

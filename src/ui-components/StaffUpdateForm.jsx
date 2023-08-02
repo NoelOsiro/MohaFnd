@@ -72,9 +72,9 @@ export default function StaffUpdateForm(props) {
   const validations = {
     first_name: [],
     last_name: [],
-    email: [{ type: "Email" }],
+    email: [{ type: "Required" }, { type: "Email" }],
     username: [],
-    phone_number: [{ type: "Phone" }],
+    phone_number: [{ type: "Required" }, { type: "Phone" }],
     role: [],
   };
   const runValidationTasks = async (
@@ -215,7 +215,7 @@ export default function StaffUpdateForm(props) {
       ></TextField>
       <TextField
         label="Email"
-        isRequired={false}
+        isRequired={true}
         isReadOnly={false}
         value={email}
         onChange={(e) => {
@@ -273,7 +273,7 @@ export default function StaffUpdateForm(props) {
       ></TextField>
       <TextField
         label="Phone number"
-        isRequired={false}
+        isRequired={true}
         isReadOnly={false}
         type="tel"
         value={phone_number}

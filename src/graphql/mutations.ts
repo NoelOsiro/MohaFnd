@@ -2,6 +2,114 @@
 /* eslint-disable */
 // this is an auto generated file. This will be overwritten
 
+export const createTasks = /* GraphQL */ `
+  mutation CreateTasks(
+    $input: CreateTasksInput!
+    $condition: ModelTasksConditionInput
+  ) {
+    createTasks(input: $input, condition: $condition) {
+      id
+      title
+      date_created
+      date_due
+      details
+      staff_assigned {
+        items {
+          id
+          tasksId
+          staffId
+          createdAt
+          updatedAt
+          _version
+          _deleted
+          _lastChangedAt
+          __typename
+        }
+        nextToken
+        startedAt
+        __typename
+      }
+      createdAt
+      updatedAt
+      _version
+      _deleted
+      _lastChangedAt
+      __typename
+    }
+  }
+`;
+export const updateTasks = /* GraphQL */ `
+  mutation UpdateTasks(
+    $input: UpdateTasksInput!
+    $condition: ModelTasksConditionInput
+  ) {
+    updateTasks(input: $input, condition: $condition) {
+      id
+      title
+      date_created
+      date_due
+      details
+      staff_assigned {
+        items {
+          id
+          tasksId
+          staffId
+          createdAt
+          updatedAt
+          _version
+          _deleted
+          _lastChangedAt
+          __typename
+        }
+        nextToken
+        startedAt
+        __typename
+      }
+      createdAt
+      updatedAt
+      _version
+      _deleted
+      _lastChangedAt
+      __typename
+    }
+  }
+`;
+export const deleteTasks = /* GraphQL */ `
+  mutation DeleteTasks(
+    $input: DeleteTasksInput!
+    $condition: ModelTasksConditionInput
+  ) {
+    deleteTasks(input: $input, condition: $condition) {
+      id
+      title
+      date_created
+      date_due
+      details
+      staff_assigned {
+        items {
+          id
+          tasksId
+          staffId
+          createdAt
+          updatedAt
+          _version
+          _deleted
+          _lastChangedAt
+          __typename
+        }
+        nextToken
+        startedAt
+        __typename
+      }
+      createdAt
+      updatedAt
+      _version
+      _deleted
+      _lastChangedAt
+      __typename
+    }
+  }
+`;
 export const createStaff = /* GraphQL */ `
   mutation CreateStaff(
     $input: CreateStaffInput!
@@ -26,6 +134,22 @@ export const createStaff = /* GraphQL */ `
           assigned_to
           patientID
           staffID
+          createdAt
+          updatedAt
+          _version
+          _deleted
+          _lastChangedAt
+          __typename
+        }
+        nextToken
+        startedAt
+        __typename
+      }
+      tasks {
+        items {
+          id
+          tasksId
+          staffId
           createdAt
           updatedAt
           _version
@@ -81,6 +205,22 @@ export const updateStaff = /* GraphQL */ `
         startedAt
         __typename
       }
+      tasks {
+        items {
+          id
+          tasksId
+          staffId
+          createdAt
+          updatedAt
+          _version
+          _deleted
+          _lastChangedAt
+          __typename
+        }
+        nextToken
+        startedAt
+        __typename
+      }
       createdAt
       updatedAt
       _version
@@ -114,6 +254,22 @@ export const deleteStaff = /* GraphQL */ `
           assigned_to
           patientID
           staffID
+          createdAt
+          updatedAt
+          _version
+          _deleted
+          _lastChangedAt
+          __typename
+        }
+        nextToken
+        startedAt
+        __typename
+      }
+      tasks {
+        items {
+          id
+          tasksId
+          staffId
           createdAt
           updatedAt
           _version
@@ -329,6 +485,189 @@ export const deletePatient = /* GraphQL */ `
         __typename
       }
       gender
+      createdAt
+      updatedAt
+      _version
+      _deleted
+      _lastChangedAt
+      __typename
+    }
+  }
+`;
+export const createStaffTasks = /* GraphQL */ `
+  mutation CreateStaffTasks(
+    $input: CreateStaffTasksInput!
+    $condition: ModelStaffTasksConditionInput
+  ) {
+    createStaffTasks(input: $input, condition: $condition) {
+      id
+      tasksId
+      staffId
+      tasks {
+        id
+        title
+        date_created
+        date_due
+        details
+        staff_assigned {
+          nextToken
+          startedAt
+          __typename
+        }
+        createdAt
+        updatedAt
+        _version
+        _deleted
+        _lastChangedAt
+        __typename
+      }
+      staff {
+        id
+        first_name
+        last_name
+        email
+        username
+        phone_number
+        role
+        staff_appointments {
+          nextToken
+          startedAt
+          __typename
+        }
+        tasks {
+          nextToken
+          startedAt
+          __typename
+        }
+        createdAt
+        updatedAt
+        _version
+        _deleted
+        _lastChangedAt
+        __typename
+      }
+      createdAt
+      updatedAt
+      _version
+      _deleted
+      _lastChangedAt
+      __typename
+    }
+  }
+`;
+export const updateStaffTasks = /* GraphQL */ `
+  mutation UpdateStaffTasks(
+    $input: UpdateStaffTasksInput!
+    $condition: ModelStaffTasksConditionInput
+  ) {
+    updateStaffTasks(input: $input, condition: $condition) {
+      id
+      tasksId
+      staffId
+      tasks {
+        id
+        title
+        date_created
+        date_due
+        details
+        staff_assigned {
+          nextToken
+          startedAt
+          __typename
+        }
+        createdAt
+        updatedAt
+        _version
+        _deleted
+        _lastChangedAt
+        __typename
+      }
+      staff {
+        id
+        first_name
+        last_name
+        email
+        username
+        phone_number
+        role
+        staff_appointments {
+          nextToken
+          startedAt
+          __typename
+        }
+        tasks {
+          nextToken
+          startedAt
+          __typename
+        }
+        createdAt
+        updatedAt
+        _version
+        _deleted
+        _lastChangedAt
+        __typename
+      }
+      createdAt
+      updatedAt
+      _version
+      _deleted
+      _lastChangedAt
+      __typename
+    }
+  }
+`;
+export const deleteStaffTasks = /* GraphQL */ `
+  mutation DeleteStaffTasks(
+    $input: DeleteStaffTasksInput!
+    $condition: ModelStaffTasksConditionInput
+  ) {
+    deleteStaffTasks(input: $input, condition: $condition) {
+      id
+      tasksId
+      staffId
+      tasks {
+        id
+        title
+        date_created
+        date_due
+        details
+        staff_assigned {
+          nextToken
+          startedAt
+          __typename
+        }
+        createdAt
+        updatedAt
+        _version
+        _deleted
+        _lastChangedAt
+        __typename
+      }
+      staff {
+        id
+        first_name
+        last_name
+        email
+        username
+        phone_number
+        role
+        staff_appointments {
+          nextToken
+          startedAt
+          __typename
+        }
+        tasks {
+          nextToken
+          startedAt
+          __typename
+        }
+        createdAt
+        updatedAt
+        _version
+        _deleted
+        _lastChangedAt
+        __typename
+      }
       createdAt
       updatedAt
       _version

@@ -34,7 +34,6 @@ const SidebarItem: React.FC<MenuItemProps> = (props: MenuItemProps) => {
             <FaAngleDown />
           </div>
         )}
-
       </a>
       {props.subItems && (
         <div
@@ -45,7 +44,8 @@ const SidebarItem: React.FC<MenuItemProps> = (props: MenuItemProps) => {
           <nav className="sidenav-menu-nested nav accordion">
             {props.subItems.map((subItem, subIndex) => (
               <a className="nav-link" key={subIndex} href={subItem.link}>
-                <span className='me-2'><subItem.icon /></span> {subItem.title}</a>
+                <span className="me-2">{<subItem.icon />}</span> {subItem.title}
+              </a>
             ))}
           </nav>
         </div>
@@ -54,7 +54,11 @@ const SidebarItem: React.FC<MenuItemProps> = (props: MenuItemProps) => {
   );
 };
 
-const Sidebar: React.FC = () => {
+interface SidebarProps {
+  isSidebarOpen: boolean;
+}
+
+const Sidebar: React.FC<SidebarProps> = ({ isSidebarOpen }) => {
   const [userDetails, setUserDetails] = useState<any>(null);
   const [isLoading, setIsLoading] = useState(true);
 
@@ -72,10 +76,10 @@ const Sidebar: React.FC = () => {
       setIsLoading(false);
     }
   };
-  
+
   return (
     <div id="layoutSidenav_nav">
-      <nav className="sidenav shadow-right sidenav-light">
+      <nav className={`sidenav shadow-right ${isSidebarOpen ? 'sidenav-light' : ''}`}>
         <div className="sidenav-menu">
           <div className="nav accordion" id="accordionSidenav">
             <div className="sidenav-menu-heading d-sm-none">Account</div>
@@ -108,7 +112,8 @@ const Sidebar: React.FC = () => {
             ) : userDetails ? (
               <>
                 <div className="sidenav-footer-subtitle">Logged in as:</div>
-                <div className="sidenav-footer-title">{userDetails.attributes.name}</div></>
+                <div className="sidenav-footer-title">{userDetails.attributes.name}</div>
+              </>
             ) : null}
           </div>
         </div>
@@ -116,4 +121,5 @@ const Sidebar: React.FC = () => {
     </div>
   );
 };
+
 export default Sidebar;

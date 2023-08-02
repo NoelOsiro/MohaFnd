@@ -2,36 +2,23 @@
 /* eslint-disable */
 //  This file was automatically generated and should not be edited.
 
-export type CreateStaffInput = {
+export type CreateTasksInput = {
   id?: string | null,
-  first_name?: string | null,
-  last_name?: string | null,
-  email?: string | null,
-  username?: string | null,
-  phone_number?: string | null,
-  role?: StaffRoleEnum | null,
+  title?: string | null,
+  date_created?: string | null,
+  date_due?: string | null,
+  details?: string | null,
   _version?: number | null,
 };
 
-export enum StaffRoleEnum {
-  DOCTOR = "DOCTOR",
-  RECEPTIONIST = "RECEPTIONIST",
-  NURSE = "NURSE",
-  NURSEAID = "NURSEAID",
-  ASSISTANT = "ASSISTANT",
-}
-
-
-export type ModelStaffConditionInput = {
-  first_name?: ModelStringInput | null,
-  last_name?: ModelStringInput | null,
-  email?: ModelStringInput | null,
-  username?: ModelStringInput | null,
-  phone_number?: ModelStringInput | null,
-  role?: ModelStaffRoleEnumInput | null,
-  and?: Array< ModelStaffConditionInput | null > | null,
-  or?: Array< ModelStaffConditionInput | null > | null,
-  not?: ModelStaffConditionInput | null,
+export type ModelTasksConditionInput = {
+  title?: ModelStringInput | null,
+  date_created?: ModelStringInput | null,
+  date_due?: ModelStringInput | null,
+  details?: ModelStringInput | null,
+  and?: Array< ModelTasksConditionInput | null > | null,
+  or?: Array< ModelTasksConditionInput | null > | null,
+  not?: ModelTasksConditionInput | null,
   _deleted?: ModelBooleanInput | null,
 };
 
@@ -64,6 +51,7 @@ export enum ModelAttributeTypes {
   _null = "_null",
 }
 
+
 export type ModelSizeInput = {
   ne?: number | null,
   eq?: number | null,
@@ -74,11 +62,6 @@ export type ModelSizeInput = {
   between?: Array< number | null > | null,
 };
 
-export type ModelStaffRoleEnumInput = {
-  eq?: StaffRoleEnum | null,
-  ne?: StaffRoleEnum | null,
-};
-
 export type ModelBooleanInput = {
   ne?: boolean | null,
   eq?: boolean | null,
@@ -86,22 +69,68 @@ export type ModelBooleanInput = {
   attributeType?: ModelAttributeTypes | null,
 };
 
-export type Staff = {
-  __typename: "Staff",
+export type Tasks = {
+  __typename: "Tasks",
   id: string,
-  first_name?: string | null,
-  last_name?: string | null,
-  email?: string | null,
-  username?: string | null,
-  phone_number?: string | null,
-  role?: StaffRoleEnum | null,
-  staff_appointments?: ModelAppointmentsConnection | null,
+  title?: string | null,
+  date_created?: string | null,
+  date_due?: string | null,
+  details?: string | null,
+  staff_assigned?: ModelStaffTasksConnection | null,
   createdAt: string,
   updatedAt: string,
   _version: number,
   _deleted?: boolean | null,
   _lastChangedAt: number,
 };
+
+export type ModelStaffTasksConnection = {
+  __typename: "ModelStaffTasksConnection",
+  items:  Array<StaffTasks | null >,
+  nextToken?: string | null,
+  startedAt?: number | null,
+};
+
+export type StaffTasks = {
+  __typename: "StaffTasks",
+  id: string,
+  tasksId: string,
+  staffId: string,
+  tasks: Tasks,
+  staff: Staff,
+  createdAt: string,
+  updatedAt: string,
+  _version: number,
+  _deleted?: boolean | null,
+  _lastChangedAt: number,
+};
+
+export type Staff = {
+  __typename: "Staff",
+  id: string,
+  first_name?: string | null,
+  last_name?: string | null,
+  email: string,
+  username?: string | null,
+  phone_number: string,
+  role?: StaffRoleEnum | null,
+  staff_appointments?: ModelAppointmentsConnection | null,
+  tasks?: ModelStaffTasksConnection | null,
+  createdAt: string,
+  updatedAt: string,
+  _version: number,
+  _deleted?: boolean | null,
+  _lastChangedAt: number,
+};
+
+export enum StaffRoleEnum {
+  DOCTOR = "DOCTOR",
+  RECEPTIONIST = "RECEPTIONIST",
+  NURSE = "NURSE",
+  NURSEAID = "NURSEAID",
+  ASSISTANT = "ASSISTANT",
+}
+
 
 export type ModelAppointmentsConnection = {
   __typename: "ModelAppointmentsConnection",
@@ -135,6 +164,49 @@ export enum AppointmentStatusEnum {
   RESCHEDULED = "RESCHEDULED",
 }
 
+
+export type UpdateTasksInput = {
+  id: string,
+  title?: string | null,
+  date_created?: string | null,
+  date_due?: string | null,
+  details?: string | null,
+  _version?: number | null,
+};
+
+export type DeleteTasksInput = {
+  id: string,
+  _version?: number | null,
+};
+
+export type CreateStaffInput = {
+  id?: string | null,
+  first_name?: string | null,
+  last_name?: string | null,
+  email: string,
+  username?: string | null,
+  phone_number: string,
+  role?: StaffRoleEnum | null,
+  _version?: number | null,
+};
+
+export type ModelStaffConditionInput = {
+  first_name?: ModelStringInput | null,
+  last_name?: ModelStringInput | null,
+  email?: ModelStringInput | null,
+  username?: ModelStringInput | null,
+  phone_number?: ModelStringInput | null,
+  role?: ModelStaffRoleEnumInput | null,
+  and?: Array< ModelStaffConditionInput | null > | null,
+  or?: Array< ModelStaffConditionInput | null > | null,
+  not?: ModelStaffConditionInput | null,
+  _deleted?: ModelBooleanInput | null,
+};
+
+export type ModelStaffRoleEnumInput = {
+  eq?: StaffRoleEnum | null,
+  ne?: StaffRoleEnum | null,
+};
 
 export type UpdateStaffInput = {
   id: string,
@@ -223,9 +295,9 @@ export type CreatePatientInput = {
   id?: string | null,
   first_name?: string | null,
   last_name?: string | null,
-  email?: string | null,
-  date_of_birth?: string | null,
-  phone_number?: string | null,
+  email: string,
+  date_of_birth: string,
+  phone_number: string,
   gender?: string | null,
   _version?: number | null,
 };
@@ -248,9 +320,9 @@ export type Patient = {
   id: string,
   first_name?: string | null,
   last_name?: string | null,
-  email?: string | null,
-  date_of_birth?: string | null,
-  phone_number?: string | null,
+  email: string,
+  date_of_birth: string,
+  phone_number: string,
   pat_appointments?: ModelAppointmentsConnection | null,
   gender?: string | null,
   createdAt: string,
@@ -276,6 +348,53 @@ export type DeletePatientInput = {
   _version?: number | null,
 };
 
+export type CreateStaffTasksInput = {
+  id?: string | null,
+  tasksId: string,
+  staffId: string,
+  _version?: number | null,
+};
+
+export type ModelStaffTasksConditionInput = {
+  tasksId?: ModelIDInput | null,
+  staffId?: ModelIDInput | null,
+  and?: Array< ModelStaffTasksConditionInput | null > | null,
+  or?: Array< ModelStaffTasksConditionInput | null > | null,
+  not?: ModelStaffTasksConditionInput | null,
+  _deleted?: ModelBooleanInput | null,
+};
+
+export type UpdateStaffTasksInput = {
+  id: string,
+  tasksId?: string | null,
+  staffId?: string | null,
+  _version?: number | null,
+};
+
+export type DeleteStaffTasksInput = {
+  id: string,
+  _version?: number | null,
+};
+
+export type ModelTasksFilterInput = {
+  id?: ModelIDInput | null,
+  title?: ModelStringInput | null,
+  date_created?: ModelStringInput | null,
+  date_due?: ModelStringInput | null,
+  details?: ModelStringInput | null,
+  and?: Array< ModelTasksFilterInput | null > | null,
+  or?: Array< ModelTasksFilterInput | null > | null,
+  not?: ModelTasksFilterInput | null,
+  _deleted?: ModelBooleanInput | null,
+};
+
+export type ModelTasksConnection = {
+  __typename: "ModelTasksConnection",
+  items:  Array<Tasks | null >,
+  nextToken?: string | null,
+  startedAt?: number | null,
+};
+
 export type ModelStaffFilterInput = {
   id?: ModelIDInput | null,
   first_name?: ModelStringInput | null,
@@ -289,6 +408,12 @@ export type ModelStaffFilterInput = {
   not?: ModelStaffFilterInput | null,
   _deleted?: ModelBooleanInput | null,
 };
+
+export enum ModelSortDirection {
+  ASC = "ASC",
+  DESC = "DESC",
+}
+
 
 export type ModelStaffConnection = {
   __typename: "ModelStaffConnection",
@@ -313,11 +438,6 @@ export type ModelAppointmentsFilterInput = {
   _deleted?: ModelBooleanInput | null,
 };
 
-export enum ModelSortDirection {
-  ASC = "ASC",
-  DESC = "DESC",
-}
-
 export type ModelPatientFilterInput = {
   id?: ModelIDInput | null,
   first_name?: ModelStringInput | null,
@@ -339,16 +459,24 @@ export type ModelPatientConnection = {
   startedAt?: number | null,
 };
 
-export type ModelSubscriptionStaffFilterInput = {
+export type ModelStaffTasksFilterInput = {
+  id?: ModelIDInput | null,
+  tasksId?: ModelIDInput | null,
+  staffId?: ModelIDInput | null,
+  and?: Array< ModelStaffTasksFilterInput | null > | null,
+  or?: Array< ModelStaffTasksFilterInput | null > | null,
+  not?: ModelStaffTasksFilterInput | null,
+  _deleted?: ModelBooleanInput | null,
+};
+
+export type ModelSubscriptionTasksFilterInput = {
   id?: ModelSubscriptionIDInput | null,
-  first_name?: ModelSubscriptionStringInput | null,
-  last_name?: ModelSubscriptionStringInput | null,
-  email?: ModelSubscriptionStringInput | null,
-  username?: ModelSubscriptionStringInput | null,
-  phone_number?: ModelSubscriptionStringInput | null,
-  role?: ModelSubscriptionStringInput | null,
-  and?: Array< ModelSubscriptionStaffFilterInput | null > | null,
-  or?: Array< ModelSubscriptionStaffFilterInput | null > | null,
+  title?: ModelSubscriptionStringInput | null,
+  date_created?: ModelSubscriptionStringInput | null,
+  date_due?: ModelSubscriptionStringInput | null,
+  details?: ModelSubscriptionStringInput | null,
+  and?: Array< ModelSubscriptionTasksFilterInput | null > | null,
+  or?: Array< ModelSubscriptionTasksFilterInput | null > | null,
   _deleted?: ModelBooleanInput | null,
 };
 
@@ -382,6 +510,19 @@ export type ModelSubscriptionStringInput = {
   notIn?: Array< string | null > | null,
 };
 
+export type ModelSubscriptionStaffFilterInput = {
+  id?: ModelSubscriptionIDInput | null,
+  first_name?: ModelSubscriptionStringInput | null,
+  last_name?: ModelSubscriptionStringInput | null,
+  email?: ModelSubscriptionStringInput | null,
+  username?: ModelSubscriptionStringInput | null,
+  phone_number?: ModelSubscriptionStringInput | null,
+  role?: ModelSubscriptionStringInput | null,
+  and?: Array< ModelSubscriptionStaffFilterInput | null > | null,
+  or?: Array< ModelSubscriptionStaffFilterInput | null > | null,
+  _deleted?: ModelBooleanInput | null,
+};
+
 export type ModelSubscriptionAppointmentsFilterInput = {
   id?: ModelSubscriptionIDInput | null,
   appointment_date?: ModelSubscriptionStringInput | null,
@@ -410,6 +551,126 @@ export type ModelSubscriptionPatientFilterInput = {
   _deleted?: ModelBooleanInput | null,
 };
 
+export type ModelSubscriptionStaffTasksFilterInput = {
+  id?: ModelSubscriptionIDInput | null,
+  tasksId?: ModelSubscriptionIDInput | null,
+  staffId?: ModelSubscriptionIDInput | null,
+  and?: Array< ModelSubscriptionStaffTasksFilterInput | null > | null,
+  or?: Array< ModelSubscriptionStaffTasksFilterInput | null > | null,
+  _deleted?: ModelBooleanInput | null,
+};
+
+export type CreateTasksMutationVariables = {
+  input: CreateTasksInput,
+  condition?: ModelTasksConditionInput | null,
+};
+
+export type CreateTasksMutation = {
+  createTasks?:  {
+    __typename: "Tasks",
+    id: string,
+    title?: string | null,
+    date_created?: string | null,
+    date_due?: string | null,
+    details?: string | null,
+    staff_assigned?:  {
+      __typename: "ModelStaffTasksConnection",
+      items:  Array< {
+        __typename: "StaffTasks",
+        id: string,
+        tasksId: string,
+        staffId: string,
+        createdAt: string,
+        updatedAt: string,
+        _version: number,
+        _deleted?: boolean | null,
+        _lastChangedAt: number,
+      } | null >,
+      nextToken?: string | null,
+      startedAt?: number | null,
+    } | null,
+    createdAt: string,
+    updatedAt: string,
+    _version: number,
+    _deleted?: boolean | null,
+    _lastChangedAt: number,
+  } | null,
+};
+
+export type UpdateTasksMutationVariables = {
+  input: UpdateTasksInput,
+  condition?: ModelTasksConditionInput | null,
+};
+
+export type UpdateTasksMutation = {
+  updateTasks?:  {
+    __typename: "Tasks",
+    id: string,
+    title?: string | null,
+    date_created?: string | null,
+    date_due?: string | null,
+    details?: string | null,
+    staff_assigned?:  {
+      __typename: "ModelStaffTasksConnection",
+      items:  Array< {
+        __typename: "StaffTasks",
+        id: string,
+        tasksId: string,
+        staffId: string,
+        createdAt: string,
+        updatedAt: string,
+        _version: number,
+        _deleted?: boolean | null,
+        _lastChangedAt: number,
+      } | null >,
+      nextToken?: string | null,
+      startedAt?: number | null,
+    } | null,
+    createdAt: string,
+    updatedAt: string,
+    _version: number,
+    _deleted?: boolean | null,
+    _lastChangedAt: number,
+  } | null,
+};
+
+export type DeleteTasksMutationVariables = {
+  input: DeleteTasksInput,
+  condition?: ModelTasksConditionInput | null,
+};
+
+export type DeleteTasksMutation = {
+  deleteTasks?:  {
+    __typename: "Tasks",
+    id: string,
+    title?: string | null,
+    date_created?: string | null,
+    date_due?: string | null,
+    details?: string | null,
+    staff_assigned?:  {
+      __typename: "ModelStaffTasksConnection",
+      items:  Array< {
+        __typename: "StaffTasks",
+        id: string,
+        tasksId: string,
+        staffId: string,
+        createdAt: string,
+        updatedAt: string,
+        _version: number,
+        _deleted?: boolean | null,
+        _lastChangedAt: number,
+      } | null >,
+      nextToken?: string | null,
+      startedAt?: number | null,
+    } | null,
+    createdAt: string,
+    updatedAt: string,
+    _version: number,
+    _deleted?: boolean | null,
+    _lastChangedAt: number,
+  } | null,
+};
+
 export type CreateStaffMutationVariables = {
   input: CreateStaffInput,
   condition?: ModelStaffConditionInput | null,
@@ -421,9 +682,9 @@ export type CreateStaffMutation = {
     id: string,
     first_name?: string | null,
     last_name?: string | null,
-    email?: string | null,
+    email: string,
     username?: string | null,
-    phone_number?: string | null,
+    phone_number: string,
     role?: StaffRoleEnum | null,
     staff_appointments?:  {
       __typename: "ModelAppointmentsConnection",
@@ -438,6 +699,22 @@ export type CreateStaffMutation = {
         assigned_to?: string | null,
         patientID: string,
         staffID: string,
+        createdAt: string,
+        updatedAt: string,
+        _version: number,
+        _deleted?: boolean | null,
+        _lastChangedAt: number,
+      } | null >,
+      nextToken?: string | null,
+      startedAt?: number | null,
+    } | null,
+    tasks?:  {
+      __typename: "ModelStaffTasksConnection",
+      items:  Array< {
+        __typename: "StaffTasks",
+        id: string,
+        tasksId: string,
+        staffId: string,
         createdAt: string,
         updatedAt: string,
         _version: number,
@@ -466,9 +743,9 @@ export type UpdateStaffMutation = {
     id: string,
     first_name?: string | null,
     last_name?: string | null,
-    email?: string | null,
+    email: string,
     username?: string | null,
-    phone_number?: string | null,
+    phone_number: string,
     role?: StaffRoleEnum | null,
     staff_appointments?:  {
       __typename: "ModelAppointmentsConnection",
@@ -483,6 +760,22 @@ export type UpdateStaffMutation = {
         assigned_to?: string | null,
         patientID: string,
         staffID: string,
+        createdAt: string,
+        updatedAt: string,
+        _version: number,
+        _deleted?: boolean | null,
+        _lastChangedAt: number,
+      } | null >,
+      nextToken?: string | null,
+      startedAt?: number | null,
+    } | null,
+    tasks?:  {
+      __typename: "ModelStaffTasksConnection",
+      items:  Array< {
+        __typename: "StaffTasks",
+        id: string,
+        tasksId: string,
+        staffId: string,
         createdAt: string,
         updatedAt: string,
         _version: number,
@@ -511,9 +804,9 @@ export type DeleteStaffMutation = {
     id: string,
     first_name?: string | null,
     last_name?: string | null,
-    email?: string | null,
+    email: string,
     username?: string | null,
-    phone_number?: string | null,
+    phone_number: string,
     role?: StaffRoleEnum | null,
     staff_appointments?:  {
       __typename: "ModelAppointmentsConnection",
@@ -528,6 +821,22 @@ export type DeleteStaffMutation = {
         assigned_to?: string | null,
         patientID: string,
         staffID: string,
+        createdAt: string,
+        updatedAt: string,
+        _version: number,
+        _deleted?: boolean | null,
+        _lastChangedAt: number,
+      } | null >,
+      nextToken?: string | null,
+      startedAt?: number | null,
+    } | null,
+    tasks?:  {
+      __typename: "ModelStaffTasksConnection",
+      items:  Array< {
+        __typename: "StaffTasks",
+        id: string,
+        tasksId: string,
+        staffId: string,
         createdAt: string,
         updatedAt: string,
         _version: number,
@@ -631,9 +940,9 @@ export type CreatePatientMutation = {
     id: string,
     first_name?: string | null,
     last_name?: string | null,
-    email?: string | null,
-    date_of_birth?: string | null,
-    phone_number?: string | null,
+    email: string,
+    date_of_birth: string,
+    phone_number: string,
     pat_appointments?:  {
       __typename: "ModelAppointmentsConnection",
       items:  Array< {
@@ -676,9 +985,9 @@ export type UpdatePatientMutation = {
     id: string,
     first_name?: string | null,
     last_name?: string | null,
-    email?: string | null,
-    date_of_birth?: string | null,
-    phone_number?: string | null,
+    email: string,
+    date_of_birth: string,
+    phone_number: string,
     pat_appointments?:  {
       __typename: "ModelAppointmentsConnection",
       items:  Array< {
@@ -721,9 +1030,9 @@ export type DeletePatientMutation = {
     id: string,
     first_name?: string | null,
     last_name?: string | null,
-    email?: string | null,
-    date_of_birth?: string | null,
-    phone_number?: string | null,
+    email: string,
+    date_of_birth: string,
+    phone_number: string,
     pat_appointments?:  {
       __typename: "ModelAppointmentsConnection",
       items:  Array< {
@@ -755,6 +1064,293 @@ export type DeletePatientMutation = {
   } | null,
 };
 
+export type CreateStaffTasksMutationVariables = {
+  input: CreateStaffTasksInput,
+  condition?: ModelStaffTasksConditionInput | null,
+};
+
+export type CreateStaffTasksMutation = {
+  createStaffTasks?:  {
+    __typename: "StaffTasks",
+    id: string,
+    tasksId: string,
+    staffId: string,
+    tasks:  {
+      __typename: "Tasks",
+      id: string,
+      title?: string | null,
+      date_created?: string | null,
+      date_due?: string | null,
+      details?: string | null,
+      staff_assigned?:  {
+        __typename: "ModelStaffTasksConnection",
+        nextToken?: string | null,
+        startedAt?: number | null,
+      } | null,
+      createdAt: string,
+      updatedAt: string,
+      _version: number,
+      _deleted?: boolean | null,
+      _lastChangedAt: number,
+    },
+    staff:  {
+      __typename: "Staff",
+      id: string,
+      first_name?: string | null,
+      last_name?: string | null,
+      email: string,
+      username?: string | null,
+      phone_number: string,
+      role?: StaffRoleEnum | null,
+      staff_appointments?:  {
+        __typename: "ModelAppointmentsConnection",
+        nextToken?: string | null,
+        startedAt?: number | null,
+      } | null,
+      tasks?:  {
+        __typename: "ModelStaffTasksConnection",
+        nextToken?: string | null,
+        startedAt?: number | null,
+      } | null,
+      createdAt: string,
+      updatedAt: string,
+      _version: number,
+      _deleted?: boolean | null,
+      _lastChangedAt: number,
+    },
+    createdAt: string,
+    updatedAt: string,
+    _version: number,
+    _deleted?: boolean | null,
+    _lastChangedAt: number,
+  } | null,
+};
+
+export type UpdateStaffTasksMutationVariables = {
+  input: UpdateStaffTasksInput,
+  condition?: ModelStaffTasksConditionInput | null,
+};
+
+export type UpdateStaffTasksMutation = {
+  updateStaffTasks?:  {
+    __typename: "StaffTasks",
+    id: string,
+    tasksId: string,
+    staffId: string,
+    tasks:  {
+      __typename: "Tasks",
+      id: string,
+      title?: string | null,
+      date_created?: string | null,
+      date_due?: string | null,
+      details?: string | null,
+      staff_assigned?:  {
+        __typename: "ModelStaffTasksConnection",
+        nextToken?: string | null,
+        startedAt?: number | null,
+      } | null,
+      createdAt: string,
+      updatedAt: string,
+      _version: number,
+      _deleted?: boolean | null,
+      _lastChangedAt: number,
+    },
+    staff:  {
+      __typename: "Staff",
+      id: string,
+      first_name?: string | null,
+      last_name?: string | null,
+      email: string,
+      username?: string | null,
+      phone_number: string,
+      role?: StaffRoleEnum | null,
+      staff_appointments?:  {
+        __typename: "ModelAppointmentsConnection",
+        nextToken?: string | null,
+        startedAt?: number | null,
+      } | null,
+      tasks?:  {
+        __typename: "ModelStaffTasksConnection",
+        nextToken?: string | null,
+        startedAt?: number | null,
+      } | null,
+      createdAt: string,
+      updatedAt: string,
+      _version: number,
+      _deleted?: boolean | null,
+      _lastChangedAt: number,
+    },
+    createdAt: string,
+    updatedAt: string,
+    _version: number,
+    _deleted?: boolean | null,
+    _lastChangedAt: number,
+  } | null,
+};
+
+export type DeleteStaffTasksMutationVariables = {
+  input: DeleteStaffTasksInput,
+  condition?: ModelStaffTasksConditionInput | null,
+};
+
+export type DeleteStaffTasksMutation = {
+  deleteStaffTasks?:  {
+    __typename: "StaffTasks",
+    id: string,
+    tasksId: string,
+    staffId: string,
+    tasks:  {
+      __typename: "Tasks",
+      id: string,
+      title?: string | null,
+      date_created?: string | null,
+      date_due?: string | null,
+      details?: string | null,
+      staff_assigned?:  {
+        __typename: "ModelStaffTasksConnection",
+        nextToken?: string | null,
+        startedAt?: number | null,
+      } | null,
+      createdAt: string,
+      updatedAt: string,
+      _version: number,
+      _deleted?: boolean | null,
+      _lastChangedAt: number,
+    },
+    staff:  {
+      __typename: "Staff",
+      id: string,
+      first_name?: string | null,
+      last_name?: string | null,
+      email: string,
+      username?: string | null,
+      phone_number: string,
+      role?: StaffRoleEnum | null,
+      staff_appointments?:  {
+        __typename: "ModelAppointmentsConnection",
+        nextToken?: string | null,
+        startedAt?: number | null,
+      } | null,
+      tasks?:  {
+        __typename: "ModelStaffTasksConnection",
+        nextToken?: string | null,
+        startedAt?: number | null,
+      } | null,
+      createdAt: string,
+      updatedAt: string,
+      _version: number,
+      _deleted?: boolean | null,
+      _lastChangedAt: number,
+    },
+    createdAt: string,
+    updatedAt: string,
+    _version: number,
+    _deleted?: boolean | null,
+    _lastChangedAt: number,
+  } | null,
+};
+
+export type GetTasksQueryVariables = {
+  id: string,
+};
+
+export type GetTasksQuery = {
+  getTasks?:  {
+    __typename: "Tasks",
+    id: string,
+    title?: string | null,
+    date_created?: string | null,
+    date_due?: string | null,
+    details?: string | null,
+    staff_assigned?:  {
+      __typename: "ModelStaffTasksConnection",
+      items:  Array< {
+        __typename: "StaffTasks",
+        id: string,
+        tasksId: string,
+        staffId: string,
+        createdAt: string,
+        updatedAt: string,
+        _version: number,
+        _deleted?: boolean | null,
+        _lastChangedAt: number,
+      } | null >,
+      nextToken?: string | null,
+      startedAt?: number | null,
+    } | null,
+    createdAt: string,
+    updatedAt: string,
+    _version: number,
+    _deleted?: boolean | null,
+    _lastChangedAt: number,
+  } | null,
+};
+
+export type ListTasksQueryVariables = {
+  filter?: ModelTasksFilterInput | null,
+  limit?: number | null,
+  nextToken?: string | null,
+};
+
+export type ListTasksQuery = {
+  listTasks?:  {
+    __typename: "ModelTasksConnection",
+    items:  Array< {
+      __typename: "Tasks",
+      id: string,
+      title?: string | null,
+      date_created?: string | null,
+      date_due?: string | null,
+      details?: string | null,
+      staff_assigned?:  {
+        __typename: "ModelStaffTasksConnection",
+        nextToken?: string | null,
+        startedAt?: number | null,
+      } | null,
+      createdAt: string,
+      updatedAt: string,
+      _version: number,
+      _deleted?: boolean | null,
+      _lastChangedAt: number,
+    } | null >,
+    nextToken?: string | null,
+    startedAt?: number | null,
+  } | null,
+};
+
+export type SyncTasksQueryVariables = {
+  filter?: ModelTasksFilterInput | null,
+  limit?: number | null,
+  nextToken?: string | null,
+  lastSync?: number | null,
+};
+
+export type SyncTasksQuery = {
+  syncTasks?:  {
+    __typename: "ModelTasksConnection",
+    items:  Array< {
+      __typename: "Tasks",
+      id: string,
+      title?: string | null,
+      date_created?: string | null,
+      date_due?: string | null,
+      details?: string | null,
+      staff_assigned?:  {
+        __typename: "ModelStaffTasksConnection",
+        nextToken?: string | null,
+        startedAt?: number | null,
+      } | null,
+      createdAt: string,
+      updatedAt: string,
+      _version: number,
+      _deleted?: boolean | null,
+      _lastChangedAt: number,
+    } | null >,
+    nextToken?: string | null,
+    startedAt?: number | null,
+  } | null,
+};
+
 export type GetStaffQueryVariables = {
   id: string,
 };
@@ -765,9 +1361,9 @@ export type GetStaffQuery = {
     id: string,
     first_name?: string | null,
     last_name?: string | null,
-    email?: string | null,
+    email: string,
     username?: string | null,
-    phone_number?: string | null,
+    phone_number: string,
     role?: StaffRoleEnum | null,
     staff_appointments?:  {
       __typename: "ModelAppointmentsConnection",
@@ -791,6 +1387,22 @@ export type GetStaffQuery = {
       nextToken?: string | null,
       startedAt?: number | null,
     } | null,
+    tasks?:  {
+      __typename: "ModelStaffTasksConnection",
+      items:  Array< {
+        __typename: "StaffTasks",
+        id: string,
+        tasksId: string,
+        staffId: string,
+        createdAt: string,
+        updatedAt: string,
+        _version: number,
+        _deleted?: boolean | null,
+        _lastChangedAt: number,
+      } | null >,
+      nextToken?: string | null,
+      startedAt?: number | null,
+    } | null,
     createdAt: string,
     updatedAt: string,
     _version: number,
@@ -800,9 +1412,11 @@ export type GetStaffQuery = {
 };
 
 export type ListStaffQueryVariables = {
+  id?: string | null,
   filter?: ModelStaffFilterInput | null,
   limit?: number | null,
   nextToken?: string | null,
+  sortDirection?: ModelSortDirection | null,
 };
 
 export type ListStaffQuery = {
@@ -813,12 +1427,17 @@ export type ListStaffQuery = {
       id: string,
       first_name?: string | null,
       last_name?: string | null,
-      email?: string | null,
+      email: string,
       username?: string | null,
-      phone_number?: string | null,
+      phone_number: string,
       role?: StaffRoleEnum | null,
       staff_appointments?:  {
         __typename: "ModelAppointmentsConnection",
+        nextToken?: string | null,
+        startedAt?: number | null,
+      } | null,
+      tasks?:  {
+        __typename: "ModelStaffTasksConnection",
         nextToken?: string | null,
         startedAt?: number | null,
       } | null,
@@ -848,12 +1467,17 @@ export type SyncStaffQuery = {
       id: string,
       first_name?: string | null,
       last_name?: string | null,
-      email?: string | null,
+      email: string,
       username?: string | null,
-      phone_number?: string | null,
+      phone_number: string,
       role?: StaffRoleEnum | null,
       staff_appointments?:  {
         __typename: "ModelAppointmentsConnection",
+        nextToken?: string | null,
+        startedAt?: number | null,
+      } | null,
+      tasks?:  {
+        __typename: "ModelStaffTasksConnection",
         nextToken?: string | null,
         startedAt?: number | null,
       } | null,
@@ -955,6 +1579,371 @@ export type SyncAppointmentsQuery = {
   } | null,
 };
 
+export type GetPatientQueryVariables = {
+  id: string,
+};
+
+export type GetPatientQuery = {
+  getPatient?:  {
+    __typename: "Patient",
+    id: string,
+    first_name?: string | null,
+    last_name?: string | null,
+    email: string,
+    date_of_birth: string,
+    phone_number: string,
+    pat_appointments?:  {
+      __typename: "ModelAppointmentsConnection",
+      items:  Array< {
+        __typename: "Appointments",
+        id: string,
+        appointment_date?: string | null,
+        created_at?: string | null,
+        start_time?: string | null,
+        end_time?: string | null,
+        status?: AppointmentStatusEnum | null,
+        assigned_to?: string | null,
+        patientID: string,
+        staffID: string,
+        createdAt: string,
+        updatedAt: string,
+        _version: number,
+        _deleted?: boolean | null,
+        _lastChangedAt: number,
+      } | null >,
+      nextToken?: string | null,
+      startedAt?: number | null,
+    } | null,
+    gender?: string | null,
+    createdAt: string,
+    updatedAt: string,
+    _version: number,
+    _deleted?: boolean | null,
+    _lastChangedAt: number,
+  } | null,
+};
+
+export type ListPatientsQueryVariables = {
+  id?: string | null,
+  filter?: ModelPatientFilterInput | null,
+  limit?: number | null,
+  nextToken?: string | null,
+  sortDirection?: ModelSortDirection | null,
+};
+
+export type ListPatientsQuery = {
+  listPatients?:  {
+    __typename: "ModelPatientConnection",
+    items:  Array< {
+      __typename: "Patient",
+      id: string,
+      first_name?: string | null,
+      last_name?: string | null,
+      email: string,
+      date_of_birth: string,
+      phone_number: string,
+      pat_appointments?:  {
+        __typename: "ModelAppointmentsConnection",
+        nextToken?: string | null,
+        startedAt?: number | null,
+      } | null,
+      gender?: string | null,
+      createdAt: string,
+      updatedAt: string,
+      _version: number,
+      _deleted?: boolean | null,
+      _lastChangedAt: number,
+    } | null >,
+    nextToken?: string | null,
+    startedAt?: number | null,
+  } | null,
+};
+
+export type SyncPatientsQueryVariables = {
+  filter?: ModelPatientFilterInput | null,
+  limit?: number | null,
+  nextToken?: string | null,
+  lastSync?: number | null,
+};
+
+export type SyncPatientsQuery = {
+  syncPatients?:  {
+    __typename: "ModelPatientConnection",
+    items:  Array< {
+      __typename: "Patient",
+      id: string,
+      first_name?: string | null,
+      last_name?: string | null,
+      email: string,
+      date_of_birth: string,
+      phone_number: string,
+      pat_appointments?:  {
+        __typename: "ModelAppointmentsConnection",
+        nextToken?: string | null,
+        startedAt?: number | null,
+      } | null,
+      gender?: string | null,
+      createdAt: string,
+      updatedAt: string,
+      _version: number,
+      _deleted?: boolean | null,
+      _lastChangedAt: number,
+    } | null >,
+    nextToken?: string | null,
+    startedAt?: number | null,
+  } | null,
+};
+
+export type GetStaffTasksQueryVariables = {
+  id: string,
+};
+
+export type GetStaffTasksQuery = {
+  getStaffTasks?:  {
+    __typename: "StaffTasks",
+    id: string,
+    tasksId: string,
+    staffId: string,
+    tasks:  {
+      __typename: "Tasks",
+      id: string,
+      title?: string | null,
+      date_created?: string | null,
+      date_due?: string | null,
+      details?: string | null,
+      staff_assigned?:  {
+        __typename: "ModelStaffTasksConnection",
+        nextToken?: string | null,
+        startedAt?: number | null,
+      } | null,
+      createdAt: string,
+      updatedAt: string,
+      _version: number,
+      _deleted?: boolean | null,
+      _lastChangedAt: number,
+    },
+    staff:  {
+      __typename: "Staff",
+      id: string,
+      first_name?: string | null,
+      last_name?: string | null,
+      email: string,
+      username?: string | null,
+      phone_number: string,
+      role?: StaffRoleEnum | null,
+      staff_appointments?:  {
+        __typename: "ModelAppointmentsConnection",
+        nextToken?: string | null,
+        startedAt?: number | null,
+      } | null,
+      tasks?:  {
+        __typename: "ModelStaffTasksConnection",
+        nextToken?: string | null,
+        startedAt?: number | null,
+      } | null,
+      createdAt: string,
+      updatedAt: string,
+      _version: number,
+      _deleted?: boolean | null,
+      _lastChangedAt: number,
+    },
+    createdAt: string,
+    updatedAt: string,
+    _version: number,
+    _deleted?: boolean | null,
+    _lastChangedAt: number,
+  } | null,
+};
+
+export type ListStaffTasksQueryVariables = {
+  filter?: ModelStaffTasksFilterInput | null,
+  limit?: number | null,
+  nextToken?: string | null,
+};
+
+export type ListStaffTasksQuery = {
+  listStaffTasks?:  {
+    __typename: "ModelStaffTasksConnection",
+    items:  Array< {
+      __typename: "StaffTasks",
+      id: string,
+      tasksId: string,
+      staffId: string,
+      tasks:  {
+        __typename: "Tasks",
+        id: string,
+        title?: string | null,
+        date_created?: string | null,
+        date_due?: string | null,
+        details?: string | null,
+        createdAt: string,
+        updatedAt: string,
+        _version: number,
+        _deleted?: boolean | null,
+        _lastChangedAt: number,
+      },
+      staff:  {
+        __typename: "Staff",
+        id: string,
+        first_name?: string | null,
+        last_name?: string | null,
+        email: string,
+        username?: string | null,
+        phone_number: string,
+        role?: StaffRoleEnum | null,
+        createdAt: string,
+        updatedAt: string,
+        _version: number,
+        _deleted?: boolean | null,
+        _lastChangedAt: number,
+      },
+      createdAt: string,
+      updatedAt: string,
+      _version: number,
+      _deleted?: boolean | null,
+      _lastChangedAt: number,
+    } | null >,
+    nextToken?: string | null,
+    startedAt?: number | null,
+  } | null,
+};
+
+export type SyncStaffTasksQueryVariables = {
+  filter?: ModelStaffTasksFilterInput | null,
+  limit?: number | null,
+  nextToken?: string | null,
+  lastSync?: number | null,
+};
+
+export type SyncStaffTasksQuery = {
+  syncStaffTasks?:  {
+    __typename: "ModelStaffTasksConnection",
+    items:  Array< {
+      __typename: "StaffTasks",
+      id: string,
+      tasksId: string,
+      staffId: string,
+      tasks:  {
+        __typename: "Tasks",
+        id: string,
+        title?: string | null,
+        date_created?: string | null,
+        date_due?: string | null,
+        details?: string | null,
+        createdAt: string,
+        updatedAt: string,
+        _version: number,
+        _deleted?: boolean | null,
+        _lastChangedAt: number,
+      },
+      staff:  {
+        __typename: "Staff",
+        id: string,
+        first_name?: string | null,
+        last_name?: string | null,
+        email: string,
+        username?: string | null,
+        phone_number: string,
+        role?: StaffRoleEnum | null,
+        createdAt: string,
+        updatedAt: string,
+        _version: number,
+        _deleted?: boolean | null,
+        _lastChangedAt: number,
+      },
+      createdAt: string,
+      updatedAt: string,
+      _version: number,
+      _deleted?: boolean | null,
+      _lastChangedAt: number,
+    } | null >,
+    nextToken?: string | null,
+    startedAt?: number | null,
+  } | null,
+};
+
+export type StaffByEmailQueryVariables = {
+  email: string,
+  sortDirection?: ModelSortDirection | null,
+  filter?: ModelStaffFilterInput | null,
+  limit?: number | null,
+  nextToken?: string | null,
+};
+
+export type StaffByEmailQuery = {
+  staffByEmail?:  {
+    __typename: "ModelStaffConnection",
+    items:  Array< {
+      __typename: "Staff",
+      id: string,
+      first_name?: string | null,
+      last_name?: string | null,
+      email: string,
+      username?: string | null,
+      phone_number: string,
+      role?: StaffRoleEnum | null,
+      staff_appointments?:  {
+        __typename: "ModelAppointmentsConnection",
+        nextToken?: string | null,
+        startedAt?: number | null,
+      } | null,
+      tasks?:  {
+        __typename: "ModelStaffTasksConnection",
+        nextToken?: string | null,
+        startedAt?: number | null,
+      } | null,
+      createdAt: string,
+      updatedAt: string,
+      _version: number,
+      _deleted?: boolean | null,
+      _lastChangedAt: number,
+    } | null >,
+    nextToken?: string | null,
+    startedAt?: number | null,
+  } | null,
+};
+
+export type StaffByPhoneNumberQueryVariables = {
+  phone_number: string,
+  sortDirection?: ModelSortDirection | null,
+  filter?: ModelStaffFilterInput | null,
+  limit?: number | null,
+  nextToken?: string | null,
+};
+
+export type StaffByPhoneNumberQuery = {
+  staffByPhoneNumber?:  {
+    __typename: "ModelStaffConnection",
+    items:  Array< {
+      __typename: "Staff",
+      id: string,
+      first_name?: string | null,
+      last_name?: string | null,
+      email: string,
+      username?: string | null,
+      phone_number: string,
+      role?: StaffRoleEnum | null,
+      staff_appointments?:  {
+        __typename: "ModelAppointmentsConnection",
+        nextToken?: string | null,
+        startedAt?: number | null,
+      } | null,
+      tasks?:  {
+        __typename: "ModelStaffTasksConnection",
+        nextToken?: string | null,
+        startedAt?: number | null,
+      } | null,
+      createdAt: string,
+      updatedAt: string,
+      _version: number,
+      _deleted?: boolean | null,
+      _lastChangedAt: number,
+    } | null >,
+    nextToken?: string | null,
+    startedAt?: number | null,
+  } | null,
+};
+
 export type AppointmentsByPatientIDQueryVariables = {
   patientID: string,
   sortDirection?: ModelSortDirection | null,
@@ -1021,20 +2010,311 @@ export type AppointmentsByStaffIDQuery = {
   } | null,
 };
 
-export type GetPatientQueryVariables = {
-  id: string,
+export type PatientByEmailQueryVariables = {
+  email: string,
+  sortDirection?: ModelSortDirection | null,
+  filter?: ModelPatientFilterInput | null,
+  limit?: number | null,
+  nextToken?: string | null,
 };
 
-export type GetPatientQuery = {
-  getPatient?:  {
-    __typename: "Patient",
+export type PatientByEmailQuery = {
+  patientByEmail?:  {
+    __typename: "ModelPatientConnection",
+    items:  Array< {
+      __typename: "Patient",
+      id: string,
+      first_name?: string | null,
+      last_name?: string | null,
+      email: string,
+      date_of_birth: string,
+      phone_number: string,
+      pat_appointments?:  {
+        __typename: "ModelAppointmentsConnection",
+        nextToken?: string | null,
+        startedAt?: number | null,
+      } | null,
+      gender?: string | null,
+      createdAt: string,
+      updatedAt: string,
+      _version: number,
+      _deleted?: boolean | null,
+      _lastChangedAt: number,
+    } | null >,
+    nextToken?: string | null,
+    startedAt?: number | null,
+  } | null,
+};
+
+export type PatientByPhoneNumberQueryVariables = {
+  phone_number: string,
+  sortDirection?: ModelSortDirection | null,
+  filter?: ModelPatientFilterInput | null,
+  limit?: number | null,
+  nextToken?: string | null,
+};
+
+export type PatientByPhoneNumberQuery = {
+  patientByPhoneNumber?:  {
+    __typename: "ModelPatientConnection",
+    items:  Array< {
+      __typename: "Patient",
+      id: string,
+      first_name?: string | null,
+      last_name?: string | null,
+      email: string,
+      date_of_birth: string,
+      phone_number: string,
+      pat_appointments?:  {
+        __typename: "ModelAppointmentsConnection",
+        nextToken?: string | null,
+        startedAt?: number | null,
+      } | null,
+      gender?: string | null,
+      createdAt: string,
+      updatedAt: string,
+      _version: number,
+      _deleted?: boolean | null,
+      _lastChangedAt: number,
+    } | null >,
+    nextToken?: string | null,
+    startedAt?: number | null,
+  } | null,
+};
+
+export type StaffTasksByTasksIdQueryVariables = {
+  tasksId: string,
+  sortDirection?: ModelSortDirection | null,
+  filter?: ModelStaffTasksFilterInput | null,
+  limit?: number | null,
+  nextToken?: string | null,
+};
+
+export type StaffTasksByTasksIdQuery = {
+  staffTasksByTasksId?:  {
+    __typename: "ModelStaffTasksConnection",
+    items:  Array< {
+      __typename: "StaffTasks",
+      id: string,
+      tasksId: string,
+      staffId: string,
+      tasks:  {
+        __typename: "Tasks",
+        id: string,
+        title?: string | null,
+        date_created?: string | null,
+        date_due?: string | null,
+        details?: string | null,
+        createdAt: string,
+        updatedAt: string,
+        _version: number,
+        _deleted?: boolean | null,
+        _lastChangedAt: number,
+      },
+      staff:  {
+        __typename: "Staff",
+        id: string,
+        first_name?: string | null,
+        last_name?: string | null,
+        email: string,
+        username?: string | null,
+        phone_number: string,
+        role?: StaffRoleEnum | null,
+        createdAt: string,
+        updatedAt: string,
+        _version: number,
+        _deleted?: boolean | null,
+        _lastChangedAt: number,
+      },
+      createdAt: string,
+      updatedAt: string,
+      _version: number,
+      _deleted?: boolean | null,
+      _lastChangedAt: number,
+    } | null >,
+    nextToken?: string | null,
+    startedAt?: number | null,
+  } | null,
+};
+
+export type StaffTasksByStaffIdQueryVariables = {
+  staffId: string,
+  sortDirection?: ModelSortDirection | null,
+  filter?: ModelStaffTasksFilterInput | null,
+  limit?: number | null,
+  nextToken?: string | null,
+};
+
+export type StaffTasksByStaffIdQuery = {
+  staffTasksByStaffId?:  {
+    __typename: "ModelStaffTasksConnection",
+    items:  Array< {
+      __typename: "StaffTasks",
+      id: string,
+      tasksId: string,
+      staffId: string,
+      tasks:  {
+        __typename: "Tasks",
+        id: string,
+        title?: string | null,
+        date_created?: string | null,
+        date_due?: string | null,
+        details?: string | null,
+        createdAt: string,
+        updatedAt: string,
+        _version: number,
+        _deleted?: boolean | null,
+        _lastChangedAt: number,
+      },
+      staff:  {
+        __typename: "Staff",
+        id: string,
+        first_name?: string | null,
+        last_name?: string | null,
+        email: string,
+        username?: string | null,
+        phone_number: string,
+        role?: StaffRoleEnum | null,
+        createdAt: string,
+        updatedAt: string,
+        _version: number,
+        _deleted?: boolean | null,
+        _lastChangedAt: number,
+      },
+      createdAt: string,
+      updatedAt: string,
+      _version: number,
+      _deleted?: boolean | null,
+      _lastChangedAt: number,
+    } | null >,
+    nextToken?: string | null,
+    startedAt?: number | null,
+  } | null,
+};
+
+export type OnCreateTasksSubscriptionVariables = {
+  filter?: ModelSubscriptionTasksFilterInput | null,
+};
+
+export type OnCreateTasksSubscription = {
+  onCreateTasks?:  {
+    __typename: "Tasks",
+    id: string,
+    title?: string | null,
+    date_created?: string | null,
+    date_due?: string | null,
+    details?: string | null,
+    staff_assigned?:  {
+      __typename: "ModelStaffTasksConnection",
+      items:  Array< {
+        __typename: "StaffTasks",
+        id: string,
+        tasksId: string,
+        staffId: string,
+        createdAt: string,
+        updatedAt: string,
+        _version: number,
+        _deleted?: boolean | null,
+        _lastChangedAt: number,
+      } | null >,
+      nextToken?: string | null,
+      startedAt?: number | null,
+    } | null,
+    createdAt: string,
+    updatedAt: string,
+    _version: number,
+    _deleted?: boolean | null,
+    _lastChangedAt: number,
+  } | null,
+};
+
+export type OnUpdateTasksSubscriptionVariables = {
+  filter?: ModelSubscriptionTasksFilterInput | null,
+};
+
+export type OnUpdateTasksSubscription = {
+  onUpdateTasks?:  {
+    __typename: "Tasks",
+    id: string,
+    title?: string | null,
+    date_created?: string | null,
+    date_due?: string | null,
+    details?: string | null,
+    staff_assigned?:  {
+      __typename: "ModelStaffTasksConnection",
+      items:  Array< {
+        __typename: "StaffTasks",
+        id: string,
+        tasksId: string,
+        staffId: string,
+        createdAt: string,
+        updatedAt: string,
+        _version: number,
+        _deleted?: boolean | null,
+        _lastChangedAt: number,
+      } | null >,
+      nextToken?: string | null,
+      startedAt?: number | null,
+    } | null,
+    createdAt: string,
+    updatedAt: string,
+    _version: number,
+    _deleted?: boolean | null,
+    _lastChangedAt: number,
+  } | null,
+};
+
+export type OnDeleteTasksSubscriptionVariables = {
+  filter?: ModelSubscriptionTasksFilterInput | null,
+};
+
+export type OnDeleteTasksSubscription = {
+  onDeleteTasks?:  {
+    __typename: "Tasks",
+    id: string,
+    title?: string | null,
+    date_created?: string | null,
+    date_due?: string | null,
+    details?: string | null,
+    staff_assigned?:  {
+      __typename: "ModelStaffTasksConnection",
+      items:  Array< {
+        __typename: "StaffTasks",
+        id: string,
+        tasksId: string,
+        staffId: string,
+        createdAt: string,
+        updatedAt: string,
+        _version: number,
+        _deleted?: boolean | null,
+        _lastChangedAt: number,
+      } | null >,
+      nextToken?: string | null,
+      startedAt?: number | null,
+    } | null,
+    createdAt: string,
+    updatedAt: string,
+    _version: number,
+    _deleted?: boolean | null,
+    _lastChangedAt: number,
+  } | null,
+};
+
+export type OnCreateStaffSubscriptionVariables = {
+  filter?: ModelSubscriptionStaffFilterInput | null,
+};
+
+export type OnCreateStaffSubscription = {
+  onCreateStaff?:  {
+    __typename: "Staff",
     id: string,
     first_name?: string | null,
     last_name?: string | null,
-    email?: string | null,
-    date_of_birth?: string | null,
-    phone_number?: string | null,
-    pat_appointments?:  {
+    email: string,
+    username?: string | null,
+    phone_number: string,
+    role?: StaffRoleEnum | null,
+    staff_appointments?:  {
       __typename: "ModelAppointmentsConnection",
       items:  Array< {
         __typename: "Appointments",
@@ -1056,111 +2336,13 @@ export type GetPatientQuery = {
       nextToken?: string | null,
       startedAt?: number | null,
     } | null,
-    gender?: string | null,
-    createdAt: string,
-    updatedAt: string,
-    _version: number,
-    _deleted?: boolean | null,
-    _lastChangedAt: number,
-  } | null,
-};
-
-export type ListPatientsQueryVariables = {
-  filter?: ModelPatientFilterInput | null,
-  limit?: number | null,
-  nextToken?: string | null,
-};
-
-export type ListPatientsQuery = {
-  listPatients?:  {
-    __typename: "ModelPatientConnection",
-    items:  Array< {
-      __typename: "Patient",
-      id: string,
-      first_name?: string | null,
-      last_name?: string | null,
-      email?: string | null,
-      date_of_birth?: string | null,
-      phone_number?: string | null,
-      pat_appointments?:  {
-        __typename: "ModelAppointmentsConnection",
-        nextToken?: string | null,
-        startedAt?: number | null,
-      } | null,
-      gender?: string | null,
-      createdAt: string,
-      updatedAt: string,
-      _version: number,
-      _deleted?: boolean | null,
-      _lastChangedAt: number,
-    } | null >,
-    nextToken?: string | null,
-    startedAt?: number | null,
-  } | null,
-};
-
-export type SyncPatientsQueryVariables = {
-  filter?: ModelPatientFilterInput | null,
-  limit?: number | null,
-  nextToken?: string | null,
-  lastSync?: number | null,
-};
-
-export type SyncPatientsQuery = {
-  syncPatients?:  {
-    __typename: "ModelPatientConnection",
-    items:  Array< {
-      __typename: "Patient",
-      id: string,
-      first_name?: string | null,
-      last_name?: string | null,
-      email?: string | null,
-      date_of_birth?: string | null,
-      phone_number?: string | null,
-      pat_appointments?:  {
-        __typename: "ModelAppointmentsConnection",
-        nextToken?: string | null,
-        startedAt?: number | null,
-      } | null,
-      gender?: string | null,
-      createdAt: string,
-      updatedAt: string,
-      _version: number,
-      _deleted?: boolean | null,
-      _lastChangedAt: number,
-    } | null >,
-    nextToken?: string | null,
-    startedAt?: number | null,
-  } | null,
-};
-
-export type OnCreateStaffSubscriptionVariables = {
-  filter?: ModelSubscriptionStaffFilterInput | null,
-};
-
-export type OnCreateStaffSubscription = {
-  onCreateStaff?:  {
-    __typename: "Staff",
-    id: string,
-    first_name?: string | null,
-    last_name?: string | null,
-    email?: string | null,
-    username?: string | null,
-    phone_number?: string | null,
-    role?: StaffRoleEnum | null,
-    staff_appointments?:  {
-      __typename: "ModelAppointmentsConnection",
+    tasks?:  {
+      __typename: "ModelStaffTasksConnection",
       items:  Array< {
-        __typename: "Appointments",
+        __typename: "StaffTasks",
         id: string,
-        appointment_date?: string | null,
-        created_at?: string | null,
-        start_time?: string | null,
-        end_time?: string | null,
-        status?: AppointmentStatusEnum | null,
-        assigned_to?: string | null,
-        patientID: string,
-        staffID: string,
+        tasksId: string,
+        staffId: string,
         createdAt: string,
         updatedAt: string,
         _version: number,
@@ -1188,9 +2370,9 @@ export type OnUpdateStaffSubscription = {
     id: string,
     first_name?: string | null,
     last_name?: string | null,
-    email?: string | null,
+    email: string,
     username?: string | null,
-    phone_number?: string | null,
+    phone_number: string,
     role?: StaffRoleEnum | null,
     staff_appointments?:  {
       __typename: "ModelAppointmentsConnection",
@@ -1205,6 +2387,22 @@ export type OnUpdateStaffSubscription = {
         assigned_to?: string | null,
         patientID: string,
         staffID: string,
+        createdAt: string,
+        updatedAt: string,
+        _version: number,
+        _deleted?: boolean | null,
+        _lastChangedAt: number,
+      } | null >,
+      nextToken?: string | null,
+      startedAt?: number | null,
+    } | null,
+    tasks?:  {
+      __typename: "ModelStaffTasksConnection",
+      items:  Array< {
+        __typename: "StaffTasks",
+        id: string,
+        tasksId: string,
+        staffId: string,
         createdAt: string,
         updatedAt: string,
         _version: number,
@@ -1232,9 +2430,9 @@ export type OnDeleteStaffSubscription = {
     id: string,
     first_name?: string | null,
     last_name?: string | null,
-    email?: string | null,
+    email: string,
     username?: string | null,
-    phone_number?: string | null,
+    phone_number: string,
     role?: StaffRoleEnum | null,
     staff_appointments?:  {
       __typename: "ModelAppointmentsConnection",
@@ -1249,6 +2447,22 @@ export type OnDeleteStaffSubscription = {
         assigned_to?: string | null,
         patientID: string,
         staffID: string,
+        createdAt: string,
+        updatedAt: string,
+        _version: number,
+        _deleted?: boolean | null,
+        _lastChangedAt: number,
+      } | null >,
+      nextToken?: string | null,
+      startedAt?: number | null,
+    } | null,
+    tasks?:  {
+      __typename: "ModelStaffTasksConnection",
+      items:  Array< {
+        __typename: "StaffTasks",
+        id: string,
+        tasksId: string,
+        staffId: string,
         createdAt: string,
         updatedAt: string,
         _version: number,
@@ -1348,9 +2562,9 @@ export type OnCreatePatientSubscription = {
     id: string,
     first_name?: string | null,
     last_name?: string | null,
-    email?: string | null,
-    date_of_birth?: string | null,
-    phone_number?: string | null,
+    email: string,
+    date_of_birth: string,
+    phone_number: string,
     pat_appointments?:  {
       __typename: "ModelAppointmentsConnection",
       items:  Array< {
@@ -1392,9 +2606,9 @@ export type OnUpdatePatientSubscription = {
     id: string,
     first_name?: string | null,
     last_name?: string | null,
-    email?: string | null,
-    date_of_birth?: string | null,
-    phone_number?: string | null,
+    email: string,
+    date_of_birth: string,
+    phone_number: string,
     pat_appointments?:  {
       __typename: "ModelAppointmentsConnection",
       items:  Array< {
@@ -1436,9 +2650,9 @@ export type OnDeletePatientSubscription = {
     id: string,
     first_name?: string | null,
     last_name?: string | null,
-    email?: string | null,
-    date_of_birth?: string | null,
-    phone_number?: string | null,
+    email: string,
+    date_of_birth: string,
+    phone_number: string,
     pat_appointments?:  {
       __typename: "ModelAppointmentsConnection",
       items:  Array< {
@@ -1462,6 +2676,189 @@ export type OnDeletePatientSubscription = {
       startedAt?: number | null,
     } | null,
     gender?: string | null,
+    createdAt: string,
+    updatedAt: string,
+    _version: number,
+    _deleted?: boolean | null,
+    _lastChangedAt: number,
+  } | null,
+};
+
+export type OnCreateStaffTasksSubscriptionVariables = {
+  filter?: ModelSubscriptionStaffTasksFilterInput | null,
+};
+
+export type OnCreateStaffTasksSubscription = {
+  onCreateStaffTasks?:  {
+    __typename: "StaffTasks",
+    id: string,
+    tasksId: string,
+    staffId: string,
+    tasks:  {
+      __typename: "Tasks",
+      id: string,
+      title?: string | null,
+      date_created?: string | null,
+      date_due?: string | null,
+      details?: string | null,
+      staff_assigned?:  {
+        __typename: "ModelStaffTasksConnection",
+        nextToken?: string | null,
+        startedAt?: number | null,
+      } | null,
+      createdAt: string,
+      updatedAt: string,
+      _version: number,
+      _deleted?: boolean | null,
+      _lastChangedAt: number,
+    },
+    staff:  {
+      __typename: "Staff",
+      id: string,
+      first_name?: string | null,
+      last_name?: string | null,
+      email: string,
+      username?: string | null,
+      phone_number: string,
+      role?: StaffRoleEnum | null,
+      staff_appointments?:  {
+        __typename: "ModelAppointmentsConnection",
+        nextToken?: string | null,
+        startedAt?: number | null,
+      } | null,
+      tasks?:  {
+        __typename: "ModelStaffTasksConnection",
+        nextToken?: string | null,
+        startedAt?: number | null,
+      } | null,
+      createdAt: string,
+      updatedAt: string,
+      _version: number,
+      _deleted?: boolean | null,
+      _lastChangedAt: number,
+    },
+    createdAt: string,
+    updatedAt: string,
+    _version: number,
+    _deleted?: boolean | null,
+    _lastChangedAt: number,
+  } | null,
+};
+
+export type OnUpdateStaffTasksSubscriptionVariables = {
+  filter?: ModelSubscriptionStaffTasksFilterInput | null,
+};
+
+export type OnUpdateStaffTasksSubscription = {
+  onUpdateStaffTasks?:  {
+    __typename: "StaffTasks",
+    id: string,
+    tasksId: string,
+    staffId: string,
+    tasks:  {
+      __typename: "Tasks",
+      id: string,
+      title?: string | null,
+      date_created?: string | null,
+      date_due?: string | null,
+      details?: string | null,
+      staff_assigned?:  {
+        __typename: "ModelStaffTasksConnection",
+        nextToken?: string | null,
+        startedAt?: number | null,
+      } | null,
+      createdAt: string,
+      updatedAt: string,
+      _version: number,
+      _deleted?: boolean | null,
+      _lastChangedAt: number,
+    },
+    staff:  {
+      __typename: "Staff",
+      id: string,
+      first_name?: string | null,
+      last_name?: string | null,
+      email: string,
+      username?: string | null,
+      phone_number: string,
+      role?: StaffRoleEnum | null,
+      staff_appointments?:  {
+        __typename: "ModelAppointmentsConnection",
+        nextToken?: string | null,
+        startedAt?: number | null,
+      } | null,
+      tasks?:  {
+        __typename: "ModelStaffTasksConnection",
+        nextToken?: string | null,
+        startedAt?: number | null,
+      } | null,
+      createdAt: string,
+      updatedAt: string,
+      _version: number,
+      _deleted?: boolean | null,
+      _lastChangedAt: number,
+    },
+    createdAt: string,
+    updatedAt: string,
+    _version: number,
+    _deleted?: boolean | null,
+    _lastChangedAt: number,
+  } | null,
+};
+
+export type OnDeleteStaffTasksSubscriptionVariables = {
+  filter?: ModelSubscriptionStaffTasksFilterInput | null,
+};
+
+export type OnDeleteStaffTasksSubscription = {
+  onDeleteStaffTasks?:  {
+    __typename: "StaffTasks",
+    id: string,
+    tasksId: string,
+    staffId: string,
+    tasks:  {
+      __typename: "Tasks",
+      id: string,
+      title?: string | null,
+      date_created?: string | null,
+      date_due?: string | null,
+      details?: string | null,
+      staff_assigned?:  {
+        __typename: "ModelStaffTasksConnection",
+        nextToken?: string | null,
+        startedAt?: number | null,
+      } | null,
+      createdAt: string,
+      updatedAt: string,
+      _version: number,
+      _deleted?: boolean | null,
+      _lastChangedAt: number,
+    },
+    staff:  {
+      __typename: "Staff",
+      id: string,
+      first_name?: string | null,
+      last_name?: string | null,
+      email: string,
+      username?: string | null,
+      phone_number: string,
+      role?: StaffRoleEnum | null,
+      staff_appointments?:  {
+        __typename: "ModelAppointmentsConnection",
+        nextToken?: string | null,
+        startedAt?: number | null,
+      } | null,
+      tasks?:  {
+        __typename: "ModelStaffTasksConnection",
+        nextToken?: string | null,
+        startedAt?: number | null,
+      } | null,
+      createdAt: string,
+      updatedAt: string,
+      _version: number,
+      _deleted?: boolean | null,
+      _lastChangedAt: number,
+    },
     createdAt: string,
     updatedAt: string,
     _version: number,

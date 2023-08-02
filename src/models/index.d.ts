@@ -1,4 +1,4 @@
-import { ModelInit, MutableModel, __modelMeta__, ManagedIdentifier } from "@aws-amplify/datastore";
+import { ModelInit, MutableModel, __modelMeta__, ManagedIdentifier, OptionallyManagedIdentifier } from "@aws-amplify/datastore";
 // @ts-ignore
 import { LazyLoading, LazyLoadingDisabled, AsyncCollection, AsyncItem } from "@aws-amplify/datastore";
 
@@ -29,7 +29,7 @@ type EagerTasks = {
   readonly date_created?: string | null;
   readonly date_due?: string | null;
   readonly details?: string | null;
-  readonly staff_assigned?: (TasksStaff | null)[] | null;
+  readonly staff_assigned?: (StaffTasks | null)[] | null;
   readonly createdAt?: string | null;
   readonly updatedAt?: string | null;
 }
@@ -44,7 +44,7 @@ type LazyTasks = {
   readonly date_created?: string | null;
   readonly date_due?: string | null;
   readonly details?: string | null;
-  readonly staff_assigned: AsyncCollection<TasksStaff>;
+  readonly staff_assigned: AsyncCollection<StaffTasks>;
   readonly createdAt?: string | null;
   readonly updatedAt?: string | null;
 }
@@ -57,36 +57,36 @@ export declare const Tasks: (new (init: ModelInit<Tasks>) => Tasks) & {
 
 type EagerStaff = {
   readonly [__modelMeta__]: {
-    identifier: ManagedIdentifier<Staff, 'id'>;
+    identifier: OptionallyManagedIdentifier<Staff, 'id'>;
     readOnlyFields: 'createdAt' | 'updatedAt';
   };
   readonly id: string;
   readonly first_name?: string | null;
   readonly last_name?: string | null;
-  readonly email?: string | null;
+  readonly email: string;
   readonly username?: string | null;
-  readonly phone_number?: string | null;
+  readonly phone_number: string;
   readonly role?: StaffRoleEnum | keyof typeof StaffRoleEnum | null;
   readonly staff_appointments?: (Appointments | null)[] | null;
-  readonly taskss?: (TasksStaff | null)[] | null;
+  readonly tasks?: (StaffTasks | null)[] | null;
   readonly createdAt?: string | null;
   readonly updatedAt?: string | null;
 }
 
 type LazyStaff = {
   readonly [__modelMeta__]: {
-    identifier: ManagedIdentifier<Staff, 'id'>;
+    identifier: OptionallyManagedIdentifier<Staff, 'id'>;
     readOnlyFields: 'createdAt' | 'updatedAt';
   };
   readonly id: string;
   readonly first_name?: string | null;
   readonly last_name?: string | null;
-  readonly email?: string | null;
+  readonly email: string;
   readonly username?: string | null;
-  readonly phone_number?: string | null;
+  readonly phone_number: string;
   readonly role?: StaffRoleEnum | keyof typeof StaffRoleEnum | null;
   readonly staff_appointments: AsyncCollection<Appointments>;
-  readonly taskss: AsyncCollection<TasksStaff>;
+  readonly tasks: AsyncCollection<StaffTasks>;
   readonly createdAt?: string | null;
   readonly updatedAt?: string | null;
 }
@@ -141,15 +141,15 @@ export declare const Appointments: (new (init: ModelInit<Appointments>) => Appoi
 
 type EagerPatient = {
   readonly [__modelMeta__]: {
-    identifier: ManagedIdentifier<Patient, 'id'>;
+    identifier: OptionallyManagedIdentifier<Patient, 'id'>;
     readOnlyFields: 'createdAt' | 'updatedAt';
   };
   readonly id: string;
   readonly first_name?: string | null;
   readonly last_name?: string | null;
-  readonly email?: string | null;
-  readonly date_of_birth?: string | null;
-  readonly phone_number?: string | null;
+  readonly email: string;
+  readonly date_of_birth: string;
+  readonly phone_number: string;
   readonly pat_appointments?: (Appointments | null)[] | null;
   readonly gender?: string | null;
   readonly createdAt?: string | null;
@@ -158,15 +158,15 @@ type EagerPatient = {
 
 type LazyPatient = {
   readonly [__modelMeta__]: {
-    identifier: ManagedIdentifier<Patient, 'id'>;
+    identifier: OptionallyManagedIdentifier<Patient, 'id'>;
     readOnlyFields: 'createdAt' | 'updatedAt';
   };
   readonly id: string;
   readonly first_name?: string | null;
   readonly last_name?: string | null;
-  readonly email?: string | null;
-  readonly date_of_birth?: string | null;
-  readonly phone_number?: string | null;
+  readonly email: string;
+  readonly date_of_birth: string;
+  readonly phone_number: string;
   readonly pat_appointments: AsyncCollection<Appointments>;
   readonly gender?: string | null;
   readonly createdAt?: string | null;
@@ -179,9 +179,9 @@ export declare const Patient: (new (init: ModelInit<Patient>) => Patient) & {
   copyOf(source: Patient, mutator: (draft: MutableModel<Patient>) => MutableModel<Patient> | void): Patient;
 }
 
-type EagerTasksStaff = {
+type EagerStaffTasks = {
   readonly [__modelMeta__]: {
-    identifier: ManagedIdentifier<TasksStaff, 'id'>;
+    identifier: ManagedIdentifier<StaffTasks, 'id'>;
     readOnlyFields: 'createdAt' | 'updatedAt';
   };
   readonly id: string;
@@ -193,9 +193,9 @@ type EagerTasksStaff = {
   readonly updatedAt?: string | null;
 }
 
-type LazyTasksStaff = {
+type LazyStaffTasks = {
   readonly [__modelMeta__]: {
-    identifier: ManagedIdentifier<TasksStaff, 'id'>;
+    identifier: ManagedIdentifier<StaffTasks, 'id'>;
     readOnlyFields: 'createdAt' | 'updatedAt';
   };
   readonly id: string;
@@ -207,8 +207,8 @@ type LazyTasksStaff = {
   readonly updatedAt?: string | null;
 }
 
-export declare type TasksStaff = LazyLoading extends LazyLoadingDisabled ? EagerTasksStaff : LazyTasksStaff
+export declare type StaffTasks = LazyLoading extends LazyLoadingDisabled ? EagerStaffTasks : LazyStaffTasks
 
-export declare const TasksStaff: (new (init: ModelInit<TasksStaff>) => TasksStaff) & {
-  copyOf(source: TasksStaff, mutator: (draft: MutableModel<TasksStaff>) => MutableModel<TasksStaff> | void): TasksStaff;
+export declare const StaffTasks: (new (init: ModelInit<StaffTasks>) => StaffTasks) & {
+  copyOf(source: StaffTasks, mutator: (draft: MutableModel<StaffTasks>) => MutableModel<StaffTasks> | void): StaffTasks;
 }

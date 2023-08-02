@@ -55,12 +55,7 @@ const Profile = () => {
                                                 errorMessage="There is an error"
                                                 disabled
                                             />
-                                            <CheckboxField
-                                                label="Verified"
-                                                name="email_verified"
-                                                value='yes'
-                                                size="small"
-                                                />
+                                            
                                             <TextField
                                                 descriptiveText=""
                                                 placeholder="Baggins"

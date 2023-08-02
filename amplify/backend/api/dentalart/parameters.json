@@ -1,6 +1,5 @@
 {
   "AppSyncApiName": "dentalart",
   "DynamoDBBillingMode": "PAY_PER_REQUEST",
-  "DynamoDBEnableServerSideEncryption": false,
-  "AuthModeLastUpdated": "2023-07-16T10:59:19.155Z"
+  "DynamoDBEnableServerSideEncryption": false
 }

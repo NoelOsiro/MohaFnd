@@ -68,9 +68,9 @@ export default function PatientUpdateForm(props) {
   const validations = {
     first_name: [],
     last_name: [],
-    email: [{ type: "Email" }],
-    date_of_birth: [],
-    phone_number: [{ type: "Phone" }],
+    email: [{ type: "Required" }, { type: "Email" }],
+    date_of_birth: [{ type: "Required" }],
+    phone_number: [{ type: "Required" }, { type: "Phone" }],
     gender: [],
   };
   const runValidationTasks = async (
@@ -211,7 +211,7 @@ export default function PatientUpdateForm(props) {
       ></TextField>
       <TextField
         label="Email"
-        isRequired={false}
+        isRequired={true}
         isReadOnly={false}
         value={email}
         onChange={(e) => {
@@ -240,7 +240,7 @@ export default function PatientUpdateForm(props) {
       ></TextField>
       <TextField
         label="Date of birth"
-        isRequired={false}
+        isRequired={true}
         isReadOnly={false}
         type="date"
         value={date_of_birth}
@@ -270,7 +270,7 @@ export default function PatientUpdateForm(props) {
       ></TextField>
       <TextField
         label="Phone number"
-        isRequired={false}
+        isRequired={true}
         isReadOnly={false}
         type="tel"
         value={phone_number}

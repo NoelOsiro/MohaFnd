@@ -4,7 +4,7 @@ type Tasks @model @auth(rules: [{allow: public}]) {
   date_created: AWSDateTime
   date_due: AWSDateTime
   details: String
-  staff_assigned: [Staff] @manyToMany(relationName: "TasksStaff")
+  staff_assigned: [Staff] @manyToMany(relationName: "StaffTasks")
 }
 
 enum StaffRoleEnum {
@@ -15,16 +15,18 @@ enum StaffRoleEnum {
   ASSISTANT
 }
 
-type Staff @model @auth(rules: [{allow: public}]) {
-  id: ID!
+type Staff @model
+  @auth(rules: [{ allow: public }]) 
+  {
+  id: ID! @primaryKey
   first_name: String
   last_name: String
-  email: AWSEmail
+  email: AWSEmail! @index(name: "StaffByEmail",queryField: "staffByEmail")
   username: String
-  phone_number: AWSPhone
+  phone_number: AWSPhone! @index(name: "StaffByPhoneNumber", queryField: "staffByPhoneNumber") 
   role: StaffRoleEnum
   staff_appointments: [Appointments] @hasMany(indexName: "byStaff", fields: ["id"])
-  taskss: [Tasks] @manyToMany(relationName: "TasksStaff")
+  tasks: [Tasks] @manyToMany(relationName: "StaffTasks")
 }
 
 enum AppointmentStatusEnum {
@@ -46,14 +48,16 @@ type Appointments @model @auth(rules: [{allow: public}]) {
   staffID: ID! @index(name: "byStaff")
 }
 
-type Patient @model @auth(rules: [{allow: public}]) {
-  id: ID!
+type Patient @model
+  @auth(rules: [{ allow: public }])
+{
+  id: ID! @primaryKey
   first_name: String
   last_name: String
-  email: AWSEmail
-  date_of_birth: AWSDate
-  phone_number: AWSPhone
+  email: AWSEmail! @index(name: "PatientByEmail",queryField: "patientByEmail")
+  date_of_birth: AWSDate!
+  phone_number: AWSPhone! @index(name: "PatientByPhoneNumber", queryField: "patientByPhoneNumber")
   pat_appointments: [Appointments] @hasMany(indexName: "byPatient", fields: ["id"])
   gender: String
 }
- 
+

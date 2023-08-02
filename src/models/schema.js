@@ -42,7 +42,7 @@ export const schema = {
                     "name": "staff_assigned",
                     "isArray": true,
                     "type": {
-                        "model": "TasksStaff"
+                        "model": "StaffTasks"
                     },
                     "isRequired": false,
                     "attributes": [],
@@ -124,7 +124,7 @@ export const schema = {
                     "name": "email",
                     "isArray": false,
                     "type": "AWSEmail",
-                    "isRequired": false,
+                    "isRequired": true,
                     "attributes": []
                 },
                 "username": {
@@ -138,7 +138,7 @@ export const schema = {
                     "name": "phone_number",
                     "isArray": false,
                     "type": "AWSPhone",
-                    "isRequired": false,
+                    "isRequired": true,
                     "attributes": []
                 },
                 "role": {
@@ -166,11 +166,11 @@ export const schema = {
                         ]
                     }
                 },
-                "taskss": {
-                    "name": "taskss",
+                "tasks": {
+                    "name": "tasks",
                     "isArray": true,
                     "type": {
-                        "model": "TasksStaff"
+                        "model": "StaffTasks"
                     },
                     "isRequired": false,
                     "attributes": [],
@@ -205,6 +205,34 @@ export const schema = {
                 {
                     "type": "model",
                     "properties": {}
+                },
+                {
+                    "type": "key",
+                    "properties": {
+                        "fields": [
+                            "id"
+                        ]
+                    }
+                },
+                {
+                    "type": "key",
+                    "properties": {
+                        "name": "StaffByEmail",
+                        "queryField": "staffByEmail",
+                        "fields": [
+                            "email"
+                        ]
+                    }
+                },
+                {
+                    "type": "key",
+                    "properties": {
+                        "name": "StaffByPhoneNumber",
+                        "queryField": "staffByPhoneNumber",
+                        "fields": [
+                            "phone_number"
+                        ]
+                    }
                 },
                 {
                     "type": "auth",
@@ -380,21 +408,21 @@ export const schema = {
                     "name": "email",
                     "isArray": false,
                     "type": "AWSEmail",
-                    "isRequired": false,
+                    "isRequired": true,
                     "attributes": []
                 },
                 "date_of_birth": {
                     "name": "date_of_birth",
                     "isArray": false,
                     "type": "AWSDate",
-                    "isRequired": false,
+                    "isRequired": true,
                     "attributes": []
                 },
                 "phone_number": {
                     "name": "phone_number",
                     "isArray": false,
                     "type": "AWSPhone",
-                    "isRequired": false,
+                    "isRequired": true,
                     "attributes": []
                 },
                 "pat_appointments": {
@@ -445,6 +473,34 @@ export const schema = {
                     "properties": {}
                 },
                 {
+                    "type": "key",
+                    "properties": {
+                        "fields": [
+                            "id"
+                        ]
+                    }
+                },
+                {
+                    "type": "key",
+                    "properties": {
+                        "name": "PatientByEmail",
+                        "queryField": "patientByEmail",
+                        "fields": [
+                            "email"
+                        ]
+                    }
+                },
+                {
+                    "type": "key",
+                    "properties": {
+                        "name": "PatientByPhoneNumber",
+                        "queryField": "patientByPhoneNumber",
+                        "fields": [
+                            "phone_number"
+                        ]
+                    }
+                },
+                {
                     "type": "auth",
                     "properties": {
                         "rules": [
@@ -462,8 +518,8 @@ export const schema = {
                 }
             ]
         },
-        "TasksStaff": {
-            "name": "TasksStaff",
+        "StaffTasks": {
+            "name": "StaffTasks",
             "fields": {
                 "id": {
                     "name": "id",
@@ -534,7 +590,7 @@ export const schema = {
                 }
             },
             "syncable": true,
-            "pluralName": "TasksStaffs",
+            "pluralName": "StaffTasks",
             "attributes": [
                 {
                     "type": "model",
@@ -584,5 +640,5 @@ export const schema = {
     },
     "nonModels": {},
     "codegenVersion": "3.4.4",
-    "version": "9700f51285263324ed37ff6e41f9ae6c"
+    "version": "7875e8edea06a8c8d8b9e79ddec0a0d3"
 };
