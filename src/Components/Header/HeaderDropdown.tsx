@@ -1,6 +1,5 @@
 import React, { useEffect, useState } from 'react';
 import { Auth } from 'aws-amplify';
-import { CognitoUser,  CognitoUserSession } from 'amazon-cognito-identity-js';
 import {alertsItems, documentationItems, messagesItems } from './MenuItem';
 import { Rings } from 'react-loader-spinner';
 import DocumentationDropdown from './DocumentationDropdown';
@@ -9,7 +8,7 @@ import MessagesDropdown from './MessagesDropdowns';
 import { FiSettings, FiLogOut } from 'react-icons/fi';
 
 const HeaderDropdowns: React.FC = () => {
-  const [userDetails, setUserDetails] = useState<CognitoUser | null>(null);
+  const [user, setUser] = useState<any>(null);
   const [isLoading, setIsLoading] = useState(true);
 
   useEffect(() => {
@@ -19,22 +18,20 @@ const HeaderDropdowns: React.FC = () => {
   const fetchUserDetails = async () => {
     try {
       const user = await Auth.currentAuthenticatedUser();
-      setUserDetails(user);
+      setUser(user);
     } catch (error) {
       console.error('Error fetching user details:', error);
     } finally {
       setIsLoading(false);
     }
   };
-  const getFirstName = (session: CognitoUserSession | null) => {
-    return session?.getIdToken()?.payload?.first_name || '';
-  };
-
-  const getLastName = (session: CognitoUserSession | null) => {
-    return session?.getIdToken()?.payload?.family_name || '';
-  };
-  const getEmail = (session: CognitoUserSession | null) => {
-    return session?.getIdToken()?.payload?.email || '';
+  const handleLogout = async () => {
+    try {
+      await Auth.signOut();
+      setUser(null); 
+    } catch (error) {
+      console.log('Error signing out:', error);
+    }
   };
 
   return (
@@ -56,7 +53,7 @@ const HeaderDropdowns: React.FC = () => {
         <li className="nav-item">
           <Rings color="#000000" height={30} width={30} />
         </li>
-      ) : userDetails ? (
+      ) : user ? (
         <li className="nav-item dropdown no-caret dropdown-user me-3 me-lg-4">
           <a className="btn btn-icon btn-transparent-dark dropdown-toggle" id="navbarDropdownUserImage" href="/" role="button" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
             <img alt="Profile" className="img-fluid" src="assets/img/illustrations/profiles/profile-1.png" />
@@ -65,8 +62,8 @@ const HeaderDropdowns: React.FC = () => {
             <h6 className="dropdown-header d-flex align-items-center">
               <img alt="Dropdown" className="dropdown-user-img" src="assets/img/illustrations/profiles/profile-1.png" />
               <div className="dropdown-user-details">
-                <div className="dropdown-user-details-name"> {`${getFirstName(userDetails?.getSignInUserSession())} ${getLastName(userDetails?.getSignInUserSession())}`}</div>
-                <div className="dropdown-user-details-email">{`${getEmail(userDetails?.getSignInUserSession())}`}</div>
+                <div className="dropdown-user-details-name"> {user.attributes.name}</div>
+                <div className="dropdown-user-details-email">{user.attributes.email}</div>
               </div>
             </h6>
             <div className="dropdown-divider"></div>
@@ -74,10 +71,10 @@ const HeaderDropdowns: React.FC = () => {
               <div className="dropdown-item-icon"><FiSettings /></div>
               Account
             </a>
-            <a className="dropdown-item" href="#!">
+            <button className="dropdown-item" onClick={handleLogout}>
               <div className="dropdown-item-icon"><FiLogOut /></div>
               Logout
-            </a>
+            </button>
           </div>
         </li>
       ) : (
