@@ -4,10 +4,10 @@
  * Any changes to this file will be overwritten when running amplify pull. *
  **************************************************************************/
 
+export { default as MessageCreateForm } from "./MessageCreateForm";
+export { default as MessageUpdateForm } from "./MessageUpdateForm";
 export { default as PatientCreateForm } from "./PatientCreateForm";
 export { default as PatientUpdateForm } from "./PatientUpdateForm";
-export { default as StaffCreateForm } from "./StaffCreateForm";
-export { default as StaffUpdateForm } from "./StaffUpdateForm";
-export { default as TasksCreateForm } from "./TasksCreateForm";
-export { default as TasksUpdateForm } from "./TasksUpdateForm";
+export { default as TaskCreateForm } from "./TaskCreateForm";
+export { default as TaskUpdateForm } from "./TaskUpdateForm";
 export { default as studioTheme } from "./studioTheme";

@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import DataTable from 'react-data-table-component';
-import { Appointment, getAppointmentsThisWeek } from '../../Services/DashService';
+import { IAppointment, getAppointmentsThisWeek } from '../../Services/DashService';
 // @ts-ignore
 import DataTableExtensions from "react-data-table-component-extensions";
 import "react-data-table-component-extensions/dist/index.css";
@@ -8,34 +8,34 @@ import "react-data-table-component-extensions/dist/index.css";
 const columns = [
   {
     name: 'Date',
-    selector: (row:Appointment) => row.appointment_date,
+    selector: (row:IAppointment) => row.appointment_date,
     sortable: true,
   },
   {
     name: 'Start Time',
-    selector: (row:Appointment) => row.start_time,
+    selector: (row:IAppointment) => row.start_time,
     sortable: true,
   },
   {
     name: 'End Time',
-    selector: (row:Appointment) => row.end_time,
+    selector: (row:IAppointment) => row.end_time,
     sortable: true,
   },
   {
     name: 'Status',
-    selector: (row:Appointment) => row.status,
+    selector: (row:IAppointment) => row.status,
     sortable: true,
   },
   {
     name: 'Assigned To',
-    selector: (row:Appointment) => row.assigned_to,
+    selector: (row:IAppointment) => row.assigned_to,
     sortable: true,
   },
   
 ];
 
 const MyDataTable = () => {
-  const [appointmentsThisWeek, setAppointmentsThisWeek] = useState<Appointment[]>([]);
+  const [appointmentsThisWeek, setAppointmentsThisWeek] = useState<any[]>([]);
 
   useEffect(() => {
     // Fetch the appointments for this week

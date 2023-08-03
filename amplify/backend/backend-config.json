@@ -18,7 +18,7 @@
     }
   },
   "auth": {
-    "DentalArt": {
+    "dentalart6e29baaf": {
       "customAuth": false,
       "dependsOn": [],
       "frontendAuthConfig": {
@@ -27,22 +27,11 @@
           "SMS"
         ],
         "passwordProtectionSettings": {
-          "passwordPolicyCharacters": [
-            "REQUIRES_LOWERCASE",
-            "REQUIRES_NUMBERS",
-            "REQUIRES_SYMBOLS",
-            "REQUIRES_UPPERCASE"
-          ],
+          "passwordPolicyCharacters": [],
           "passwordPolicyMinLength": 8
         },
         "signupAttributes": [
-          "EMAIL",
-          "ADDRESS",
-          "GENDER",
-          "FAMILY_NAME",
-          "GIVEN_NAME",
-          "PREFERRED_USERNAME",
-          "PHONE_NUMBER"
+          "EMAIL"
         ],
         "socialProviders": [],
         "usernameAttributes": [

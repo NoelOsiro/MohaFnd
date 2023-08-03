@@ -1,7 +1,198 @@
 export const schema = {
     "models": {
-        "Tasks": {
-            "name": "Tasks",
+        "StaffRoster": {
+            "name": "StaffRoster",
+            "fields": {
+                "id": {
+                    "name": "id",
+                    "isArray": false,
+                    "type": "ID",
+                    "isRequired": true,
+                    "attributes": []
+                },
+                "staffID": {
+                    "name": "staffID",
+                    "isArray": false,
+                    "type": "ID",
+                    "isRequired": true,
+                    "attributes": []
+                },
+                "start_date": {
+                    "name": "start_date",
+                    "isArray": false,
+                    "type": "AWSDate",
+                    "isRequired": false,
+                    "attributes": []
+                },
+                "end_date": {
+                    "name": "end_date",
+                    "isArray": false,
+                    "type": "AWSDate",
+                    "isRequired": false,
+                    "attributes": []
+                },
+                "on_duty": {
+                    "name": "on_duty",
+                    "isArray": false,
+                    "type": "Boolean",
+                    "isRequired": false,
+                    "attributes": []
+                },
+                "staff": {
+                    "name": "staff",
+                    "isArray": false,
+                    "type": {
+                        "model": "Staff"
+                    },
+                    "isRequired": false,
+                    "attributes": [],
+                    "association": {
+                        "connectionType": "BELONGS_TO",
+                        "targetNames": [
+                            "staffID"
+                        ]
+                    }
+                },
+                "createdAt": {
+                    "name": "createdAt",
+                    "isArray": false,
+                    "type": "AWSDateTime",
+                    "isRequired": false,
+                    "attributes": [],
+                    "isReadOnly": true
+                },
+                "updatedAt": {
+                    "name": "updatedAt",
+                    "isArray": false,
+                    "type": "AWSDateTime",
+                    "isRequired": false,
+                    "attributes": [],
+                    "isReadOnly": true
+                }
+            },
+            "syncable": true,
+            "pluralName": "StaffRosters",
+            "attributes": [
+                {
+                    "type": "model",
+                    "properties": {}
+                },
+                {
+                    "type": "auth",
+                    "properties": {
+                        "rules": [
+                            {
+                                "allow": "public",
+                                "operations": [
+                                    "create",
+                                    "update",
+                                    "delete",
+                                    "read"
+                                ]
+                            }
+                        ]
+                    }
+                }
+            ]
+        },
+        "Message": {
+            "name": "Message",
+            "fields": {
+                "id": {
+                    "name": "id",
+                    "isArray": false,
+                    "type": "ID",
+                    "isRequired": true,
+                    "attributes": []
+                },
+                "sender_id": {
+                    "name": "sender_id",
+                    "isArray": false,
+                    "type": "ID",
+                    "isRequired": true,
+                    "attributes": []
+                },
+                "receiver_id": {
+                    "name": "receiver_id",
+                    "isArray": false,
+                    "type": "ID",
+                    "isRequired": true,
+                    "attributes": []
+                },
+                "message": {
+                    "name": "message",
+                    "isArray": false,
+                    "type": "String",
+                    "isRequired": true,
+                    "attributes": []
+                },
+                "created_at": {
+                    "name": "created_at",
+                    "isArray": false,
+                    "type": "AWSDateTime",
+                    "isRequired": true,
+                    "attributes": []
+                },
+                "staff": {
+                    "name": "staff",
+                    "isArray": true,
+                    "type": {
+                        "model": "StaffMessages"
+                    },
+                    "isRequired": false,
+                    "attributes": [],
+                    "isArrayNullable": true,
+                    "association": {
+                        "connectionType": "HAS_MANY",
+                        "associatedWith": [
+                            "message"
+                        ]
+                    }
+                },
+                "createdAt": {
+                    "name": "createdAt",
+                    "isArray": false,
+                    "type": "AWSDateTime",
+                    "isRequired": false,
+                    "attributes": [],
+                    "isReadOnly": true
+                },
+                "updatedAt": {
+                    "name": "updatedAt",
+                    "isArray": false,
+                    "type": "AWSDateTime",
+                    "isRequired": false,
+                    "attributes": [],
+                    "isReadOnly": true
+                }
+            },
+            "syncable": true,
+            "pluralName": "Messages",
+            "attributes": [
+                {
+                    "type": "model",
+                    "properties": {}
+                },
+                {
+                    "type": "auth",
+                    "properties": {
+                        "rules": [
+                            {
+                                "allow": "public",
+                                "operations": [
+                                    "create",
+                                    "update",
+                                    "delete",
+                                    "read"
+                                ]
+                            }
+                        ]
+                    }
+                }
+            ]
+        },
+        "Task": {
+            "name": "Task",
             "fields": {
                 "id": {
                     "name": "id",
@@ -20,14 +211,14 @@ export const schema = {
                 "date_created": {
                     "name": "date_created",
                     "isArray": false,
-                    "type": "AWSDateTime",
+                    "type": "AWSDate",
                     "isRequired": false,
                     "attributes": []
                 },
                 "date_due": {
                     "name": "date_due",
                     "isArray": false,
-                    "type": "AWSDateTime",
+                    "type": "AWSDate",
                     "isRequired": false,
                     "attributes": []
                 },
@@ -38,8 +229,8 @@ export const schema = {
                     "isRequired": false,
                     "attributes": []
                 },
-                "staff_assigned": {
-                    "name": "staff_assigned",
+                "staff": {
+                    "name": "staff",
                     "isArray": true,
                     "type": {
                         "model": "StaffTasks"
@@ -50,7 +241,7 @@ export const schema = {
                     "association": {
                         "connectionType": "HAS_MANY",
                         "associatedWith": [
-                            "tasks"
+                            "task"
                         ]
                     }
                 },
@@ -73,6 +264,116 @@ export const schema = {
             },
             "syncable": true,
             "pluralName": "Tasks",
+            "attributes": [
+                {
+                    "type": "model",
+                    "properties": {}
+                },
+                {
+                    "type": "auth",
+                    "properties": {
+                        "rules": [
+                            {
+                                "allow": "public",
+                                "operations": [
+                                    "create",
+                                    "update",
+                                    "delete",
+                                    "read"
+                                ]
+                            }
+                        ]
+                    }
+                }
+            ]
+        },
+        "Patient": {
+            "name": "Patient",
+            "fields": {
+                "id": {
+                    "name": "id",
+                    "isArray": false,
+                    "type": "ID",
+                    "isRequired": true,
+                    "attributes": []
+                },
+                "first_name": {
+                    "name": "first_name",
+                    "isArray": false,
+                    "type": "String",
+                    "isRequired": false,
+                    "attributes": []
+                },
+                "last_name": {
+                    "name": "last_name",
+                    "isArray": false,
+                    "type": "String",
+                    "isRequired": false,
+                    "attributes": []
+                },
+                "email": {
+                    "name": "email",
+                    "isArray": false,
+                    "type": "AWSEmail",
+                    "isRequired": false,
+                    "attributes": []
+                },
+                "phone_number": {
+                    "name": "phone_number",
+                    "isArray": false,
+                    "type": "AWSPhone",
+                    "isRequired": false,
+                    "attributes": []
+                },
+                "date_of_birth": {
+                    "name": "date_of_birth",
+                    "isArray": false,
+                    "type": "AWSDate",
+                    "isRequired": false,
+                    "attributes": []
+                },
+                "gender": {
+                    "name": "gender",
+                    "isArray": false,
+                    "type": "String",
+                    "isRequired": false,
+                    "attributes": []
+                },
+                "appointments": {
+                    "name": "appointments",
+                    "isArray": true,
+                    "type": {
+                        "model": "PatientAppointments"
+                    },
+                    "isRequired": false,
+                    "attributes": [],
+                    "isArrayNullable": true,
+                    "association": {
+                        "connectionType": "HAS_MANY",
+                        "associatedWith": [
+                            "patient"
+                        ]
+                    }
+                },
+                "createdAt": {
+                    "name": "createdAt",
+                    "isArray": false,
+                    "type": "AWSDateTime",
+                    "isRequired": false,
+                    "attributes": [],
+                    "isReadOnly": true
+                },
+                "updatedAt": {
+                    "name": "updatedAt",
+                    "isArray": false,
+                    "type": "AWSDateTime",
+                    "isRequired": false,
+                    "attributes": [],
+                    "isReadOnly": true
+                }
+            },
+            "syncable": true,
+            "pluralName": "Patients",
             "attributes": [
                 {
                     "type": "model",
@@ -124,7 +425,7 @@ export const schema = {
                     "name": "email",
                     "isArray": false,
                     "type": "AWSEmail",
-                    "isRequired": true,
+                    "isRequired": false,
                     "attributes": []
                 },
                 "username": {
@@ -138,7 +439,7 @@ export const schema = {
                     "name": "phone_number",
                     "isArray": false,
                     "type": "AWSPhone",
-                    "isRequired": true,
+                    "isRequired": false,
                     "attributes": []
                 },
                 "role": {
@@ -150,11 +451,11 @@ export const schema = {
                     "isRequired": false,
                     "attributes": []
                 },
-                "staff_appointments": {
-                    "name": "staff_appointments",
+                "appointments": {
+                    "name": "appointments",
                     "isArray": true,
                     "type": {
-                        "model": "Appointments"
+                        "model": "Appointment"
                     },
                     "isRequired": false,
                     "attributes": [],
@@ -162,7 +463,7 @@ export const schema = {
                     "association": {
                         "connectionType": "HAS_MANY",
                         "associatedWith": [
-                            "staffID"
+                            "id"
                         ]
                     }
                 },
@@ -179,6 +480,40 @@ export const schema = {
                         "connectionType": "HAS_MANY",
                         "associatedWith": [
                             "staff"
+                        ]
+                    }
+                },
+                "messages": {
+                    "name": "messages",
+                    "isArray": true,
+                    "type": {
+                        "model": "StaffMessages"
+                    },
+                    "isRequired": false,
+                    "attributes": [],
+                    "isArrayNullable": true,
+                    "association": {
+                        "connectionType": "HAS_MANY",
+                        "associatedWith": [
+                            "staff"
+                        ]
+                    }
+                },
+                "roster": {
+                    "name": "roster",
+                    "isArray": false,
+                    "type": {
+                        "model": "StaffRoster"
+                    },
+                    "isRequired": false,
+                    "attributes": [],
+                    "association": {
+                        "connectionType": "HAS_ONE",
+                        "associatedWith": [
+                            "id"
+                        ],
+                        "targetNames": [
+                            "id"
                         ]
                     }
                 },
@@ -207,34 +542,6 @@ export const schema = {
                     "properties": {}
                 },
                 {
-                    "type": "key",
-                    "properties": {
-                        "fields": [
-                            "id"
-                        ]
-                    }
-                },
-                {
-                    "type": "key",
-                    "properties": {
-                        "name": "StaffByEmail",
-                        "queryField": "staffByEmail",
-                        "fields": [
-                            "email"
-                        ]
-                    }
-                },
-                {
-                    "type": "key",
-                    "properties": {
-                        "name": "StaffByPhoneNumber",
-                        "queryField": "staffByPhoneNumber",
-                        "fields": [
-                            "phone_number"
-                        ]
-                    }
-                },
-                {
                     "type": "auth",
                     "properties": {
                         "rules": [
@@ -252,8 +559,8 @@ export const schema = {
                 }
             ]
         },
-        "Appointments": {
-            "name": "Appointments",
+        "Appointment": {
+            "name": "Appointment",
             "fields": {
                 "id": {
                     "name": "id",
@@ -306,19 +613,21 @@ export const schema = {
                     "isRequired": false,
                     "attributes": []
                 },
-                "patientID": {
-                    "name": "patientID",
-                    "isArray": false,
-                    "type": "ID",
-                    "isRequired": true,
-                    "attributes": []
-                },
-                "staffID": {
-                    "name": "staffID",
-                    "isArray": false,
-                    "type": "ID",
-                    "isRequired": true,
-                    "attributes": []
+                "patients": {
+                    "name": "patients",
+                    "isArray": true,
+                    "type": {
+                        "model": "PatientAppointments"
+                    },
+                    "isRequired": false,
+                    "attributes": [],
+                    "isArrayNullable": true,
+                    "association": {
+                        "connectionType": "HAS_MANY",
+                        "associatedWith": [
+                            "appointment"
+                        ]
+                    }
                 },
                 "createdAt": {
                     "name": "createdAt",
@@ -347,18 +656,9 @@ export const schema = {
                 {
                     "type": "key",
                     "properties": {
-                        "name": "byPatient",
+                        "name": "gsi-Staff.appointments",
                         "fields": [
-                            "patientID"
-                        ]
-                    }
-                },
-                {
-                    "type": "key",
-                    "properties": {
-                        "name": "byStaff",
-                        "fields": [
-                            "staffID"
+                            "id"
                         ]
                     }
                 },
@@ -380,8 +680,8 @@ export const schema = {
                 }
             ]
         },
-        "Patient": {
-            "name": "Patient",
+        "StaffMessages": {
+            "name": "StaffMessages",
             "fields": {
                 "id": {
                     "name": "id",
@@ -390,63 +690,49 @@ export const schema = {
                     "isRequired": true,
                     "attributes": []
                 },
-                "first_name": {
-                    "name": "first_name",
+                "messageId": {
+                    "name": "messageId",
                     "isArray": false,
-                    "type": "String",
+                    "type": "ID",
                     "isRequired": false,
                     "attributes": []
                 },
-                "last_name": {
-                    "name": "last_name",
+                "staffId": {
+                    "name": "staffId",
                     "isArray": false,
-                    "type": "String",
+                    "type": "ID",
                     "isRequired": false,
                     "attributes": []
                 },
-                "email": {
-                    "name": "email",
+                "message": {
+                    "name": "message",
                     "isArray": false,
-                    "type": "AWSEmail",
-                    "isRequired": true,
-                    "attributes": []
-                },
-                "date_of_birth": {
-                    "name": "date_of_birth",
-                    "isArray": false,
-                    "type": "AWSDate",
-                    "isRequired": true,
-                    "attributes": []
-                },
-                "phone_number": {
-                    "name": "phone_number",
-                    "isArray": false,
-                    "type": "AWSPhone",
-                    "isRequired": true,
-                    "attributes": []
-                },
-                "pat_appointments": {
-                    "name": "pat_appointments",
-                    "isArray": true,
                     "type": {
-                        "model": "Appointments"
+                        "model": "Message"
                     },
-                    "isRequired": false,
+                    "isRequired": true,
                     "attributes": [],
-                    "isArrayNullable": true,
                     "association": {
-                        "connectionType": "HAS_MANY",
-                        "associatedWith": [
-                            "patientID"
+                        "connectionType": "BELONGS_TO",
+                        "targetNames": [
+                            "messageId"
                         ]
                     }
                 },
-                "gender": {
-                    "name": "gender",
+                "staff": {
+                    "name": "staff",
                     "isArray": false,
-                    "type": "String",
-                    "isRequired": false,
-                    "attributes": []
+                    "type": {
+                        "model": "Staff"
+                    },
+                    "isRequired": true,
+                    "attributes": [],
+                    "association": {
+                        "connectionType": "BELONGS_TO",
+                        "targetNames": [
+                            "staffId"
+                        ]
+                    }
                 },
                 "createdAt": {
                     "name": "createdAt",
@@ -466,7 +752,7 @@ export const schema = {
                 }
             },
             "syncable": true,
-            "pluralName": "Patients",
+            "pluralName": "StaffMessages",
             "attributes": [
                 {
                     "type": "model",
@@ -475,44 +761,18 @@ export const schema = {
                 {
                     "type": "key",
                     "properties": {
+                        "name": "byMessage",
                         "fields": [
-                            "id"
+                            "messageId"
                         ]
                     }
                 },
                 {
                     "type": "key",
                     "properties": {
-                        "name": "PatientByEmail",
-                        "queryField": "patientByEmail",
+                        "name": "byStaff",
                         "fields": [
-                            "email"
-                        ]
-                    }
-                },
-                {
-                    "type": "key",
-                    "properties": {
-                        "name": "PatientByPhoneNumber",
-                        "queryField": "patientByPhoneNumber",
-                        "fields": [
-                            "phone_number"
-                        ]
-                    }
-                },
-                {
-                    "type": "auth",
-                    "properties": {
-                        "rules": [
-                            {
-                                "allow": "public",
-                                "operations": [
-                                    "create",
-                                    "update",
-                                    "delete",
-                                    "read"
-                                ]
-                            }
+                            "staffId"
                         ]
                     }
                 }
@@ -528,8 +788,8 @@ export const schema = {
                     "isRequired": true,
                     "attributes": []
                 },
-                "tasksId": {
-                    "name": "tasksId",
+                "taskId": {
+                    "name": "taskId",
                     "isArray": false,
                     "type": "ID",
                     "isRequired": false,
@@ -542,18 +802,18 @@ export const schema = {
                     "isRequired": false,
                     "attributes": []
                 },
-                "tasks": {
-                    "name": "tasks",
+                "task": {
+                    "name": "task",
                     "isArray": false,
                     "type": {
-                        "model": "Tasks"
+                        "model": "Task"
                     },
                     "isRequired": true,
                     "attributes": [],
                     "association": {
                         "connectionType": "BELONGS_TO",
                         "targetNames": [
-                            "tasksId"
+                            "taskId"
                         ]
                     }
                 },
@@ -599,9 +859,9 @@ export const schema = {
                 {
                     "type": "key",
                     "properties": {
-                        "name": "byTasks",
+                        "name": "byTask",
                         "fields": [
-                            "tasksId"
+                            "taskId"
                         ]
                     }
                 },
@@ -611,6 +871,104 @@ export const schema = {
                         "name": "byStaff",
                         "fields": [
                             "staffId"
+                        ]
+                    }
+                }
+            ]
+        },
+        "PatientAppointments": {
+            "name": "PatientAppointments",
+            "fields": {
+                "id": {
+                    "name": "id",
+                    "isArray": false,
+                    "type": "ID",
+                    "isRequired": true,
+                    "attributes": []
+                },
+                "patientId": {
+                    "name": "patientId",
+                    "isArray": false,
+                    "type": "ID",
+                    "isRequired": false,
+                    "attributes": []
+                },
+                "appointmentId": {
+                    "name": "appointmentId",
+                    "isArray": false,
+                    "type": "ID",
+                    "isRequired": false,
+                    "attributes": []
+                },
+                "patient": {
+                    "name": "patient",
+                    "isArray": false,
+                    "type": {
+                        "model": "Patient"
+                    },
+                    "isRequired": true,
+                    "attributes": [],
+                    "association": {
+                        "connectionType": "BELONGS_TO",
+                        "targetNames": [
+                            "patientId"
+                        ]
+                    }
+                },
+                "appointment": {
+                    "name": "appointment",
+                    "isArray": false,
+                    "type": {
+                        "model": "Appointment"
+                    },
+                    "isRequired": true,
+                    "attributes": [],
+                    "association": {
+                        "connectionType": "BELONGS_TO",
+                        "targetNames": [
+                            "appointmentId"
+                        ]
+                    }
+                },
+                "createdAt": {
+                    "name": "createdAt",
+                    "isArray": false,
+                    "type": "AWSDateTime",
+                    "isRequired": false,
+                    "attributes": [],
+                    "isReadOnly": true
+                },
+                "updatedAt": {
+                    "name": "updatedAt",
+                    "isArray": false,
+                    "type": "AWSDateTime",
+                    "isRequired": false,
+                    "attributes": [],
+                    "isReadOnly": true
+                }
+            },
+            "syncable": true,
+            "pluralName": "PatientAppointments",
+            "attributes": [
+                {
+                    "type": "model",
+                    "properties": {}
+                },
+                {
+                    "type": "key",
+                    "properties": {
+                        "name": "byPatient",
+                        "fields": [
+                            "patientId"
+                        ]
+                    }
+                },
+                {
+                    "type": "key",
+                    "properties": {
+                        "name": "byAppointment",
+                        "fields": [
+                            "appointmentId"
                         ]
                     }
                 }
@@ -640,5 +998,5 @@ export const schema = {
     },
     "nonModels": {},
     "codegenVersion": "3.4.4",
-    "version": "7875e8edea06a8c8d8b9e79ddec0a0d3"
+    "version": "c5ea6e33b2990563207ef60a323fa6f2"
 };

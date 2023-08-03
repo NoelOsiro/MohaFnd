@@ -86,7 +86,6 @@ const Sidebar: React.FC<SidebarProps> = ({ isSidebarOpen }) => {
             {accountItems.map((item, index) => (
               <SidebarItem key={index} title={item.title} icon={item.icon} subItems={item.subItems} />
             ))}
-
             <div className="sidenav-menu-heading">Main</div>
             {coreItems.map((item, index) => (
               <SidebarItem key={index} title={item.title} icon={item.icon} subItems={item.subItems} />

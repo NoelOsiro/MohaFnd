@@ -17,14 +17,18 @@ const AppointmentStatusEnum = {
   "RESCHEDULED": "RESCHEDULED"
 };
 
-const { Tasks, Staff, Appointments, Patient, StaffTasks } = initSchema(schema);
+const { StaffRoster, Message, Task, Patient, Staff, Appointment, StaffMessages, StaffTasks, PatientAppointments } = initSchema(schema);
 
 export {
-  Tasks,
-  Staff,
-  Appointments,
+  StaffRoster,
+  Message,
+  Task,
   Patient,
+  Staff,
+  Appointment,
+  StaffMessages,
   StaffTasks,
+  PatientAppointments,
   StaffRoleEnum,
   AppointmentStatusEnum
 };

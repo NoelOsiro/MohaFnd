@@ -2,18 +2,204 @@
 /* eslint-disable */
 // this is an auto generated file. This will be overwritten
 
-export const onCreateTasks = /* GraphQL */ `
-  subscription OnCreateTasks($filter: ModelSubscriptionTasksFilterInput) {
-    onCreateTasks(filter: $filter) {
+export const onCreateStaffRoster = /* GraphQL */ `
+  subscription OnCreateStaffRoster(
+    $filter: ModelSubscriptionStaffRosterFilterInput
+  ) {
+    onCreateStaffRoster(filter: $filter) {
       id
-      title
-      date_created
-      date_due
-      details
-      staff_assigned {
+      staffID
+      start_date
+      end_date
+      on_duty
+      staff {
+        id
+        first_name
+        last_name
+        email
+        username
+        phone_number
+        role
+        appointments {
+          nextToken
+          startedAt
+          __typename
+        }
+        tasks {
+          nextToken
+          startedAt
+          __typename
+        }
+        messages {
+          nextToken
+          startedAt
+          __typename
+        }
+        roster {
+          id
+          staffID
+          start_date
+          end_date
+          on_duty
+          createdAt
+          updatedAt
+          _version
+          _deleted
+          _lastChangedAt
+          __typename
+        }
+        createdAt
+        updatedAt
+        _version
+        _deleted
+        _lastChangedAt
+        __typename
+      }
+      createdAt
+      updatedAt
+      _version
+      _deleted
+      _lastChangedAt
+      __typename
+    }
+  }
+`;
+export const onUpdateStaffRoster = /* GraphQL */ `
+  subscription OnUpdateStaffRoster(
+    $filter: ModelSubscriptionStaffRosterFilterInput
+  ) {
+    onUpdateStaffRoster(filter: $filter) {
+      id
+      staffID
+      start_date
+      end_date
+      on_duty
+      staff {
+        id
+        first_name
+        last_name
+        email
+        username
+        phone_number
+        role
+        appointments {
+          nextToken
+          startedAt
+          __typename
+        }
+        tasks {
+          nextToken
+          startedAt
+          __typename
+        }
+        messages {
+          nextToken
+          startedAt
+          __typename
+        }
+        roster {
+          id
+          staffID
+          start_date
+          end_date
+          on_duty
+          createdAt
+          updatedAt
+          _version
+          _deleted
+          _lastChangedAt
+          __typename
+        }
+        createdAt
+        updatedAt
+        _version
+        _deleted
+        _lastChangedAt
+        __typename
+      }
+      createdAt
+      updatedAt
+      _version
+      _deleted
+      _lastChangedAt
+      __typename
+    }
+  }
+`;
+export const onDeleteStaffRoster = /* GraphQL */ `
+  subscription OnDeleteStaffRoster(
+    $filter: ModelSubscriptionStaffRosterFilterInput
+  ) {
+    onDeleteStaffRoster(filter: $filter) {
+      id
+      staffID
+      start_date
+      end_date
+      on_duty
+      staff {
+        id
+        first_name
+        last_name
+        email
+        username
+        phone_number
+        role
+        appointments {
+          nextToken
+          startedAt
+          __typename
+        }
+        tasks {
+          nextToken
+          startedAt
+          __typename
+        }
+        messages {
+          nextToken
+          startedAt
+          __typename
+        }
+        roster {
+          id
+          staffID
+          start_date
+          end_date
+          on_duty
+          createdAt
+          updatedAt
+          _version
+          _deleted
+          _lastChangedAt
+          __typename
+        }
+        createdAt
+        updatedAt
+        _version
+        _deleted
+        _lastChangedAt
+        __typename
+      }
+      createdAt
+      updatedAt
+      _version
+      _deleted
+      _lastChangedAt
+      __typename
+    }
+  }
+`;
+export const onCreateMessage = /* GraphQL */ `
+  subscription OnCreateMessage($filter: ModelSubscriptionMessageFilterInput) {
+    onCreateMessage(filter: $filter) {
+      id
+      sender_id
+      receiver_id
+      message
+      created_at
+      staff {
         items {
           id
-          tasksId
+          messageId
           staffId
           createdAt
           updatedAt
@@ -35,18 +221,18 @@ export const onCreateTasks = /* GraphQL */ `
     }
   }
 `;
-export const onUpdateTasks = /* GraphQL */ `
-  subscription OnUpdateTasks($filter: ModelSubscriptionTasksFilterInput) {
-    onUpdateTasks(filter: $filter) {
+export const onUpdateMessage = /* GraphQL */ `
+  subscription OnUpdateMessage($filter: ModelSubscriptionMessageFilterInput) {
+    onUpdateMessage(filter: $filter) {
       id
-      title
-      date_created
-      date_due
-      details
-      staff_assigned {
+      sender_id
+      receiver_id
+      message
+      created_at
+      staff {
         items {
           id
-          tasksId
+          messageId
           staffId
           createdAt
           updatedAt
@@ -68,19 +254,223 @@ export const onUpdateTasks = /* GraphQL */ `
     }
   }
 `;
-export const onDeleteTasks = /* GraphQL */ `
-  subscription OnDeleteTasks($filter: ModelSubscriptionTasksFilterInput) {
-    onDeleteTasks(filter: $filter) {
+export const onDeleteMessage = /* GraphQL */ `
+  subscription OnDeleteMessage($filter: ModelSubscriptionMessageFilterInput) {
+    onDeleteMessage(filter: $filter) {
+      id
+      sender_id
+      receiver_id
+      message
+      created_at
+      staff {
+        items {
+          id
+          messageId
+          staffId
+          createdAt
+          updatedAt
+          _version
+          _deleted
+          _lastChangedAt
+          __typename
+        }
+        nextToken
+        startedAt
+        __typename
+      }
+      createdAt
+      updatedAt
+      _version
+      _deleted
+      _lastChangedAt
+      __typename
+    }
+  }
+`;
+export const onCreateTask = /* GraphQL */ `
+  subscription OnCreateTask($filter: ModelSubscriptionTaskFilterInput) {
+    onCreateTask(filter: $filter) {
       id
       title
       date_created
       date_due
       details
-      staff_assigned {
+      staff {
         items {
           id
-          tasksId
+          taskId
           staffId
+          createdAt
+          updatedAt
+          _version
+          _deleted
+          _lastChangedAt
+          __typename
+        }
+        nextToken
+        startedAt
+        __typename
+      }
+      createdAt
+      updatedAt
+      _version
+      _deleted
+      _lastChangedAt
+      __typename
+    }
+  }
+`;
+export const onUpdateTask = /* GraphQL */ `
+  subscription OnUpdateTask($filter: ModelSubscriptionTaskFilterInput) {
+    onUpdateTask(filter: $filter) {
+      id
+      title
+      date_created
+      date_due
+      details
+      staff {
+        items {
+          id
+          taskId
+          staffId
+          createdAt
+          updatedAt
+          _version
+          _deleted
+          _lastChangedAt
+          __typename
+        }
+        nextToken
+        startedAt
+        __typename
+      }
+      createdAt
+      updatedAt
+      _version
+      _deleted
+      _lastChangedAt
+      __typename
+    }
+  }
+`;
+export const onDeleteTask = /* GraphQL */ `
+  subscription OnDeleteTask($filter: ModelSubscriptionTaskFilterInput) {
+    onDeleteTask(filter: $filter) {
+      id
+      title
+      date_created
+      date_due
+      details
+      staff {
+        items {
+          id
+          taskId
+          staffId
+          createdAt
+          updatedAt
+          _version
+          _deleted
+          _lastChangedAt
+          __typename
+        }
+        nextToken
+        startedAt
+        __typename
+      }
+      createdAt
+      updatedAt
+      _version
+      _deleted
+      _lastChangedAt
+      __typename
+    }
+  }
+`;
+export const onCreatePatient = /* GraphQL */ `
+  subscription OnCreatePatient($filter: ModelSubscriptionPatientFilterInput) {
+    onCreatePatient(filter: $filter) {
+      id
+      first_name
+      last_name
+      email
+      phone_number
+      date_of_birth
+      gender
+      appointments {
+        items {
+          id
+          patientId
+          appointmentId
+          createdAt
+          updatedAt
+          _version
+          _deleted
+          _lastChangedAt
+          __typename
+        }
+        nextToken
+        startedAt
+        __typename
+      }
+      createdAt
+      updatedAt
+      _version
+      _deleted
+      _lastChangedAt
+      __typename
+    }
+  }
+`;
+export const onUpdatePatient = /* GraphQL */ `
+  subscription OnUpdatePatient($filter: ModelSubscriptionPatientFilterInput) {
+    onUpdatePatient(filter: $filter) {
+      id
+      first_name
+      last_name
+      email
+      phone_number
+      date_of_birth
+      gender
+      appointments {
+        items {
+          id
+          patientId
+          appointmentId
+          createdAt
+          updatedAt
+          _version
+          _deleted
+          _lastChangedAt
+          __typename
+        }
+        nextToken
+        startedAt
+        __typename
+      }
+      createdAt
+      updatedAt
+      _version
+      _deleted
+      _lastChangedAt
+      __typename
+    }
+  }
+`;
+export const onDeletePatient = /* GraphQL */ `
+  subscription OnDeletePatient($filter: ModelSubscriptionPatientFilterInput) {
+    onDeletePatient(filter: $filter) {
+      id
+      first_name
+      last_name
+      email
+      phone_number
+      date_of_birth
+      gender
+      appointments {
+        items {
+          id
+          patientId
+          appointmentId
           createdAt
           updatedAt
           _version
@@ -111,7 +501,7 @@ export const onCreateStaff = /* GraphQL */ `
       username
       phone_number
       role
-      staff_appointments {
+      appointments {
         items {
           id
           appointment_date
@@ -120,8 +510,6 @@ export const onCreateStaff = /* GraphQL */ `
           end_time
           status
           assigned_to
-          patientID
-          staffID
           createdAt
           updatedAt
           _version
@@ -136,7 +524,7 @@ export const onCreateStaff = /* GraphQL */ `
       tasks {
         items {
           id
-          tasksId
+          taskId
           staffId
           createdAt
           updatedAt
@@ -147,6 +535,50 @@ export const onCreateStaff = /* GraphQL */ `
         }
         nextToken
         startedAt
+        __typename
+      }
+      messages {
+        items {
+          id
+          messageId
+          staffId
+          createdAt
+          updatedAt
+          _version
+          _deleted
+          _lastChangedAt
+          __typename
+        }
+        nextToken
+        startedAt
+        __typename
+      }
+      roster {
+        id
+        staffID
+        start_date
+        end_date
+        on_duty
+        staff {
+          id
+          first_name
+          last_name
+          email
+          username
+          phone_number
+          role
+          createdAt
+          updatedAt
+          _version
+          _deleted
+          _lastChangedAt
+          __typename
+        }
+        createdAt
+        updatedAt
+        _version
+        _deleted
+        _lastChangedAt
         __typename
       }
       createdAt
@@ -168,7 +600,7 @@ export const onUpdateStaff = /* GraphQL */ `
       username
       phone_number
       role
-      staff_appointments {
+      appointments {
         items {
           id
           appointment_date
@@ -177,8 +609,6 @@ export const onUpdateStaff = /* GraphQL */ `
           end_time
           status
           assigned_to
-          patientID
-          staffID
           createdAt
           updatedAt
           _version
@@ -193,7 +623,7 @@ export const onUpdateStaff = /* GraphQL */ `
       tasks {
         items {
           id
-          tasksId
+          taskId
           staffId
           createdAt
           updatedAt
@@ -204,6 +634,50 @@ export const onUpdateStaff = /* GraphQL */ `
         }
         nextToken
         startedAt
+        __typename
+      }
+      messages {
+        items {
+          id
+          messageId
+          staffId
+          createdAt
+          updatedAt
+          _version
+          _deleted
+          _lastChangedAt
+          __typename
+        }
+        nextToken
+        startedAt
+        __typename
+      }
+      roster {
+        id
+        staffID
+        start_date
+        end_date
+        on_duty
+        staff {
+          id
+          first_name
+          last_name
+          email
+          username
+          phone_number
+          role
+          createdAt
+          updatedAt
+          _version
+          _deleted
+          _lastChangedAt
+          __typename
+        }
+        createdAt
+        updatedAt
+        _version
+        _deleted
+        _lastChangedAt
         __typename
       }
       createdAt
@@ -225,7 +699,7 @@ export const onDeleteStaff = /* GraphQL */ `
       username
       phone_number
       role
-      staff_appointments {
+      appointments {
         items {
           id
           appointment_date
@@ -234,8 +708,6 @@ export const onDeleteStaff = /* GraphQL */ `
           end_time
           status
           assigned_to
-          patientID
-          staffID
           createdAt
           updatedAt
           _version
@@ -250,7 +722,7 @@ export const onDeleteStaff = /* GraphQL */ `
       tasks {
         items {
           id
-          tasksId
+          taskId
           staffId
           createdAt
           updatedAt
@@ -263,104 +735,11 @@ export const onDeleteStaff = /* GraphQL */ `
         startedAt
         __typename
       }
-      createdAt
-      updatedAt
-      _version
-      _deleted
-      _lastChangedAt
-      __typename
-    }
-  }
-`;
-export const onCreateAppointments = /* GraphQL */ `
-  subscription OnCreateAppointments(
-    $filter: ModelSubscriptionAppointmentsFilterInput
-  ) {
-    onCreateAppointments(filter: $filter) {
-      id
-      appointment_date
-      created_at
-      start_time
-      end_time
-      status
-      assigned_to
-      patientID
-      staffID
-      createdAt
-      updatedAt
-      _version
-      _deleted
-      _lastChangedAt
-      __typename
-    }
-  }
-`;
-export const onUpdateAppointments = /* GraphQL */ `
-  subscription OnUpdateAppointments(
-    $filter: ModelSubscriptionAppointmentsFilterInput
-  ) {
-    onUpdateAppointments(filter: $filter) {
-      id
-      appointment_date
-      created_at
-      start_time
-      end_time
-      status
-      assigned_to
-      patientID
-      staffID
-      createdAt
-      updatedAt
-      _version
-      _deleted
-      _lastChangedAt
-      __typename
-    }
-  }
-`;
-export const onDeleteAppointments = /* GraphQL */ `
-  subscription OnDeleteAppointments(
-    $filter: ModelSubscriptionAppointmentsFilterInput
-  ) {
-    onDeleteAppointments(filter: $filter) {
-      id
-      appointment_date
-      created_at
-      start_time
-      end_time
-      status
-      assigned_to
-      patientID
-      staffID
-      createdAt
-      updatedAt
-      _version
-      _deleted
-      _lastChangedAt
-      __typename
-    }
-  }
-`;
-export const onCreatePatient = /* GraphQL */ `
-  subscription OnCreatePatient($filter: ModelSubscriptionPatientFilterInput) {
-    onCreatePatient(filter: $filter) {
-      id
-      first_name
-      last_name
-      email
-      date_of_birth
-      phone_number
-      pat_appointments {
+      messages {
         items {
           id
-          appointment_date
-          created_at
-          start_time
-          end_time
-          status
-          assigned_to
-          patientID
-          staffID
+          messageId
+          staffId
           createdAt
           updatedAt
           _version
@@ -372,113 +751,169 @@ export const onCreatePatient = /* GraphQL */ `
         startedAt
         __typename
       }
-      gender
-      createdAt
-      updatedAt
-      _version
-      _deleted
-      _lastChangedAt
-      __typename
-    }
-  }
-`;
-export const onUpdatePatient = /* GraphQL */ `
-  subscription OnUpdatePatient($filter: ModelSubscriptionPatientFilterInput) {
-    onUpdatePatient(filter: $filter) {
-      id
-      first_name
-      last_name
-      email
-      date_of_birth
-      phone_number
-      pat_appointments {
-        items {
-          id
-          appointment_date
-          created_at
-          start_time
-          end_time
-          status
-          assigned_to
-          patientID
-          staffID
-          createdAt
-          updatedAt
-          _version
-          _deleted
-          _lastChangedAt
-          __typename
-        }
-        nextToken
-        startedAt
-        __typename
-      }
-      gender
-      createdAt
-      updatedAt
-      _version
-      _deleted
-      _lastChangedAt
-      __typename
-    }
-  }
-`;
-export const onDeletePatient = /* GraphQL */ `
-  subscription OnDeletePatient($filter: ModelSubscriptionPatientFilterInput) {
-    onDeletePatient(filter: $filter) {
-      id
-      first_name
-      last_name
-      email
-      date_of_birth
-      phone_number
-      pat_appointments {
-        items {
-          id
-          appointment_date
-          created_at
-          start_time
-          end_time
-          status
-          assigned_to
-          patientID
-          staffID
-          createdAt
-          updatedAt
-          _version
-          _deleted
-          _lastChangedAt
-          __typename
-        }
-        nextToken
-        startedAt
-        __typename
-      }
-      gender
-      createdAt
-      updatedAt
-      _version
-      _deleted
-      _lastChangedAt
-      __typename
-    }
-  }
-`;
-export const onCreateStaffTasks = /* GraphQL */ `
-  subscription OnCreateStaffTasks(
-    $filter: ModelSubscriptionStaffTasksFilterInput
-  ) {
-    onCreateStaffTasks(filter: $filter) {
-      id
-      tasksId
-      staffId
-      tasks {
+      roster {
         id
-        title
-        date_created
-        date_due
-        details
-        staff_assigned {
+        staffID
+        start_date
+        end_date
+        on_duty
+        staff {
+          id
+          first_name
+          last_name
+          email
+          username
+          phone_number
+          role
+          createdAt
+          updatedAt
+          _version
+          _deleted
+          _lastChangedAt
+          __typename
+        }
+        createdAt
+        updatedAt
+        _version
+        _deleted
+        _lastChangedAt
+        __typename
+      }
+      createdAt
+      updatedAt
+      _version
+      _deleted
+      _lastChangedAt
+      __typename
+    }
+  }
+`;
+export const onCreateAppointment = /* GraphQL */ `
+  subscription OnCreateAppointment(
+    $filter: ModelSubscriptionAppointmentFilterInput
+  ) {
+    onCreateAppointment(filter: $filter) {
+      id
+      appointment_date
+      created_at
+      start_time
+      end_time
+      status
+      assigned_to
+      patients {
+        items {
+          id
+          patientId
+          appointmentId
+          createdAt
+          updatedAt
+          _version
+          _deleted
+          _lastChangedAt
+          __typename
+        }
+        nextToken
+        startedAt
+        __typename
+      }
+      createdAt
+      updatedAt
+      _version
+      _deleted
+      _lastChangedAt
+      __typename
+    }
+  }
+`;
+export const onUpdateAppointment = /* GraphQL */ `
+  subscription OnUpdateAppointment(
+    $filter: ModelSubscriptionAppointmentFilterInput
+  ) {
+    onUpdateAppointment(filter: $filter) {
+      id
+      appointment_date
+      created_at
+      start_time
+      end_time
+      status
+      assigned_to
+      patients {
+        items {
+          id
+          patientId
+          appointmentId
+          createdAt
+          updatedAt
+          _version
+          _deleted
+          _lastChangedAt
+          __typename
+        }
+        nextToken
+        startedAt
+        __typename
+      }
+      createdAt
+      updatedAt
+      _version
+      _deleted
+      _lastChangedAt
+      __typename
+    }
+  }
+`;
+export const onDeleteAppointment = /* GraphQL */ `
+  subscription OnDeleteAppointment(
+    $filter: ModelSubscriptionAppointmentFilterInput
+  ) {
+    onDeleteAppointment(filter: $filter) {
+      id
+      appointment_date
+      created_at
+      start_time
+      end_time
+      status
+      assigned_to
+      patients {
+        items {
+          id
+          patientId
+          appointmentId
+          createdAt
+          updatedAt
+          _version
+          _deleted
+          _lastChangedAt
+          __typename
+        }
+        nextToken
+        startedAt
+        __typename
+      }
+      createdAt
+      updatedAt
+      _version
+      _deleted
+      _lastChangedAt
+      __typename
+    }
+  }
+`;
+export const onCreateStaffMessages = /* GraphQL */ `
+  subscription OnCreateStaffMessages(
+    $filter: ModelSubscriptionStaffMessagesFilterInput
+  ) {
+    onCreateStaffMessages(filter: $filter) {
+      id
+      messageId
+      staffId
+      message {
+        id
+        sender_id
+        receiver_id
+        message
+        created_at
+        staff {
           nextToken
           startedAt
           __typename
@@ -498,7 +933,7 @@ export const onCreateStaffTasks = /* GraphQL */ `
         username
         phone_number
         role
-        staff_appointments {
+        appointments {
           nextToken
           startedAt
           __typename
@@ -506,6 +941,258 @@ export const onCreateStaffTasks = /* GraphQL */ `
         tasks {
           nextToken
           startedAt
+          __typename
+        }
+        messages {
+          nextToken
+          startedAt
+          __typename
+        }
+        roster {
+          id
+          staffID
+          start_date
+          end_date
+          on_duty
+          createdAt
+          updatedAt
+          _version
+          _deleted
+          _lastChangedAt
+          __typename
+        }
+        createdAt
+        updatedAt
+        _version
+        _deleted
+        _lastChangedAt
+        __typename
+      }
+      createdAt
+      updatedAt
+      _version
+      _deleted
+      _lastChangedAt
+      __typename
+    }
+  }
+`;
+export const onUpdateStaffMessages = /* GraphQL */ `
+  subscription OnUpdateStaffMessages(
+    $filter: ModelSubscriptionStaffMessagesFilterInput
+  ) {
+    onUpdateStaffMessages(filter: $filter) {
+      id
+      messageId
+      staffId
+      message {
+        id
+        sender_id
+        receiver_id
+        message
+        created_at
+        staff {
+          nextToken
+          startedAt
+          __typename
+        }
+        createdAt
+        updatedAt
+        _version
+        _deleted
+        _lastChangedAt
+        __typename
+      }
+      staff {
+        id
+        first_name
+        last_name
+        email
+        username
+        phone_number
+        role
+        appointments {
+          nextToken
+          startedAt
+          __typename
+        }
+        tasks {
+          nextToken
+          startedAt
+          __typename
+        }
+        messages {
+          nextToken
+          startedAt
+          __typename
+        }
+        roster {
+          id
+          staffID
+          start_date
+          end_date
+          on_duty
+          createdAt
+          updatedAt
+          _version
+          _deleted
+          _lastChangedAt
+          __typename
+        }
+        createdAt
+        updatedAt
+        _version
+        _deleted
+        _lastChangedAt
+        __typename
+      }
+      createdAt
+      updatedAt
+      _version
+      _deleted
+      _lastChangedAt
+      __typename
+    }
+  }
+`;
+export const onDeleteStaffMessages = /* GraphQL */ `
+  subscription OnDeleteStaffMessages(
+    $filter: ModelSubscriptionStaffMessagesFilterInput
+  ) {
+    onDeleteStaffMessages(filter: $filter) {
+      id
+      messageId
+      staffId
+      message {
+        id
+        sender_id
+        receiver_id
+        message
+        created_at
+        staff {
+          nextToken
+          startedAt
+          __typename
+        }
+        createdAt
+        updatedAt
+        _version
+        _deleted
+        _lastChangedAt
+        __typename
+      }
+      staff {
+        id
+        first_name
+        last_name
+        email
+        username
+        phone_number
+        role
+        appointments {
+          nextToken
+          startedAt
+          __typename
+        }
+        tasks {
+          nextToken
+          startedAt
+          __typename
+        }
+        messages {
+          nextToken
+          startedAt
+          __typename
+        }
+        roster {
+          id
+          staffID
+          start_date
+          end_date
+          on_duty
+          createdAt
+          updatedAt
+          _version
+          _deleted
+          _lastChangedAt
+          __typename
+        }
+        createdAt
+        updatedAt
+        _version
+        _deleted
+        _lastChangedAt
+        __typename
+      }
+      createdAt
+      updatedAt
+      _version
+      _deleted
+      _lastChangedAt
+      __typename
+    }
+  }
+`;
+export const onCreateStaffTasks = /* GraphQL */ `
+  subscription OnCreateStaffTasks(
+    $filter: ModelSubscriptionStaffTasksFilterInput
+  ) {
+    onCreateStaffTasks(filter: $filter) {
+      id
+      taskId
+      staffId
+      task {
+        id
+        title
+        date_created
+        date_due
+        details
+        staff {
+          nextToken
+          startedAt
+          __typename
+        }
+        createdAt
+        updatedAt
+        _version
+        _deleted
+        _lastChangedAt
+        __typename
+      }
+      staff {
+        id
+        first_name
+        last_name
+        email
+        username
+        phone_number
+        role
+        appointments {
+          nextToken
+          startedAt
+          __typename
+        }
+        tasks {
+          nextToken
+          startedAt
+          __typename
+        }
+        messages {
+          nextToken
+          startedAt
+          __typename
+        }
+        roster {
+          id
+          staffID
+          start_date
+          end_date
+          on_duty
+          createdAt
+          updatedAt
+          _version
+          _deleted
+          _lastChangedAt
           __typename
         }
         createdAt
@@ -530,15 +1217,15 @@ export const onUpdateStaffTasks = /* GraphQL */ `
   ) {
     onUpdateStaffTasks(filter: $filter) {
       id
-      tasksId
+      taskId
       staffId
-      tasks {
+      task {
         id
         title
         date_created
         date_due
         details
-        staff_assigned {
+        staff {
           nextToken
           startedAt
           __typename
@@ -558,7 +1245,7 @@ export const onUpdateStaffTasks = /* GraphQL */ `
         username
         phone_number
         role
-        staff_appointments {
+        appointments {
           nextToken
           startedAt
           __typename
@@ -566,6 +1253,24 @@ export const onUpdateStaffTasks = /* GraphQL */ `
         tasks {
           nextToken
           startedAt
+          __typename
+        }
+        messages {
+          nextToken
+          startedAt
+          __typename
+        }
+        roster {
+          id
+          staffID
+          start_date
+          end_date
+          on_duty
+          createdAt
+          updatedAt
+          _version
+          _deleted
+          _lastChangedAt
           __typename
         }
         createdAt
@@ -590,15 +1295,15 @@ export const onDeleteStaffTasks = /* GraphQL */ `
   ) {
     onDeleteStaffTasks(filter: $filter) {
       id
-      tasksId
+      taskId
       staffId
-      tasks {
+      task {
         id
         title
         date_created
         date_due
         details
-        staff_assigned {
+        staff {
           nextToken
           startedAt
           __typename
@@ -618,12 +1323,201 @@ export const onDeleteStaffTasks = /* GraphQL */ `
         username
         phone_number
         role
-        staff_appointments {
+        appointments {
           nextToken
           startedAt
           __typename
         }
         tasks {
+          nextToken
+          startedAt
+          __typename
+        }
+        messages {
+          nextToken
+          startedAt
+          __typename
+        }
+        roster {
+          id
+          staffID
+          start_date
+          end_date
+          on_duty
+          createdAt
+          updatedAt
+          _version
+          _deleted
+          _lastChangedAt
+          __typename
+        }
+        createdAt
+        updatedAt
+        _version
+        _deleted
+        _lastChangedAt
+        __typename
+      }
+      createdAt
+      updatedAt
+      _version
+      _deleted
+      _lastChangedAt
+      __typename
+    }
+  }
+`;
+export const onCreatePatientAppointments = /* GraphQL */ `
+  subscription OnCreatePatientAppointments(
+    $filter: ModelSubscriptionPatientAppointmentsFilterInput
+  ) {
+    onCreatePatientAppointments(filter: $filter) {
+      id
+      patientId
+      appointmentId
+      patient {
+        id
+        first_name
+        last_name
+        email
+        phone_number
+        date_of_birth
+        gender
+        appointments {
+          nextToken
+          startedAt
+          __typename
+        }
+        createdAt
+        updatedAt
+        _version
+        _deleted
+        _lastChangedAt
+        __typename
+      }
+      appointment {
+        id
+        appointment_date
+        created_at
+        start_time
+        end_time
+        status
+        assigned_to
+        patients {
+          nextToken
+          startedAt
+          __typename
+        }
+        createdAt
+        updatedAt
+        _version
+        _deleted
+        _lastChangedAt
+        __typename
+      }
+      createdAt
+      updatedAt
+      _version
+      _deleted
+      _lastChangedAt
+      __typename
+    }
+  }
+`;
+export const onUpdatePatientAppointments = /* GraphQL */ `
+  subscription OnUpdatePatientAppointments(
+    $filter: ModelSubscriptionPatientAppointmentsFilterInput
+  ) {
+    onUpdatePatientAppointments(filter: $filter) {
+      id
+      patientId
+      appointmentId
+      patient {
+        id
+        first_name
+        last_name
+        email
+        phone_number
+        date_of_birth
+        gender
+        appointments {
+          nextToken
+          startedAt
+          __typename
+        }
+        createdAt
+        updatedAt
+        _version
+        _deleted
+        _lastChangedAt
+        __typename
+      }
+      appointment {
+        id
+        appointment_date
+        created_at
+        start_time
+        end_time
+        status
+        assigned_to
+        patients {
+          nextToken
+          startedAt
+          __typename
+        }
+        createdAt
+        updatedAt
+        _version
+        _deleted
+        _lastChangedAt
+        __typename
+      }
+      createdAt
+      updatedAt
+      _version
+      _deleted
+      _lastChangedAt
+      __typename
+    }
+  }
+`;
+export const onDeletePatientAppointments = /* GraphQL */ `
+  subscription OnDeletePatientAppointments(
+    $filter: ModelSubscriptionPatientAppointmentsFilterInput
+  ) {
+    onDeletePatientAppointments(filter: $filter) {
+      id
+      patientId
+      appointmentId
+      patient {
+        id
+        first_name
+        last_name
+        email
+        phone_number
+        date_of_birth
+        gender
+        appointments {
+          nextToken
+          startedAt
+          __typename
+        }
+        createdAt
+        updatedAt
+        _version
+        _deleted
+        _lastChangedAt
+        __typename
+      }
+      appointment {
+        id
+        appointment_date
+        created_at
+        start_time
+        end_time
+        status
+        assigned_to
+        patients {
           nextToken
           startedAt
           __typename

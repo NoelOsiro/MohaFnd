@@ -10,7 +10,7 @@ import "react-data-table-component-extensions/dist/index.css";
 const columns = [
     {
         name: 'Username',
-        selector: (row: IStaff) => row.first_name,
+        selector: (row: IStaff) => row.username,
         sortable: true,
     },
     {
@@ -54,7 +54,7 @@ const TeamsTable = () => {
         };
 
         fetchStaff();
-    }, []);
+    }, [teams]);
 
     return (
         <DataTableExtensions columns={columns}

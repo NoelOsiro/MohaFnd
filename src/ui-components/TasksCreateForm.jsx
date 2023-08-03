@@ -65,23 +65,6 @@ export default function TasksCreateForm(props) {
     setErrors((errors) => ({ ...errors, [fieldName]: validationResponse }));
     return validationResponse;
   };
-  const convertToLocal = (date) => {
-    const df = new Intl.DateTimeFormat("default", {
-      year: "numeric",
-      month: "2-digit",
-      day: "2-digit",
-      hour: "2-digit",
-      minute: "2-digit",
-      calendar: "iso8601",
-      numberingSystem: "latn",
-      hourCycle: "h23",
-    });
-    const parts = df.formatToParts(date).reduce((acc, part) => {
-      acc[part.type] = part.value;
-      return acc;
-    }, {});
-    return `${parts.year}-${parts.month}-${parts.day}T${parts.hour}:${parts.minute}`;
-  };
   return (
     <Grid
       as="form"
@@ -171,11 +154,10 @@ export default function TasksCreateForm(props) {
         label="Date created"
         isRequired={false}
         isReadOnly={false}
-        type="datetime-local"
-        value={date_created && convertToLocal(new Date(date_created))}
+        type="date"
+        value={date_created}
         onChange={(e) => {
-          let value =
-            e.target.value === "" ? "" : new Date(e.target.value).toISOString();
+          let { value } = e.target;
           if (onChange) {
             const modelFields = {
               title,
@@ -200,11 +182,10 @@ export default function TasksCreateForm(props) {
         label="Date due"
         isRequired={false}
         isReadOnly={false}
-        type="datetime-local"
-        value={date_due && convertToLocal(new Date(date_due))}
+        type="date"
+        value={date_due}
         onChange={(e) => {
-          let value =
-            e.target.value === "" ? "" : new Date(e.target.value).toISOString();
+          let { value } = e.target;
           if (onChange) {
             const modelFields = {
               title,

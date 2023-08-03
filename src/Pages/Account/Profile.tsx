@@ -46,7 +46,7 @@ const Profile = () => {
                                                 label="Name"
                                                 errorMessage="There is an error"
                                                 name="Name"
-                                                readonly
+                                                isReadOnly
                                             />
                                             <TextField
                                                 placeholder="Baggins"
@@ -75,7 +75,7 @@ const Profile = () => {
                                                 placeholder="Baggins"
                                                 label="Name"
                                                 errorMessage="There is an error"
-                                                readonly
+                                                isReadOnly
                                             />
                                             <TextField
                                                 descriptiveText="Email"

@@ -27,18 +27,18 @@ export default function PatientUpdateForm(props) {
     first_name: "",
     last_name: "",
     email: "",
-    date_of_birth: "",
     phone_number: "",
+    date_of_birth: "",
     gender: "",
   };
   const [first_name, setFirst_name] = React.useState(initialValues.first_name);
   const [last_name, setLast_name] = React.useState(initialValues.last_name);
   const [email, setEmail] = React.useState(initialValues.email);
-  const [date_of_birth, setDate_of_birth] = React.useState(
-    initialValues.date_of_birth
-  );
   const [phone_number, setPhone_number] = React.useState(
     initialValues.phone_number
+  );
+  const [date_of_birth, setDate_of_birth] = React.useState(
+    initialValues.date_of_birth
   );
   const [gender, setGender] = React.useState(initialValues.gender);
   const [errors, setErrors] = React.useState({});
@@ -49,8 +49,8 @@ export default function PatientUpdateForm(props) {
     setFirst_name(cleanValues.first_name);
     setLast_name(cleanValues.last_name);
     setEmail(cleanValues.email);
-    setDate_of_birth(cleanValues.date_of_birth);
     setPhone_number(cleanValues.phone_number);
+    setDate_of_birth(cleanValues.date_of_birth);
     setGender(cleanValues.gender);
     setErrors({});
   };
@@ -68,9 +68,9 @@ export default function PatientUpdateForm(props) {
   const validations = {
     first_name: [],
     last_name: [],
-    email: [{ type: "Required" }, { type: "Email" }],
-    date_of_birth: [{ type: "Required" }],
-    phone_number: [{ type: "Required" }, { type: "Phone" }],
+    email: [{ type: "Email" }],
+    phone_number: [{ type: "Phone" }],
+    date_of_birth: [],
     gender: [],
   };
   const runValidationTasks = async (
@@ -102,8 +102,8 @@ export default function PatientUpdateForm(props) {
           first_name,
           last_name,
           email,
-          date_of_birth,
           phone_number,
+          date_of_birth,
           gender,
         };
         const validationResponses = await Promise.all(
@@ -163,8 +163,8 @@ export default function PatientUpdateForm(props) {
               first_name: value,
               last_name,
               email,
-              date_of_birth,
               phone_number,
+              date_of_birth,
               gender,
             };
             const result = onChange(modelFields);
@@ -192,8 +192,8 @@ export default function PatientUpdateForm(props) {
               first_name,
               last_name: value,
               email,
-              date_of_birth,
               phone_number,
+              date_of_birth,
               gender,
             };
             const result = onChange(modelFields);
@@ -211,7 +211,7 @@ export default function PatientUpdateForm(props) {
       ></TextField>
       <TextField
         label="Email"
-        isRequired={true}
+        isRequired={false}
         isReadOnly={false}
         value={email}
         onChange={(e) => {
@@ -221,8 +221,8 @@ export default function PatientUpdateForm(props) {
               first_name,
               last_name,
               email: value,
-              date_of_birth,
               phone_number,
+              date_of_birth,
               gender,
             };
             const result = onChange(modelFields);
@@ -239,38 +239,8 @@ export default function PatientUpdateForm(props) {
         {...getOverrideProps(overrides, "email")}
       ></TextField>
       <TextField
-        label="Date of birth"
-        isRequired={true}
-        isReadOnly={false}
-        type="date"
-        value={date_of_birth}
-        onChange={(e) => {
-          let { value } = e.target;
-          if (onChange) {
-            const modelFields = {
-              first_name,
-              last_name,
-              email,
-              date_of_birth: value,
-              phone_number,
-              gender,
-            };
-            const result = onChange(modelFields);
-            value = result?.date_of_birth ?? value;
-          }
-          if (errors.date_of_birth?.hasError) {
-            runValidationTasks("date_of_birth", value);
-          }
-          setDate_of_birth(value);
-        }}
-        onBlur={() => runValidationTasks("date_of_birth", date_of_birth)}
-        errorMessage={errors.date_of_birth?.errorMessage}
-        hasError={errors.date_of_birth?.hasError}
-        {...getOverrideProps(overrides, "date_of_birth")}
-      ></TextField>
-      <TextField
         label="Phone number"
-        isRequired={true}
+        isRequired={false}
         isReadOnly={false}
         type="tel"
         value={phone_number}
@@ -281,8 +251,8 @@ export default function PatientUpdateForm(props) {
               first_name,
               last_name,
               email,
-              date_of_birth,
               phone_number: value,
+              date_of_birth,
               gender,
             };
             const result = onChange(modelFields);
@@ -299,6 +269,36 @@ export default function PatientUpdateForm(props) {
         {...getOverrideProps(overrides, "phone_number")}
       ></TextField>
       <TextField
+        label="Date of birth"
+        isRequired={false}
+        isReadOnly={false}
+        type="date"
+        value={date_of_birth}
+        onChange={(e) => {
+          let { value } = e.target;
+          if (onChange) {
+            const modelFields = {
+              first_name,
+              last_name,
+              email,
+              phone_number,
+              date_of_birth: value,
+              gender,
+            };
+            const result = onChange(modelFields);
+            value = result?.date_of_birth ?? value;
+          }
+          if (errors.date_of_birth?.hasError) {
+            runValidationTasks("date_of_birth", value);
+          }
+          setDate_of_birth(value);
+        }}
+        onBlur={() => runValidationTasks("date_of_birth", date_of_birth)}
+        errorMessage={errors.date_of_birth?.errorMessage}
+        hasError={errors.date_of_birth?.hasError}
+        {...getOverrideProps(overrides, "date_of_birth")}
+      ></TextField>
+      <TextField
         label="Gender"
         isRequired={false}
         isReadOnly={false}
@@ -310,8 +310,8 @@ export default function PatientUpdateForm(props) {
               first_name,
               last_name,
               email,
-              date_of_birth,
               phone_number,
+              date_of_birth,
               gender: value,
             };
             const result = onChange(modelFields);

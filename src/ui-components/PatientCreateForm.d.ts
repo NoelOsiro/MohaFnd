@@ -16,16 +16,16 @@ export declare type PatientCreateFormInputValues = {
     first_name?: string;
     last_name?: string;
     email?: string;
-    date_of_birth?: string;
     phone_number?: string;
+    date_of_birth?: string;
     gender?: string;
 };
 export declare type PatientCreateFormValidationValues = {
     first_name?: ValidationFunction<string>;
     last_name?: ValidationFunction<string>;
     email?: ValidationFunction<string>;
-    date_of_birth?: ValidationFunction<string>;
     phone_number?: ValidationFunction<string>;
+    date_of_birth?: ValidationFunction<string>;
     gender?: ValidationFunction<string>;
 };
 export declare type PrimitiveOverrideProps<T> = Partial<T> & React.DOMAttributes<HTMLDivElement>;
@@ -34,8 +34,8 @@ export declare type PatientCreateFormOverridesProps = {
     first_name?: PrimitiveOverrideProps<TextFieldProps>;
     last_name?: PrimitiveOverrideProps<TextFieldProps>;
     email?: PrimitiveOverrideProps<TextFieldProps>;
-    date_of_birth?: PrimitiveOverrideProps<TextFieldProps>;
     phone_number?: PrimitiveOverrideProps<TextFieldProps>;
+    date_of_birth?: PrimitiveOverrideProps<TextFieldProps>;
     gender?: PrimitiveOverrideProps<TextFieldProps>;
 } & EscapeHatchProps;
 export declare type PatientCreateFormProps = React.PropsWithChildren<{

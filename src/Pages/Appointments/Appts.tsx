@@ -4,7 +4,7 @@ import ActivityCard from '../../Components/Cards/ActivityCard'
 import PieChart from '../../Components/Charts/PieChart'
 import Illustrate from '../../Components/Illustration/Illustrate'
 import TabDashBoard from '../../Components/Tabs/TabDashBoard'
-import { CreateAppointmentForm } from '../../ui-components'
+// import { CreateAppointmentForm } from '../../ui-components'
 
 const Appts = () => {
     return (

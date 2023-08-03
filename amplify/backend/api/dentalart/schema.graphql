@@ -1,10 +1,43 @@
-type Tasks @model @auth(rules: [{allow: public}]) {
+# This "input" configures a global authorization rule to enable public access to
+# all models in this schema. Learn more about authorization rules here: https://docs.amplify.aws/cli/graphql/authorization-rules
+input AMPLIFY { globalAuthRule: AuthRule = { allow: public } } # FOR TESTING ONLY!
+
+type StaffRoster @model @auth(rules: [{ allow: public }]) {
+  id: ID!
+  staffID:ID!
+  start_date: AWSDate
+  end_date: AWSDate
+  on_duty: Boolean
+  staff: Staff @belongsTo(fields: ["staffID"])
+}
+
+type Message @model @auth(rules: [{ allow: public }]) {
+  id: ID!
+  sender_id: ID!
+  receiver_id: ID!
+  message: String!
+  created_at: AWSDateTime!
+  staff: [Staff] @manyToMany(relationName: "StaffMessages")
+}
+
+type Task @model @auth(rules: [{ allow: public }]) {
   id: ID!
   title: String
-  date_created: AWSDateTime
-  date_due: AWSDateTime
+  date_created: AWSDate
+  date_due: AWSDate
   details: String
-  staff_assigned: [Staff] @manyToMany(relationName: "StaffTasks")
+  staff: [Staff] @manyToMany(relationName: "StaffTasks")
+}
+
+type Patient @model @auth(rules: [{ allow: public }]) {
+  id: ID!
+  first_name: String
+  last_name: String
+  email: AWSEmail
+  phone_number: AWSPhone
+  date_of_birth: AWSDate
+  gender: String
+  appointments: [Appointment] @manyToMany(relationName: "PatientAppointments")
 }
 
 enum StaffRoleEnum {
@@ -15,18 +48,18 @@ enum StaffRoleEnum {
   ASSISTANT
 }
 
-type Staff @model
-  @auth(rules: [{ allow: public }]) 
-  {
-  id: ID! @primaryKey
+type Staff @model @auth(rules: [{ allow: public }]) {
+  id: ID!
   first_name: String
   last_name: String
-  email: AWSEmail! @index(name: "StaffByEmail",queryField: "staffByEmail")
+  email: AWSEmail
   username: String
-  phone_number: AWSPhone! @index(name: "StaffByPhoneNumber", queryField: "staffByPhoneNumber") 
+  phone_number: AWSPhone
   role: StaffRoleEnum
-  staff_appointments: [Appointments] @hasMany(indexName: "byStaff", fields: ["id"])
-  tasks: [Tasks] @manyToMany(relationName: "StaffTasks")
+  appointments: [Appointment] @hasMany(fields: ["id"])
+  tasks: [Task] @manyToMany(relationName: "StaffTasks")
+  messages: [Message] @manyToMany(relationName: "StaffMessages")
+  roster: StaffRoster @hasOne(fields: ["id"])
 }
 
 enum AppointmentStatusEnum {
@@ -36,7 +69,7 @@ enum AppointmentStatusEnum {
   RESCHEDULED
 }
 
-type Appointments @model @auth(rules: [{allow: public}]) {
+type Appointment @model @auth(rules: [{ allow: public }]) {
   id: ID!
   appointment_date: AWSDate
   created_at: AWSDateTime
@@ -44,20 +77,5 @@ type Appointments @model @auth(rules: [{allow: public}]) {
   end_time: AWSTime
   status: AppointmentStatusEnum
   assigned_to: String
-  patientID: ID! @index(name: "byPatient")
-  staffID: ID! @index(name: "byStaff")
+  patients: [Patient] @manyToMany(relationName: "PatientAppointments")
 }
-
-type Patient @model
-  @auth(rules: [{ allow: public }])
-{
-  id: ID! @primaryKey
-  first_name: String
-  last_name: String
-  email: AWSEmail! @index(name: "PatientByEmail",queryField: "patientByEmail")
-  date_of_birth: AWSDate!
-  phone_number: AWSPhone! @index(name: "PatientByPhoneNumber", queryField: "patientByPhoneNumber")
-  pat_appointments: [Appointments] @hasMany(indexName: "byPatient", fields: ["id"])
-  gender: String
-}
-

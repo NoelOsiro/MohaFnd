@@ -3,7 +3,7 @@ import DashboardHeader from '../../Components/Header/DashBoardHeader'
 import Illustrate from '../../Components/Illustration/Illustrate'
 import ActivityCard from '../../Components/Cards/ActivityCard'
 import PieChart from '../../Components/Charts/PieChart'
-import {  StaffCreateForm } from '../../ui-components'
+// import {  StaffCreateForm } from '../../ui-components'
 import TeamsTable from '../../Components/Tables/TeamsTable'
 
 
@@ -36,7 +36,7 @@ const Team = () => {
                             </div>
                             <div className="card-body">
                                 <div className="tab-content">
-                                    <StaffCreateForm />
+                                    {/* <StaffCreateForm /> */}
                                 </div>
                             </div>
                         </div>
