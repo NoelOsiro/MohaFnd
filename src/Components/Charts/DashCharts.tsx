@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { CSSProperties } from 'react';
 import {
   Chart as ChartJS,
   CategoryScale,
@@ -9,6 +9,7 @@ import {
   Tooltip,
   Filler,
   Legend,
+  ChartOptions,
 } from 'chart.js';
 import { Line } from 'react-chartjs-2';
 
@@ -23,12 +24,14 @@ ChartJS.register(
   Legend
 );
 
-export const options = {
+const ChartStyles: CSSProperties= {
+  margin:'auto',
+  height: '320px'
+}
+
+export const options: ChartOptions = {
   responsive: true,
   plugins: {
-    legend: {
-      position: 'top' as const,
-    },
     title: {
       display: true,
       text: 'Appointments',
@@ -43,15 +46,15 @@ export const data = {
   datasets: [
     {
       fill: true,
-      label: 'Dataset 2',
+      label: 'Months',
       data: [120,240,360,180,470,235,212,345,22,13,120,45],
-      borderColor: 'rgb(53, 162, 235)',
+      borderColor: 'rgb(180, 205, 222)',
       backgroundColor: 'rgba(53, 162, 235, 0.5)',
     },
   ],
 };
 
 const LineChart = ()=> {
-  return <Line options={options} data={data}  />;
+  return <Line options={options} data={data} style={ChartStyles} />;
 }
 export default LineChart

@@ -1,20 +1,20 @@
 import React, { useEffect, useState } from 'react';
 import { Auth } from 'aws-amplify';
 import {alertsItems, documentationItems, messagesItems } from './MenuItem';
-import { Rings } from 'react-loader-spinner';
+import { Rings, Watch } from 'react-loader-spinner';
 import DocumentationDropdown from './DocumentationDropdown';
 import AlertsDropdown from './AlertsDropdown';
 import MessagesDropdown from './MessagesDropdowns';
 import { FiSettings, FiLogOut } from 'react-icons/fi';
+import { FaCross, FaCrosshairs } from 'react-icons/fa';
+import { FcCancel } from 'react-icons/fc';
 
 const HeaderDropdowns: React.FC = () => {
   const [user, setUser] = useState<any>(null);
   const [isLoading, setIsLoading] = useState(true);
-
   useEffect(() => {
     fetchUserDetails();
   }, []);
-
   const fetchUserDetails = async () => {
     try {
       const user = await Auth.currentAuthenticatedUser();
@@ -30,28 +30,18 @@ const HeaderDropdowns: React.FC = () => {
       await Auth.signOut();
       setUser(null); 
     } catch (error) {
-      console.log('Error signing out:', error);
+      window.alert('Error signing out:'+ error);
     }
   };
 
   return (
     <ul className="navbar-nav align-items-center ms-auto">
-      {/* Documentation Dropdown */}
       <DocumentationDropdown items={documentationItems} />
-
-      {/* Navbar Search Dropdown */}
-      {/* ... */}
-
-      {/* Alerts Dropdown */}
       <AlertsDropdown items={alertsItems} />
-
-      {/* Messages Dropdown */}
       <MessagesDropdown items={messagesItems} />
-
-      {/* User Dropdown */}
       {isLoading ? (
         <li className="nav-item">
-          <Rings color="#000000" height={30} width={30} />
+          <Watch color="#000000" height={30} width={30} radius={10} />
         </li>
       ) : user ? (
         <li className="nav-item dropdown no-caret dropdown-user me-3 me-lg-4">
@@ -78,7 +68,7 @@ const HeaderDropdowns: React.FC = () => {
           </div>
         </li>
       ) : (
-        <li className="nav-item">User details not available.</li>
+        <FcCancel size={20} className='me-2'/>
       )}
     </ul>
   );

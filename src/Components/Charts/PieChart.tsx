@@ -1,4 +1,29 @@
-import React from 'react'
+import React from 'react';
+import { Chart as ChartJS, ArcElement, Tooltip, Legend } from 'chart.js';
+import { Doughnut } from 'react-chartjs-2';
+
+ChartJS.register(ArcElement, Tooltip, Legend);
+
+export const data = {
+    labels: ['Missed', 'Done','Pending'],
+    datasets: [
+      {
+        label: '# of Appointments',
+        data: [12, 19, 3],
+        backgroundColor: [
+          'rgba(255, 99, 132, 0.2)',
+          'rgba(54, 162, 235, 0.2)',
+          'rgba(255, 206, 86, 0.2)',
+        ],
+        borderColor: [
+          'rgba(255, 99, 132, 1)',
+          'rgba(75, 192, 192, 1)',
+          'rgba(255, 159, 64, 1)',
+        ],
+        borderWidth: 2,
+      },
+    ],
+  };
 
 const PieChart = () => {
     return (
@@ -7,7 +32,9 @@ const PieChart = () => {
             <div className="card h-100">
                 <div className="card-header">Traffic Sources</div>
                 <div className="card-body">
-                    <div className="chart-pie mb-4"><canvas id="myPieChart" width="100%" height="50"></canvas></div>
+                    <div className="chart-pie mb-4">
+                        <Doughnut data={data} />;
+                        </div>
                     <div className="list-group list-group-flush">
                         <div className="list-group-item d-flex align-items-center justify-content-between small px-0 py-2">
                             <div className="me-3">
@@ -38,3 +65,13 @@ const PieChart = () => {
 }
 
 export default PieChart
+
+
+
+
+
+
+
+export function App() {
+  return 
+}

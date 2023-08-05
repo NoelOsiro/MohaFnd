@@ -3,9 +3,7 @@ import { Amplify } from 'aws-amplify';
 import { withAuthenticator } from '@aws-amplify/ui-react';
 
 import awsExports from "./aws-exports";
-import {
-  RouterProvider,
-} from "react-router-dom";
+import { RouterProvider } from "react-router-dom";
 import { router } from './routes';
 Amplify.configure(awsExports);
 
@@ -17,5 +15,5 @@ const App: React.FC = () => {
   );
 };
 
-export default withAuthenticator(App);
+export default App;
 

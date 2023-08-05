@@ -22,12 +22,11 @@ const progressItems = [
     color: 'bg-success',
   },
 ];
-
 const TaskTrackerCard = () => {
   return (
     <div className="card card-header-actions mb-4">
       <div className="card-header">
-        Projects
+        Tasks
         <a className="btn btn-sm btn-primary-soft text-primary" href="#!">
           Create New
         </a>

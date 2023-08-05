@@ -40,19 +40,17 @@ const TabDashBoard = () => {
               key={tab.id}
             >
               {tab.id === 'overview' ? (
-                <div className="chart-area mb-4 mb-lg-0" style={{ height: '20rem' }}>
-                    <div style={{ width: '80%', height: '17rem' }}>
-                      <h3 className='lead'>Appointments Trend</h3>
-                    <LineChart />
-                  </div>
+                <div className="chart-area mb-4 mb-lg-0" style={{ height: '24rem' }}>
+                  <h3 className='lead'>Appointments Trend</h3>
+                  <LineChart />
                 </div>
-          ) : (
-          <MyDataTable />
+              ) : (
+                <MyDataTable />
               )}
-        </div>
+            </div>
           ))}
+        </div>
       </div>
-    </div>
     </div >
   );
 };

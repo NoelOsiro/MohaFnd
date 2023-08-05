@@ -2,12 +2,13 @@ import { DataStore} from 'aws-amplify';
 import { Patient } from '../models';
 
 export interface IPatient {
-    first_name: string;
-    last_name: string;
-    email: string;
-    date_of_birth: string;
-    phone_number: string;
-    gender: string;
+  id: string;
+  first_name: string | null | undefined;
+  last_name: string | null | undefined;
+  email: string | null | undefined;
+  date_of_birth: string | null | undefined;
+  phone_number: string | null | undefined;
+  gender: string | null | undefined;
 }
 
 
@@ -39,6 +40,7 @@ export const getPatients = async () => {
 
     // Convert the query result to the 'IPatient' interface
     const patients: IPatient[] = patientsData.map(patient => ({
+      id: patient.id || '',
       first_name: patient.first_name || '',
       last_name: patient.last_name || '',
       email: patient.email || '',

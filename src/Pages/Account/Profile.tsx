@@ -3,6 +3,7 @@ import DashboardHeader from '../../Components/Header/DashBoardHeader'
 import { Auth } from 'aws-amplify';
 import { Rings } from 'react-loader-spinner';
 import { AccountSettings, CheckboxField, TextField } from '@aws-amplify/ui-react';
+import { FaUserCircle } from 'react-icons/fa';
 
 const Profile = () => {
     const [user, setUser] = useState<any>(null);
@@ -27,7 +28,7 @@ const Profile = () => {
     };
     return (
         <main>
-            <DashboardHeader title='Profile' />
+            <DashboardHeader title='Profile' icon={FaUserCircle} />
             <div className="container-xl px-4 mt-n10">
                 {isLoading ? (
                     <Rings color="#000000" height={30} width={30} />

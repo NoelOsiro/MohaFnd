@@ -1,15 +1,16 @@
-import React from 'react'
-import DashboardHeader from '../../Components/Header/DashBoardHeader'
-import ActivityCard from '../../Components/Cards/ActivityCard'
-import PieChart from '../../Components/Charts/PieChart'
-import Illustrate from '../../Components/Illustration/Illustrate'
-import MyApptsTable from '../../Components/Tables/ApptsTable'
+import React from 'react';
+import DashboardHeader from '../../Components/Header/DashBoardHeader';
+import ActivityCard from '../../Components/Cards/ActivityCard';
+import Illustrate from '../../Components/Illustration/Illustrate';
+import MyApptsTable from '../../Components/Tables/ApptsTable';
+import ApptsPieChart from '../../Components/Charts/ApptsPieChart';
+import { FaEyeSlash } from 'react-icons/fa';
 // import { CreateAppointmentForm } from '../../ui-components'
 
 const ViewAppts = () => {
     return (
         <main>
-            <DashboardHeader title='View Appointments' />
+            <DashboardHeader title='View Appointments' icon={FaEyeSlash} />
             <div className="container-xl px-4 mt-n10">
                 <div className="row">
                     <div className="col-xxl-8">
@@ -21,16 +22,17 @@ const ViewAppts = () => {
                                 <MyApptsTable />
                             </div>
                         </div >
-                        <Illustrate />
-                        <div className="row">
-                            <div className="col-xl-6 mb-4">
-                                <ActivityCard />
-                            </div>
-                            <PieChart />
-                        </div>
                     </div>
-
                 </div>
+                <div className="row">
+                    <div className="col-xl-6 mb-4">
+                        <ActivityCard />
+                    </div>
+                    <div className="col-xl-6 mb-4">
+                        <ApptsPieChart />
+                    </div>
+                </div>
+                <Illustrate />
             </div>
         </main>
     )

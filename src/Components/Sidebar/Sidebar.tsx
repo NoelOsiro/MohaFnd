@@ -79,7 +79,7 @@ const Sidebar: React.FC<SidebarProps> = ({ isSidebarOpen }) => {
 
   return (
     <div id="layoutSidenav_nav">
-      <nav className={`sidenav shadow-right ${isSidebarOpen ? 'sidenav-light' : ''}`}>
+      <nav className='sidenav shadow-right sidenav-light'>
         <div className="sidenav-menu">
           <div className="nav accordion" id="accordionSidenav">
             <div className="sidenav-menu-heading d-sm-none">Account</div>

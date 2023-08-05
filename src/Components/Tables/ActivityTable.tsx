@@ -58,7 +58,8 @@ const MyDataTable = () => {
           title="Appointments This Week"
           columns={columns}
           data={appointmentsThisWeek}
-          pagination highlightOnHover />
+          pagination highlightOnHover
+          />
     </DataTableExtensions>);
 };
 

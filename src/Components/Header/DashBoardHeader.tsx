@@ -1,7 +1,10 @@
 import React from 'react';
+import { IconType } from 'react-icons';
 import { FiActivity } from 'react-icons/fi';
+
 interface Iprops {
   title: string;
+  icon: IconType;
 }
 
 const DashboardHeader: React.FC<Iprops> = (props:Iprops) => {
@@ -13,7 +16,7 @@ const DashboardHeader: React.FC<Iprops> = (props:Iprops) => {
             <div className="col-auto mt-4">
               <h1 className="page-header-title">
                 <div className="page-header-icon">
-                  <FiActivity />
+                  {<props.icon/>}
                 </div>
                 {props.title}
               </h1>

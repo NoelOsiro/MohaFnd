@@ -5,7 +5,7 @@ import PieChart from '../../Components/Charts/PieChart'
 import ActivityCard from '../../Components/Cards/ActivityCard'
 import { PatientCreateForm } from '../../ui-components'
 import Card from '../../Components/Cards/DasCard'
-import { FaNewspaper, FaServer } from 'react-icons/fa'
+import { FaNewspaper, FaPills, FaServer } from 'react-icons/fa'
 import PatientsTable from '../../Components/Tables/PatientsTable'
 import { getNumberOfPatientsThisWeek } from '../../Services/CustomerService'
 
@@ -14,7 +14,7 @@ import { getNumberOfPatientsThisWeek } from '../../Services/CustomerService'
 const Patients = () => {
     return (
         <main>
-            <DashboardHeader title='Patients' />
+            <DashboardHeader title='Patients' icon={FaPills} />
             <div className="container-xl px-4 mt-n10">
                 <div className="row">
                     <Card

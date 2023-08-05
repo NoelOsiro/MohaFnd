@@ -1,9 +1,9 @@
 import React, { useEffect, useState } from 'react';
 import DataTable from 'react-data-table-component';
-import { IAppointment, getAppointments} from '../../Services/DashService';
+import { IAppointment, getAppointments } from '../../Services/DashService';
 // @ts-ignore
-import DataTableExtensions from "react-data-table-component-extensions";
-import "react-data-table-component-extensions/dist/index.css";
+import DataTableExtensions from 'react-data-table-component-extensions';
+import 'react-data-table-component-extensions/dist/index.css';
 
 const columns = [
   {
@@ -36,6 +36,7 @@ const columns = [
 
 const MyApptsTable = () => {
   const [appts, setAppointments] = useState<any[]>([]);
+  const [selectedRow, setSelectedRow] = useState<IAppointment | null>(null);
 
   useEffect(() => {
     // Fetch the appointments for this week
@@ -47,19 +48,50 @@ const MyApptsTable = () => {
         console.error('Error fetching appointments this week:', error);
       }
     };
-
     fetchAppointments();
   }, []);
+  // Function to handle row click and show the modal
+  const handleRowClick = (row: IAppointment) => {
+    setSelectedRow(row);
+  };
+  // Function to close the modal
+  const handleCloseModal = () => {
+    setSelectedRow(null);
+  };
 
   return (
-    <DataTableExtensions columns={columns} 
-    data={appts}>
-        <DataTable 
+    <div>
+      <DataTableExtensions columns={columns} data={appts}>
+        <DataTable
           title="Appointments This Week"
           columns={columns}
           data={appts}
-          pagination highlightOnHover />
-    </DataTableExtensions>);
+          onRowClicked={handleRowClick}
+          pagination
+          highlightOnHover
+        />
+      </DataTableExtensions>
+
+      {/* Modal */}
+      {selectedRow && (
+        <div className="modal">
+          <div className="modal-content">
+            <span className="close" onClick={handleCloseModal}>
+              &times;
+            </span>
+            <h2>Appointment Details</h2>
+            <p>Date: {selectedRow.appointment_date}</p>
+            <p>Start Time: {selectedRow.start_time}</p>
+            <p>End Time: {selectedRow.end_time}</p>
+            <p>Status: {selectedRow.status}</p>
+            <p>Assigned To: {selectedRow.assigned_to}</p>
+            {/* Add other fields as needed */}
+          </div>
+        </div>
+      )}
+    </div>
+  );
 };
 
 export default MyApptsTable;
+
