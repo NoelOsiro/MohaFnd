@@ -3,9 +3,9 @@ import DashboardHeader from '../../Components/Header/DashBoardHeader'
 import Illustrate from '../../Components/Illustration/Illustrate'
 import ActivityCard from '../../Components/Cards/ActivityCard'
 import PieChart from '../../Components/Charts/PieChart'
-// import {  StaffCreateForm } from '../../ui-components'
 import TeamsTable from '../../Components/Tables/TeamsTable'
 import { FaPeopleArrows } from 'react-icons/fa'
+// import StaffCreateForm from '../../ui-components/StaffCreateForm'
 
 
 
@@ -30,7 +30,7 @@ const Team = () => {
                     </div >
                 </div>
                 <div className='row'>
-                    <div className="col-8">
+                    <div className="col-12">
                         <div className="card mb-4">
                             <div className="card-header border-bottom">
                                 Add New Staff

@@ -2,7 +2,7 @@ import React, { useEffect, useState } from 'react'
 import DashboardHeader from '../../Components/Header/DashBoardHeader'
 import { Auth } from 'aws-amplify';
 import { Rings } from 'react-loader-spinner';
-import { AccountSettings, CheckboxField, TextField } from '@aws-amplify/ui-react';
+import { AccountSettings, TextField } from '@aws-amplify/ui-react';
 import { FaUserCircle } from 'react-icons/fa';
 
 const Profile = () => {

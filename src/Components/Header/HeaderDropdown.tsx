@@ -1,12 +1,11 @@
 import React, { useEffect, useState } from 'react';
 import { Auth } from 'aws-amplify';
 import {alertsItems, documentationItems, messagesItems } from './MenuItem';
-import { Rings, Watch } from 'react-loader-spinner';
+import { Watch } from 'react-loader-spinner';
 import DocumentationDropdown from './DocumentationDropdown';
 import AlertsDropdown from './AlertsDropdown';
 import MessagesDropdown from './MessagesDropdowns';
 import { FiSettings, FiLogOut } from 'react-icons/fi';
-import { FaCross, FaCrosshairs } from 'react-icons/fa';
 import { FcCancel } from 'react-icons/fc';
 
 const HeaderDropdowns: React.FC = () => {
