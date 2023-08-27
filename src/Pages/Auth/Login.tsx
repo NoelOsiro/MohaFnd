@@ -7,12 +7,24 @@ import { useAuth } from '../../Context/AuthContext';
 const Login: React.FC = () => {
     const [email, setEmail] = useState('');
     const [password, setPassword] = useState('');
+    const [errorMessage, setErrorMessage] = useState('');
+
     const { login } = useAuth();
-    const handleLogin = () => {
-        login(email, password);
-    };
+    const handleLogin = async () => {
+        try {
+          setErrorMessage(''); // Clear any previous error message
+          await login(email, password);
+        } catch (error:any) {
+          if (error.message === 'Email not verified') {
+            setErrorMessage('Email not verified');
+          } else {
+            setErrorMessage('Invalid credentials');
+          }
+        }
+      };
     return (
         <div className="container-fluid px-1 px-md-5 px-lg-1 px-xl-5 py-5 mx-auto">
+            {errorMessage && <p className='text-danger'>{errorMessage}</p>}
             <div className="card card0 border-0">
                 <div className="row d-flex">
                     <div className="col-lg-6">

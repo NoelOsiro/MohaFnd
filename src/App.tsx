@@ -1,16 +1,20 @@
 import React from 'react';
 import { RouterProvider } from "react-router-dom";
-import { router } from './routes';
+import { router } from './Routes/routes';
 import { AuthProvider } from './Context/AuthContext';
+import { RegisterProvider } from './Context/RegisterContext';
 
 
 
 const App: React.FC = () => {
   return (
     <AuthProvider>
-      <RouterProvider router={router}/> 
+      <RegisterProvider>
+        <RouterProvider router={router} />
+      </RegisterProvider>
+
     </AuthProvider>
-    
+
   );
 };
 

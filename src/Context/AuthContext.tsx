@@ -2,7 +2,13 @@ import React, { createContext, useContext, useState } from 'react';
 
 interface User {
   email: string;
-  // Other user properties
+  _id: string;
+  phone: string;
+  address: string;
+  sex: string;
+  role: string;
+  verified: boolean,
+  token:string;
 }
 
 interface AuthContextType {
@@ -24,12 +30,37 @@ export const useAuth = () => {
 export const AuthProvider: React.FC<{ children: React.ReactNode }> = ({ children }) => {
   const [user, setUser] = useState<User | null>(null);
 
-  const login = (email: string, password: string) => {
-    // Call your login API here and set the user state if successful
-    const userFromApi = { email }; // Replace with actual API call
-    setUser(userFromApi);
-    localStorage.setItem('user', JSON.stringify(userFromApi));
+  const login = async (email: string, password: string) => {
+    try {
+      const response = await fetch('/api/login', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify({ email, password }),
+      });
+      const data = await response.json();
+      if (response.ok) {
+        const userFromApi = data.userResponse;
+        setUser(userFromApi);
+        localStorage.setItem('user', JSON.stringify(userFromApi));
+      } else {
+        if (data.error === 'Invalid credentials') {
+          // Show error message to user
+        } else if (data.error === 'Email not verified') {
+          // Show error message to user
+        } else {
+          // Handle other error cases
+        }
+      }
+    } catch (error) {
+      // Handle network errors
+      console.error('Network error:', error);
+      // Show error message to user
+    }
   };
+  
+  
 
   const logout = () => {
     // Perform logout actions and clear the user state
