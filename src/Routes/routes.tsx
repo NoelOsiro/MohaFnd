@@ -12,22 +12,21 @@ import Messages from "../Pages/Account/Messages";
 import Tasks from "../Pages/Account/Tasks";
 import ViewAppts from "../Pages/Appointments/ViewAppts";
 import BookAppts from "../Pages/Appointments/BookAppts";
-import PrivateRoute from "./PrivateRoute";
-import Login from "../Pages/Auth/Login";
-import Register from "../Pages/Auth/Register";
+import { AuthenticationGuard } from "./PrivateRoute";
+import LandingPage from "../Pages/Auth/LandingPage";
 
 export const router = createBrowserRouter([
   {
-    path: '/login',
-    element: <Login />,
-  },
-  {
-    path: '/register',
-    element: <Register />,
-  },
-  {
     path: "/",
-    element: <PrivateRoute path="/staff/" element={<Layout />} />,
+    element: <LandingPage/>
+  },
+  {
+    path: "/callback",
+    element: <Layout/>
+  },
+  {
+    path: "/dashboard",
+    element: <AuthenticationGuard component={Layout} />,
     errorElement: <ErrorPage />,
     children: [
       {
@@ -38,7 +37,7 @@ export const router = createBrowserRouter([
   },
   {
     path: "/staff/",
-    element: <PrivateRoute path="/staff/" element={<Layout />} />,
+    element: <AuthenticationGuard component={Layout} />,
     errorElement: <ErrorPage />,
     children: [
       {
@@ -53,7 +52,7 @@ export const router = createBrowserRouter([
   },
   {
     path: "/customers/",
-    element: <PrivateRoute path="/staff/" element={<Layout />} />,
+    element: <AuthenticationGuard component={Layout} />,
     errorElement: <ErrorPage />,
     children: [
       {
@@ -68,7 +67,7 @@ export const router = createBrowserRouter([
   },
   {
     path: "/appointments/",
-    element: <PrivateRoute path="/staff/" element={<Layout />} />,
+    element: <AuthenticationGuard component={Layout} />,
     errorElement: <ErrorPage />,
     children: [
       {
@@ -87,7 +86,7 @@ export const router = createBrowserRouter([
   },
   {
     path: "/payments/",
-    element: <PrivateRoute path="/staff/" element={<Layout />} />,
+    element: <AuthenticationGuard component={Layout} />,
     errorElement: <ErrorPage />,
     children: [
       {
@@ -106,7 +105,7 @@ export const router = createBrowserRouter([
   },
   {
     path: "/account/",
-    element: <PrivateRoute path="/staff/" element={<Layout />} />,
+    element: <AuthenticationGuard component={Layout} />,
     errorElement: <ErrorPage />,
     children: [
       {
