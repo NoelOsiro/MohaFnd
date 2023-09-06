@@ -1,10 +1,10 @@
-import React, { useEffect, useState } from 'react';
+import React from 'react';
 import './siderbarStyles.css';
 import { IconType } from 'react-icons';
 import { FaAngleDown } from 'react-icons/fa';
 import { accountItems, coreItems, customItems, uiToolkitItems } from './Links';
-import { Auth } from 'aws-amplify';
-import { Rings } from 'react-loader-spinner';
+import { useAuth0 } from '@auth0/auth0-react';
+
 
 interface MenuItemProps {
   title: string;
@@ -59,24 +59,7 @@ interface SidebarProps {
 }
 
 const Sidebar: React.FC<SidebarProps> = ({ isSidebarOpen }) => {
-  const [userDetails, setUserDetails] = useState<any>(null);
-  const [isLoading, setIsLoading] = useState(true);
-
-  useEffect(() => {
-    fetchUserDetails();
-  }, []);
-
-  const fetchUserDetails = async () => {
-    try {
-      const user = await Auth.currentAuthenticatedUser();
-      setUserDetails(user);
-    } catch (error) {
-      console.error('Error fetching user details:', error);
-    } finally {
-      setIsLoading(false);
-    }
-  };
-
+  const { user } = useAuth0();
   return (
     <div id="layoutSidenav_nav">
       <nav className='sidenav shadow-right sidenav-light'>
@@ -104,14 +87,10 @@ const Sidebar: React.FC<SidebarProps> = ({ isSidebarOpen }) => {
         </div>
         <div className="sidenav-footer">
           <div className="sidenav-footer-content">
-            {isLoading ? (
-              <li className="nav-item">
-                <Rings color="#000000" height={30} width={30} />
-              </li>
-            ) : userDetails ? (
+            {user ? (
               <>
                 <div className="sidenav-footer-subtitle">Logged in as:</div>
-                <div className="sidenav-footer-title">{userDetails.attributes.name}</div>
+                <div className="sidenav-footer-title">{user.name}</div>
               </>
             ) : null}
           </div>

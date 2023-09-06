@@ -1,48 +1,28 @@
-import React, { useEffect, useState } from 'react';
+import React from 'react';
 import { Auth } from 'aws-amplify';
 import {alertsItems, documentationItems, messagesItems } from './MenuItem';
-import { Watch } from 'react-loader-spinner';
 import DocumentationDropdown from './DocumentationDropdown';
 import AlertsDropdown from './AlertsDropdown';
 import MessagesDropdown from './MessagesDropdowns';
 import { FiSettings, FiLogOut } from 'react-icons/fi';
 import { FcCancel } from 'react-icons/fc';
+import { useAuth0 } from '@auth0/auth0-react';
 
 const HeaderDropdowns: React.FC = () => {
-  const [user, setUser] = useState<any>(null);
-  const [isLoading, setIsLoading] = useState(true);
-  useEffect(() => {
-    fetchUserDetails();
-  }, []);
-  const fetchUserDetails = async () => {
-    try {
-      const user = await Auth.currentAuthenticatedUser();
-      setUser(user);
-    } catch (error) {
-      console.error('Error fetching user details:', error);
-    } finally {
-      setIsLoading(false);
-    }
-  };
+  const { user } = useAuth0();
   const handleLogout = async () => {
     try {
-      await Auth.signOut();
-      setUser(null); 
+      await Auth.signOut(); 
     } catch (error) {
       window.alert('Error signing out:'+ error);
     }
   };
-
   return (
     <ul className="navbar-nav align-items-center ms-auto">
       <DocumentationDropdown items={documentationItems} />
       <AlertsDropdown items={alertsItems} />
       <MessagesDropdown items={messagesItems} />
-      {isLoading ? (
-        <li className="nav-item">
-          <Watch color="#000000" height={30} width={30} radius={10} />
-        </li>
-      ) : user ? (
+      {user ? (
         <li className="nav-item dropdown no-caret dropdown-user me-3 me-lg-4">
           <a className="btn btn-icon btn-transparent-dark dropdown-toggle" id="navbarDropdownUserImage" href="/" role="button" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
             <img alt="Profile" className="img-fluid" src="assets/img/illustrations/profiles/profile-1.png" />
@@ -51,8 +31,8 @@ const HeaderDropdowns: React.FC = () => {
             <h6 className="dropdown-header d-flex align-items-center">
               <img alt="Dropdown" className="dropdown-user-img" src="assets/img/illustrations/profiles/profile-1.png" />
               <div className="dropdown-user-details">
-                <div className="dropdown-user-details-name"> {user.attributes.name}</div>
-                <div className="dropdown-user-details-email">{user.attributes.email}</div>
+                <div className="dropdown-user-details-name"> {user.name}</div>
+                <div className="dropdown-user-details-email">{user.email}</div>
               </div>
             </h6>
             <div className="dropdown-divider"></div>
