@@ -1,21 +1,23 @@
-import React from 'react';
-import { Route, Routes } from "react-router-dom";
+import React, { Suspense, lazy } from 'react';
+import { Route, Routes } from 'react-router-dom';
 import { useAuth0 } from '@auth0/auth0-react';
 import { PageLoader } from './Components/PageLoader/Loader';
-import Dash from './Pages/Dashboard/Dash';
-import Team from './Pages/Team/Team';
-import LandingPage from './Pages/Auth/LandingPage';
-import Patients from './Pages/Customers/Patients';
-import ViewAppts from './Pages/Appointments/ViewAppts';
-import BookAppts from './Pages/Appointments/BookAppts';
-import Appts from './Pages/Appointments/Appts';
-import Payments from './Pages/Payments/Payments';
-import Profile from './Pages/Account/Profile';
 import Layout from './Layout/layout';
-import Messages from './Pages/Account/Messages';
-import Notifs from './Pages/Account/Notifs';
-import Tasks from './Pages/Account/Tasks';
 import ErrorPage from './Pages/ErrorPage/ErrorPage';
+
+// Lazy-loaded components
+const LandingPage = lazy(() => import('./Pages/Auth/LandingPage'));
+const Dash = lazy(() => import('./Pages/Dashboard/Dash'));
+const Team = lazy(() => import('./Pages/Team/Team'));
+const Patients = lazy(() => import('./Pages/Customers/Patients'));
+const ViewAppts = lazy(() => import('./Pages/Appointments/ViewAppts'));
+const BookAppts = lazy(() => import('./Pages/Appointments/BookAppts'));
+const Appts = lazy(() => import('./Pages/Appointments/Appts'));
+const Payments = lazy(() => import('./Pages/Payments/Payments'));
+const Profile = lazy(() => import('./Pages/Account/Profile'));
+const Messages = lazy(() => import('./Pages/Account/Messages'));
+const Notifs = lazy(() => import('./Pages/Account/Notifs'));
+const Tasks = lazy(() => import('./Pages/Account/Tasks'));
 
 const App: React.FC = () => {
   const { isLoading } = useAuth0();
@@ -27,32 +29,31 @@ const App: React.FC = () => {
       </div>
     );
   }
-  return(
+
+  return (
     <Routes>
-      <Route path="/" element={<LandingPage />} />
-      <Route path="/dashboard" element={<Dash />} />
-      <Route path="/staff/team" element={<Team />}/>
-      <Route path="/staff/roster" element={<Team />}/>
-      <Route path="/customers/patients" element={<Patients />} />
-      <Route path="/customers/records" element={<Patients />}/>
-      <Route path="/appointments/view" element={<ViewAppts />}/>
-      <Route path="/appointments/book" element={<BookAppts />}/>
-      <Route path="/appointments/reschedule" element={<Appts />}/>
-      <Route path="/payments/overview" element={<Payments />}/>
-      <Route path="/appointments/insurance" element={<Payments />}/>
-      <Route path="/appointments/make" element={<Payments />}/>
-      <Route path="/appointments/reschedule" element={<Appts />}/>
-      <Route path="/appointments/reschedule" element={<Appts />}/>
-      <Route path="/accounts/profile" element={<Profile />}/>
-      <Route path="/accounts/billing" element={<Dash />}/>
-      <Route path="/accounts/notifications" element={<Notifs />}/>
-      <Route path="/accounts/messages" element={<Messages />}/>
-      <Route path="/accounts/tasks" element={<Tasks />}/>
+      <Route path="/" element={<Suspense fallback={<PageLoader />}><LandingPage /></Suspense>} />
+      <Route path="/dashboard" element={<Suspense fallback={<PageLoader />}><Dash /></Suspense>} />
+      <Route path="/staff/team" element={<Suspense fallback={<PageLoader />}><Team /></Suspense>} />
+      <Route path="/staff/roster" element={<Suspense fallback={<PageLoader />}><Team /></Suspense>} />
+      <Route path="/customers/patients" element={<Suspense fallback={<PageLoader />}><Patients /></Suspense>} />
+      <Route path="/customers/records" element={<Suspense fallback={<PageLoader />}><Patients /></Suspense>} />
+      <Route path="/appointments/view" element={<Suspense fallback={<PageLoader />}><ViewAppts /></Suspense>} />
+      <Route path="/appointments/book" element={<Suspense fallback={<PageLoader />}><BookAppts /></Suspense>} />
+      <Route path="/appointments/reschedule" element={<Suspense fallback={<PageLoader />}><Appts /></Suspense>} />
+      <Route path="/payments/overview" element={<Suspense fallback={<PageLoader />}><Payments /></Suspense>} />
+      <Route path="/appointments/insurance" element={<Suspense fallback={<PageLoader />}><Payments /></Suspense>} />
+      <Route path="/appointments/make" element={<Suspense fallback={<PageLoader />}><Payments /></Suspense>} />
+      <Route path="/appointments/reschedule" element={<Suspense fallback={<PageLoader />}><Appts /></Suspense>} />
+      <Route path="/accounts/profile" element={<Suspense fallback={<PageLoader />}><Profile /></Suspense>} />
+      <Route path="/accounts/billing" element={<Suspense fallback={<PageLoader />}><Dash /></Suspense>} />
+      <Route path="/accounts/notifications" element={<Suspense fallback={<PageLoader />}><Notifs /></Suspense>} />
+      <Route path="/accounts/messages" element={<Suspense fallback={<PageLoader />}><Messages /></Suspense>} />
+      <Route path="/accounts/tasks" element={<Suspense fallback={<PageLoader />}><Tasks /></Suspense>} />
       <Route path="/callback" element={<Layout children />} />
       <Route path="*" element={<ErrorPage />} />
     </Routes>
-   )
+  );
 };
 
 export default App;
-

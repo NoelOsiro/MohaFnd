@@ -7,7 +7,6 @@ import ActivityCard from '../../Components/Cards/ActivityCard'
 import Card from '../../Components/Cards/DasCard'
 import { FaNewspaper, FaPills, FaServer } from 'react-icons/fa'
 import PatientsTable from '../../Components/Tables/PatientsTable'
-import { getNumberOfPatientsThisWeek } from '../../Services/CustomerService'
 
 
 
@@ -21,18 +20,18 @@ const Patients = () => {
                         title={'Attended'}
                         icon={FaServer}
                         size={true}
-                        statPromise={getNumberOfPatientsThisWeek()}
+
                         colorClass={'text-primary'}
                         description={'This Week'}
-                        imageSrc={'assets/img/illustrations/windows.svg'} />
+                        imageSrc={'assets/img/illustrations/windows.svg'} count={0} />
                     <Card
                         title={'New'}
                         icon={FaNewspaper}
                         size={true}
-                        statPromise={getNumberOfPatientsThisWeek()}
+
                         colorClass={'text-success'}
                         description={'This week'}
-                        imageSrc={'assets/img/illustrations/processing.svg'} />
+                        imageSrc={'assets/img/illustrations/processing.svg'} count={0} />
 
                 </div>
                 <div className="row">

@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import DataTable from 'react-data-table-component';
-import { IAppointment, getAppointments } from '../../Services/DashService';
+import { IAppointment, fetchAndStoreAppointments } from '../../Services/ApptsService';
 // @ts-ignore
 import DataTableExtensions from 'react-data-table-component-extensions';
 import 'react-data-table-component-extensions/dist/index.css';
@@ -8,30 +8,35 @@ import 'react-data-table-component-extensions/dist/index.css';
 const columns = [
   {
     name: 'Date',
-    selector: (row:IAppointment) => row.appointment_date,
+    selector: (row: IAppointment) => {
+      const datePart = row.startTime.split('T')[0];
+      return datePart;
+    },
     sortable: true,
   },
   {
     name: 'Start Time',
-    selector: (row:IAppointment) => row.start_time,
+    selector: (row: IAppointment) => {
+      const startTime = new Date(row.startTime);
+      return startTime.toLocaleTimeString();;
+    },
     sortable: true,
   },
   {
-    name: 'End Time',
-    selector: (row:IAppointment) => row.end_time,
+    name: 'Duration',
+    selector: (row: IAppointment) => row.duration,
     sortable: true,
   },
   {
     name: 'Status',
-    selector: (row:IAppointment) => row.status,
+    selector: (row: IAppointment) => row.status,
     sortable: true,
   },
   {
     name: 'Assigned To',
-    selector: (row:IAppointment) => row.assigned_to,
+    selector: (row: IAppointment) => row.staff,
     sortable: true,
   },
-  
 ];
 
 const MyApptsTable = () => {
@@ -39,17 +44,17 @@ const MyApptsTable = () => {
   const [selectedRow, setSelectedRow] = useState<IAppointment | null>(null);
 
   useEffect(() => {
-    // Fetch the appointments for this week
-    const fetchAppointments = async () => {
-      try {
-        const appointments = await getAppointments(); // Replace this with your actual function to fetch appointments this week
-        setAppointments(appointments);
-      } catch (error) {
-        console.error('Error fetching appointments this week:', error);
-      }
-    };
-    fetchAppointments();
-  }, []);
+    fetchAndStoreAppointments()
+      .then(() => {
+        const storedData = localStorage.getItem('appointments');
+        if (storedData) {
+          const appointments: IAppointment[] = JSON.parse(storedData);
+          setAppointments(appointments);
+        }
+      }).catch((error) => {
+        console.error('Error fetching and storing appointments:', error);
+      });
+  }, [appts]);
   // Function to handle row click and show the modal
   const handleRowClick = (row: IAppointment) => {
     setSelectedRow(row);
@@ -80,11 +85,11 @@ const MyApptsTable = () => {
               &times;
             </span>
             <h2>Appointment Details</h2>
-            <p>Date: {selectedRow.appointment_date}</p>
-            <p>Start Time: {selectedRow.start_time}</p>
-            <p>End Time: {selectedRow.end_time}</p>
+            <p>Date: {selectedRow.startTime.split('T')[0]}</p>
+            <p>Start Time: {selectedRow.startTime}</p>
+            <p>End Time: {selectedRow.duration}</p>
             <p>Status: {selectedRow.status}</p>
-            <p>Assigned To: {selectedRow.assigned_to}</p>
+            <p>Assigned To: {selectedRow.staff}</p>
             {/* Add other fields as needed */}
           </div>
         </div>

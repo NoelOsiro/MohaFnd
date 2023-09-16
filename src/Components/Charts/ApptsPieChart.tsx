@@ -1,8 +1,8 @@
 import React, { useEffect, useState } from 'react';
 import { Doughnut } from 'react-chartjs-2';
-import { DataStore } from '@aws-amplify/datastore';
-import { Appointment, AppointmentStatusEnum } from '../../models';
 import { FaCircle } from 'react-icons/fa';
+import { AppointmentSummary, fetchAndStoreDashAppointments } from '../../Services/DashService';
+
 
 const ApptsPieChart = () => {
     const [chartData, setChartData] = useState({
@@ -26,24 +26,16 @@ const ApptsPieChart = () => {
     });
 
     useEffect(() => {
-        const fetchAppointments = async () => {
-            try {
-                const appointments = await DataStore.query(Appointment);
-                const missedAppointments = appointments.filter(
-                    appointment => appointment.status === AppointmentStatusEnum.MISSED
-                ).length;
-                const doneAppointments = appointments.filter(
-                    appointment => appointment.status === AppointmentStatusEnum.DONE
-                ).length;
-                const pendingAppointments = appointments.filter(
-                    appointment => appointment.status === AppointmentStatusEnum.PENDING
-                ).length;
+        fetchAndStoreDashAppointments()
+        .then(() => {
+            const storedData = localStorage.getItem('apptsSummary');
+            if (storedData) {
+                const appointments: AppointmentSummary = JSON.parse(storedData);
                 setChartData({
-
                     datasets: [
                         {
                             label: '# of Appointments',
-                            data: [missedAppointments, doneAppointments, pendingAppointments],
+                            data: [appointments.MissedAppointments, appointments.DoneAppointments, appointments.PendingAppointments],
                             backgroundColor: [
                                 'rgba(232, 21, 0, 1.0)',
                                 'rgb(81, 255, 0)',
@@ -58,12 +50,11 @@ const ApptsPieChart = () => {
                         },
                     ],
                 });
-            } catch (error) {
-                console.error('Error fetching appointments:', error);
-            }
-        };
-
-        fetchAppointments();
+                }
+              })
+              .catch((error) => {
+                console.error('Error fetching and storing appointments:', error);
+              });
     }, []);
     const totalAppointments =
         chartData.datasets[0].data.reduce((sum, count) => sum + count, 0);
@@ -71,7 +62,8 @@ const ApptsPieChart = () => {
     const donePercentage = ((chartData.datasets[0].data[1] / totalAppointments) * 100).toFixed(2);
     const pendingPercentage = ((chartData.datasets[0].data[2] / totalAppointments) * 100).toFixed(2);
     return (
-        <div className="card h-100">
+        <div className="col-lg-6 col-md-12 mb-4">
+            <div className="card h-100">
             <div className="card-header pt-2 pb-4">Traffic Sources</div>
             <div className="card-body">
                 <div className="chart-pie mb-4">
@@ -102,6 +94,8 @@ const ApptsPieChart = () => {
                 </div>
             </div>
         </div>
+        </div>
+        
     );
 };
 

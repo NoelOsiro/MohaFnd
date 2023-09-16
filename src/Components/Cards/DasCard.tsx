@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react';
+import React from 'react';
 import { IconType } from 'react-icons';
 
 interface CardProps {
@@ -8,72 +8,27 @@ interface CardProps {
   colorClass: string;
   description: string;
   imageSrc: string;
+  count: number;
 }
 
-const Card: React.FC<CardProps> = ({ title, icon: Icon, size, colorClass, description, imageSrc }) => {
-  const colClass = size ? 'col-xl-6' : 'col-xl-4';
-  const [data, setData] = useState(null);
-
-  useEffect(() => {
-    const storedApiData = localStorage.getItem('apptsData');
-    if (storedApiData) {
-      const parsedData = JSON.parse(storedApiData);
-      setData(parsedData);
-    }
-  }, []);
-
-  const renderContent = () => {
-    if (data === null) {
-      return <div>Loading...</div>;
-    }
-
-    let count = 0;
-    let countText = '';
-
-    switch (title) {
-      case 'Appointment':
-        count = data['MissedAppointments'] + data['PendingAppointments'] + data['DoneAppointments'];
-        countText = description;
-        break;
-      case 'Missed':
-        count = data['MissedAppointments'];
-        countText = description;
-        break;
-      case 'Pending':
-        count = data['PendingAppointments'];
-        countText = description;
-        break;
-      case 'Done':
-        count = data['DoneAppointments'];
-        countText = description;
-        break;
-      default:
-        break;
-    }
-
-    return (
-      <>
-        <Icon size={30} className={`${colorClass} mb-3`} />
-        <h4>{title}</h4>
-        <h5>{count}</h5>
-        <div className="text-muted small">{countText}</div>
-      </>
-    );
-  };
-
+const Card: React.FC<CardProps> = (props:CardProps) => {
+  const colClass = props.size ? 'col-xl-6 col-lg-6' : 'col-xl-4 col-lg-4';
   return (
-    <div className={`${colClass} mb-4`}>
-      <a className="card lift h-100" href="#!">
-        <div className="card-body d-flex justify-content-center flex-column">
-          <div className="d-flex align-items-center justify-content-between">
-            <div className="me-3">
-              {renderContent()}
+      <div className={`${colClass} mb-4`}>
+        <div className="card lift h-100">
+          <div className="card-body d-flex justify-content-center flex-column">
+            <div className="d-flex align-items-center justify-content-between">
+              <div className="me-3">
+                <props.icon size={30} className={`${props.colorClass} mb-3`} />
+                <h4>{props.title}</h4>
+                <h5>{props.count}</h5>
+                <div className="text-muted small">{props.description}</div>
+              </div>
+              <img alt='' src={props.imageSrc} style={{ width: '8rem' }} />
             </div>
-            <img alt='' src={imageSrc} style={{ width: '8rem' }} />
           </div>
         </div>
-      </a>
-    </div>
+      </div>
   );
 };
 

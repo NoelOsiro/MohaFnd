@@ -88,52 +88,55 @@ const timelineItems = [
 
 const ActivityCard = () => {
   return (
-    <div className="card card-header-actions h-100">
-      <div className="card-header">
-        Recent Activity
-        <div className="dropdown no-caret">
-          <button
-            className="btn btn-transparent-dark btn-icon dropdown-toggle"
-            id="dropdownMenuButton"
-            type="button"
-            data-bs-toggle="dropdown"
-            aria-haspopup="true"
-            aria-expanded="false"
-            title="More options"
-          >
-            <i className="text-gray-500" data-feather="more-vertical"></i>
-          </button>
-          <div className="dropdown-menu dropdown-menu-end animated--fade-in-up" aria-labelledby="dropdownMenuButton">
-            <h6 className="dropdown-header">Filter Activity:</h6>
-            <a className="dropdown-item" href="#!">
-              <span className="badge bg-green-soft text-green my-1">Appointments</span>
-            </a>
-            <a className="dropdown-item" href="#!">
-              <span className="badge bg-blue-soft text-blue my-1">Tasks</span>
-            </a>
-            <a className="dropdown-item" href="#!">
-              <span className="badge bg-yellow-soft text-yellow my-1">Insurance</span>
-            </a>
-            <a className="dropdown-item" href="#!">
-              <span className="badge bg-purple-soft text-purple my-1">Office Errands</span>
-            </a>
+    <div className="col-lg-6 col-md-12 mb-4">
+      <div className="card card-header-actions h-100">
+        <div className="card-header">
+          Recent Activity
+          <div className="dropdown no-caret">
+            <button
+              className="btn btn-transparent-dark btn-icon dropdown-toggle"
+              id="dropdownMenuButton"
+              type="button"
+              data-bs-toggle="dropdown"
+              aria-haspopup="true"
+              aria-expanded="false"
+              title="More options"
+            >
+              <i className="text-gray-500" data-feather="more-vertical"></i>
+            </button>
+            <div className="dropdown-menu dropdown-menu-end animated--fade-in-up" aria-labelledby="dropdownMenuButton">
+              <h6 className="dropdown-header">Filter Activity:</h6>
+              <a className="dropdown-item" href="#!">
+                <span className="badge bg-green-soft text-green my-1">Appointments</span>
+              </a>
+              <a className="dropdown-item" href="#!">
+                <span className="badge bg-blue-soft text-blue my-1">Tasks</span>
+              </a>
+              <a className="dropdown-item" href="#!">
+                <span className="badge bg-yellow-soft text-yellow my-1">Insurance</span>
+              </a>
+              <a className="dropdown-item" href="#!">
+                <span className="badge bg-purple-soft text-purple my-1">Office Errands</span>
+              </a>
+            </div>
+          </div>
+        </div>
+        <div className="card-body">
+          <div className="timeline timeline-xs">
+            {timelineItems.map((item, index) => (
+              <div className="timeline-item" key={index}>
+                <div className="timeline-item-marker">
+                  <div className="timeline-item-marker-text">{item.time}</div>
+                  <div className={`timeline-item-marker-indicator ${item.indicatorColor}`}></div>
+                </div>
+                <div className="timeline-item-content">{item.content}</div>
+              </div>
+            ))}
           </div>
         </div>
       </div>
-      <div className="card-body">
-        <div className="timeline timeline-xs">
-          {timelineItems.map((item, index) => (
-            <div className="timeline-item" key={index}>
-              <div className="timeline-item-marker">
-                <div className="timeline-item-marker-text">{item.time}</div>
-                <div className={`timeline-item-marker-indicator ${item.indicatorColor}`}></div>
-              </div>
-              <div className="timeline-item-content">{item.content}</div>
-            </div>
-          ))}
-        </div>
-      </div>
     </div>
+
   );
 };
 
