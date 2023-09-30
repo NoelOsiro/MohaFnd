@@ -11,7 +11,7 @@ const ErrorPage = () => {
                                 <div className="text-center mt-4">
                                     <img className="img-fluid p-4" src="assets/img/illustrations/404-error-with-a-cute-animal.svg" alt="" />
                                     <p className="lead">This requested URL was not found on this server.</p>
-                                    <a className="text-arrow-icon" href="dashboard-1.html">
+                                    <a className="text-arrow-icon" href="/dashboard">
                                         <i className="ms-0 me-1" data-feather="arrow-left"></i>
                                         Return to Dashboard
                                     </a>
