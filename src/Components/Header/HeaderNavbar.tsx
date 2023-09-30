@@ -17,7 +17,7 @@ const HeaderNavbar: React.FC<HeaderNavbarProps> = ({ toggleSidebar }) => {
         <FcMenu />
       </button>
       <a className="navbar-brand pe-3 ps-4 ps-lg-2" href="/">
-        Gulf Implant Center
+        Moha Apartments
       </a>
     </>
   );
