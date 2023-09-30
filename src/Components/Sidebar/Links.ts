@@ -66,7 +66,7 @@ export const customItems: MenuItem[] = [
       {
         title: 'Tenants',
         icon: FiHeart,
-        link:'/tenants/patients'
+        link:'/tenants'
       },
       {
         title: 'Records',
@@ -76,7 +76,7 @@ export const customItems: MenuItem[] = [
       {
         title: 'Requests ',
         icon: FiClipboard,
-        link:'/account/tasks'
+        link:'/services/request'
       },
     ],
   },
@@ -108,17 +108,17 @@ export const customItems: MenuItem[] = [
       {
         title: 'Overview',
         icon: FiTablet,
-        link:'/payments/make'
+        link:'/payments/overview'
       },
       {
         title: 'Analytics',
         icon: FiSpeaker,
-        link:'/payments/insurance'
+        link:'/payments/analytics'
       },
       {
         title: 'Accounts',
         icon: FiEye,
-        link:'/payments/overview'
+        link:'/payments/overview#accounts'
       },
     ],
   },
@@ -158,12 +158,12 @@ export const uiToolkitItems: MenuItem[] = [
       {
         title: 'Services',
         icon: FiMail,
-        link:'/account/messages'
+        link:'/contractor/services'
       },
       {
         title: 'Tasks ',
         icon: FiClipboard,
-        link:'/account/tasks'
+        link:'/contractor/tasks'
       },
     ],
   },
