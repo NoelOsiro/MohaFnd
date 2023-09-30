@@ -36,20 +36,16 @@ const App: React.FC = () => {
       <Route path="/dashboard" element={<Suspense fallback={<PageLoader />}><Dash /></Suspense>} />
       <Route path="/staff/team" element={<Suspense fallback={<PageLoader />}><Team /></Suspense>} />
       <Route path="/staff/roster" element={<Suspense fallback={<PageLoader />}><Team /></Suspense>} />
-      <Route path="/customers/patients" element={<Suspense fallback={<PageLoader />}><Patients /></Suspense>} />
-      <Route path="/customers/records" element={<Suspense fallback={<PageLoader />}><Patients /></Suspense>} />
-      <Route path="/appointments/view" element={<Suspense fallback={<PageLoader />}><ViewAppts /></Suspense>} />
-      <Route path="/appointments/book" element={<Suspense fallback={<PageLoader />}><BookAppts /></Suspense>} />
-      <Route path="/appointments/reschedule" element={<Suspense fallback={<PageLoader />}><Appts /></Suspense>} />
+      <Route path="/tenants/patients" element={<Suspense fallback={<PageLoader />}><Patients /></Suspense>} />
+      <Route path="/tenants/records" element={<Suspense fallback={<PageLoader />}><Patients /></Suspense>} />
+      <Route path="/property/view" element={<Suspense fallback={<PageLoader />}><ViewAppts /></Suspense>} />
+      <Route path="/property/lease" element={<Suspense fallback={<PageLoader />}><BookAppts /></Suspense>} />
       <Route path="/payments/overview" element={<Suspense fallback={<PageLoader />}><Payments /></Suspense>} />
-      <Route path="/appointments/insurance" element={<Suspense fallback={<PageLoader />}><Payments /></Suspense>} />
-      <Route path="/appointments/make" element={<Suspense fallback={<PageLoader />}><Payments /></Suspense>} />
-      <Route path="/appointments/reschedule" element={<Suspense fallback={<PageLoader />}><Appts /></Suspense>} />
       <Route path="/accounts/profile" element={<Suspense fallback={<PageLoader />}><Profile /></Suspense>} />
-      <Route path="/accounts/billing" element={<Suspense fallback={<PageLoader />}><Dash /></Suspense>} />
-      <Route path="/accounts/notifications" element={<Suspense fallback={<PageLoader />}><Notifs /></Suspense>} />
-      <Route path="/accounts/messages" element={<Suspense fallback={<PageLoader />}><Messages /></Suspense>} />
-      <Route path="/accounts/tasks" element={<Suspense fallback={<PageLoader />}><Tasks /></Suspense>} />
+      <Route path="/services/request" element={<Suspense fallback={<PageLoader />}><Dash /></Suspense>} />
+      <Route path="/accounts/owners" element={<Suspense fallback={<PageLoader />}><Notifs /></Suspense>} />
+      <Route path="/accounts/managers" element={<Suspense fallback={<PageLoader />}><Messages /></Suspense>} />
+      <Route path="/contactors" element={<Suspense fallback={<PageLoader />}><Tasks /></Suspense>} />
       <Route path="/callback" element={<Layout children />} />
       <Route path="*" element={<ErrorPage />} />
     </Routes>
