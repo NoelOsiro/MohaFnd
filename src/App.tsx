@@ -36,7 +36,7 @@ const App: React.FC = () => {
       <Route path="/dashboard" element={<Suspense fallback={<PageLoader />}><Dash /></Suspense>} />
       <Route path="/staff/team" element={<Suspense fallback={<PageLoader />}><Team /></Suspense>} />
       <Route path="/staff/roster" element={<Suspense fallback={<PageLoader />}><Team /></Suspense>} />
-      <Route path="/tenants/patients" element={<Suspense fallback={<PageLoader />}><Patients /></Suspense>} />
+      <Route path="/tenants" element={<Suspense fallback={<PageLoader />}><Patients /></Suspense>} />
       <Route path="/tenants/records" element={<Suspense fallback={<PageLoader />}><Patients /></Suspense>} />
       <Route path="/property/view" element={<Suspense fallback={<PageLoader />}><ViewAppts /></Suspense>} />
       <Route path="/property/lease" element={<Suspense fallback={<PageLoader />}><BookAppts /></Suspense>} />

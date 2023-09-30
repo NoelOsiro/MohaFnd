@@ -34,7 +34,7 @@ export const coreItems: MenuItem[] = [
         link:'/',
       },
       {
-        title: 'Report',
+        title: 'Reports',
         icon: FiBarChart2,
         link:'/reports',
       },
@@ -60,39 +60,44 @@ export const customItems: MenuItem[] = [
     ],
   },
   {
-    title: 'Customers',
+    title: 'Tenants',
     icon: FiUsers,
     subItems: [
       {
-        title: 'Patients',
+        title: 'Tenants',
         icon: FiHeart,
-        link:'/customers/patients'
+        link:'/tenants'
       },
       {
         title: 'Records',
         icon: FiDatabase,
-        link:'/customers/records'
+        link:'/tenants/records'
+      },
+      {
+        title: 'Requests ',
+        icon: FiClipboard,
+        link:'/services/request'
       },
     ],
   },
   {
-    title: 'Appointments',
+    title: 'Properties',
     icon: FiGlobe,
     subItems: [
       {
         title: 'View',
         icon: FiEyeOff,
-        link:'/appointments/view',
+        link:'/property/view',
       },
       {
-        title: 'Book',
+        title: 'Lease/Rent',
         icon: FiBookOpen,
-        link:'/appointments/book',
+        link:'/property/book',
       },
       {
-        title: 'Reschedule',
+        title: 'Service',
         icon: FiRefreshCcw,
-        link:'/appointments/reschedule'
+        link:'/property/reschedule'
       },
     ],
   },
@@ -101,19 +106,19 @@ export const customItems: MenuItem[] = [
     icon: FiCreditCard,
     subItems: [
       {
-        title: 'Make Payment',
-        icon: FiTablet,
-        link:'/payments/make'
-      },
-      {
-        title: 'Insurance',
-        icon: FiSpeaker,
-        link:'/payments/insurance'
-      },
-      {
         title: 'Overview',
-        icon: FiEye,
+        icon: FiTablet,
         link:'/payments/overview'
+      },
+      {
+        title: 'Analytics',
+        icon: FiSpeaker,
+        link:'/payments/analytics'
+      },
+      {
+        title: 'Accounts',
+        icon: FiEye,
+        link:'/payments/overview#accounts'
       },
     ],
   },
@@ -135,30 +140,30 @@ export const uiToolkitItems: MenuItem[] = [
         link:'/account/billing'
       },
       {
-        title: 'Notifications',
+        title: 'Managers',
         icon: FiBell,
         link:'/account/notifications'
       },
       {
-        title: 'Security',
+        title: 'Owners',
         icon: FiLock,
         link:'/account/security'
       },
     ],
   },
   {
-    title: 'Messages',
+    title: 'Contractors',
     icon: FiPackage,
     subItems: [
       {
-        title: 'Inbox',
+        title: 'Services',
         icon: FiMail,
-        link:'/account/messages'
+        link:'/contractor/services'
       },
       {
-        title: 'Tasks',
+        title: 'Tasks ',
         icon: FiClipboard,
-        link:'/account/tasks'
+        link:'/contractor/tasks'
       },
     ],
   },
