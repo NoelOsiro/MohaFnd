@@ -22,7 +22,7 @@ const LandingPage = () => {
                             </div>
                         </div>
                         <div className="col-lg-4 offset-lg-1 p-0 overflow-hidden shadow-lg">
-                            <img className="rounded-lg-3" src="bootstrap-docs.png" alt="" width="720" />
+                            <img className="rounded-lg-3" src="/assets/img/demo/login.png" alt="" width="720" />
                         </div>
                     </div>
                 </div>
