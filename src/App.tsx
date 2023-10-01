@@ -12,7 +12,7 @@ const Team = lazy(() => import('./Pages/Team/Team'));
 const Patients = lazy(() => import('./Pages/Customers/Patients'));
 const ViewAppts = lazy(() => import('./Pages/Appointments/ViewAppts'));
 const BookAppts = lazy(() => import('./Pages/Appointments/BookAppts'));
-const Appts = lazy(() => import('./Pages/Appointments/Appts'));
+// const Appts = lazy(() => import('./Pages/Appointments/Appts'));
 const Payments = lazy(() => import('./Pages/Payments/Payments'));
 const Profile = lazy(() => import('./Pages/Account/Profile'));
 const Messages = lazy(() => import('./Pages/Account/Messages'));
