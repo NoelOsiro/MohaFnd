@@ -41,11 +41,24 @@ const LandingPage = () => {
     return Object.keys(errors).length === 0;
   };
 
-  const handleSubmit = (e: FormEvent) => {
+  const handleSubmit = async (e: FormEvent) => {
     e.preventDefault();
     if (validateForm()) {
-        // Add your form submission logic here
-        alert(formData.email);
+      try {
+        const { user, error } = await supabase.auth.signIn({
+          formData.email,
+          formData.password,
+        });
+  
+        if (error) {
+          console.error("Error logging in:", error.message);
+        } else {
+          console.log("Logged in as:", user);
+          // Redirect or perform actions on successful login.
+        }
+      } catch (error) {
+        console.error("Error logging in:", error.message);
+      }
     }
   };
 
