@@ -4,6 +4,7 @@ import { useAuth0 } from '@auth0/auth0-react';
 import { PageLoader } from './Components/PageLoader/Loader';
 import Layout from './Layout/layout';
 import ErrorPage from './Pages/ErrorPage/ErrorPage';
+import { useAuth } from './Pages/Auth/useAuth';
 
 // Lazy-loaded components
 const LandingPage = lazy(() => import('./Pages/Auth/LandingPage'));
@@ -20,9 +21,9 @@ const Notifs = lazy(() => import('./Pages/Account/Notifs'));
 const Tasks = lazy(() => import('./Pages/Account/Tasks'));
 
 const App: React.FC = () => {
-  const { isLoading } = useAuth0();
+  const { user, isAuthorizing } = useAuth()
 
-  if (isLoading) {
+  if (isAuthorizing) {
     return (
       <div className="page-layout">
         <PageLoader />

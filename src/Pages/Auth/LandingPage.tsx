@@ -1,6 +1,8 @@
 import React, { useState, ChangeEvent, FormEvent } from "react";
-import {LoginButton } from '../../Components/Forms/Buttons';
-import {Form, FormGroup, Input, Label } from '../../Components/Forms/Input';
+import { LoginButton } from '../../Components/Forms/Buttons';
+import { Form, FormGroup, Input, Label } from '../../Components/Forms/Input';
+import supabase from "../../auth/supabase";
+import { useAuth } from "./useAuth";
 
 interface FormData {
   email: string;
@@ -15,6 +17,7 @@ const LandingPage = () => {
     rememberPassword: false,
   });
   const [formErrors, setFormErrors] = useState<Partial<FormData>>({});
+  const { user } = useAuth();
 
   const handleChange = (e: ChangeEvent<HTMLInputElement>) => {
     const { name, value, type, checked } = e.target;
@@ -41,26 +44,30 @@ const LandingPage = () => {
     return Object.keys(errors).length === 0;
   };
 
-  const handleSubmit = async (e: FormEvent) => {
-    e.preventDefault();
+  const handleLogin = async () => {
     if (validateForm()) {
       try {
-        const { user, error } = await supabase.auth.signIn({
-          formData.email,
-          formData.password,
+        const { data, error } = await supabase.auth.signInWithPassword({
+          email: formData.email,
+          password: formData.password,
         });
-  
+
         if (error) {
           console.error("Error logging in:", error.message);
         } else {
-          console.log("Logged in as:", user);
+          console.log("Logged in as:", data);
           // Redirect or perform actions on successful login.
         }
-      } catch (error) {
+      } catch (error: any) {
         console.error("Error logging in:", error.message);
       }
     }
   };
+
+  if (user) {
+    window.location.assign('/dashboard'); // Redirect if user exists
+    return null; // Return null to prevent rendering the login form
+  }
 
   return (
     <div className="container my-2">
