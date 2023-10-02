@@ -1,61 +1,61 @@
 import React, { useEffect, useState } from 'react'
 import Card from '../../Components/Cards/DasCard'
-import { AppointmentSummary, fetchAndStoreDashAppointments } from '../../Services/DashService';
-import { FiBook, FiLayout, FiPackage } from 'react-icons/fi';
+import { FiBook, FiLayout, FiHome } from 'react-icons/fi';
+import supabase from '../../auth/supabase';
 
 const DashCards = () => {
-    // eslint-disable-next-line @typescript-eslint/no-unused-vars
-    const [error, setError] = useState<string | null>(null);
-    // eslint-disable-next-line @typescript-eslint/no-unused-vars
-    const [data, setData] = useState<AppointmentSummary | null>(null);
-    useEffect(() => {
-        const storedApiData = localStorage.getItem('apptsSummary');
-        if (storedApiData) {
-            const parsedData = JSON.parse(storedApiData);
-            setData(parsedData.data);
-        }
-        else {
-            fetchAndStoreDashAppointments()
-                .catch((error) => {
-                    setError(error.message);
-                })
-            const storedApiData = localStorage.getItem('apptsSummary');
-            if (storedApiData) {
-                const parsedData = JSON.parse(storedApiData);
-                setData(parsedData.data);
+    const [propertyStats, setPropertyStats] = useState<{ total: number; vacant: number; occupied: number }>({
+        total: 0,
+        vacant: 0,
+        occupied: 0,
+      });
+      useEffect(() => {
+        async function fetchPropertyStats() {
+          try {
+            const { data, error } = await supabase
+              .from('Property')
+              .select('id, occupied_status');
+    
+            if (error) {
+              throw error;
             }
+    
+            const total = data.length;
+            const vacant = data.filter(property => !property.occupied_status).length;
+            const occupied = total - vacant;
+    
+            setPropertyStats({ total, vacant, occupied });
+          } catch (error) {
+            console.error('Error fetching property statistics:', error);
+          }
         }
-        ;
-    }, []);
+    
+        fetchPropertyStats();
+      }, []);
     return (
-        data ?
-            (
                 <>
                     <Card
-                        title={'Done'}
-                        icon={FiPackage}
+                        title={'My Properties'}
+                        icon={FiHome}
                         colorClass={'text-primary'}
-                        description={'This week'}
+                        description={'Total Properties'}
                         imageSrc={'assets/img/illustrations/browser-stats.svg'}
-                        count={data.DoneAppointments} />
+                        count={propertyStats.total} />
                     <Card
-                        title={'Missed'}
+                        title={'Vacant'}
                         icon={FiBook}
                         colorClass={'text-danger'}
                         description={'This week'}
                         imageSrc={'assets/img/illustrations/processing.svg'}
-                        count={data.MissedAppointments} />
+                        count={propertyStats.vacant} />
                     <Card
-                        title={'Pending'}
+                        title={'Occupied'}
                         icon={FiLayout}
-                        colorClass={'text-warning'}
+                        colorClass={'text-success'}
                         description={'This week'}
                         imageSrc={'assets/img/illustrations/windows.svg'}
-                        count={data.PendingAppointments} />
+                        count={propertyStats.occupied} />
                 </>
-            ) :
-            null
-
     )
 }
 
