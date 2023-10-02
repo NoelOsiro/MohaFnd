@@ -1,33 +1,10 @@
 import React, { CSSProperties, useEffect, useState } from 'react';
-import {
-  Chart as ChartJS,
-  CategoryScale,
-  LinearScale,
-  PointElement,
-  LineElement,
-  Title,
-  Tooltip,
-  Filler,
-  Legend,
-  ChartOptions,
-  ArcElement,
-  BarElement
-} from 'chart.js';
 import { Bar } from 'react-chartjs-2';
+import { Chart as ChartJS, Title, Tooltip, Legend, ChartOptions } from 'chart.js';
+import supabase from '../../auth/supabase';
 
-// Register all required Chart.js components
-ChartJS.register(
-  CategoryScale,
-  LinearScale,
-  PointElement,
-  LineElement,
-  Title,
-  Tooltip,
-  Filler,
-  Legend,
-  ArcElement,
-  BarElement
-);
+// Register required Chart.js components
+ChartJS.register(Title, Tooltip, Legend);
 
 // CSS style for the chart container
 const ChartStyles: CSSProperties = {
@@ -41,48 +18,57 @@ const options: ChartOptions = {
   plugins: {
     title: {
       display: true,
-      text: 'Appointments',
+      text: 'Service Requests',
     },
   },
 };
 
-
 const LineChart = () => {
-  // State to store appointment data
-  const [appointmentData, setAppointmentData] = useState<number[]>([]);
+  // State to store ticket data and loading state
+  const [ticketData, setTicketData] = useState<number[]>([]);
+  const [loading, setLoading] = useState(true);
 
   useEffect(() => {
-    // Retrieve appointment data from localStorage
-    const storedData = localStorage.getItem('appointments');
-    if (storedData) {
+    async function fetchData() {
       try {
-        const appointments = JSON.parse(storedData);
-        
-        if (Array.isArray(appointments.data)) {
-          // Create an array of daily counts for 'Done' appointments for the last 7 days
-          const dailyCounts = Array(7).fill(0);
-          appointments.data.forEach((appointment: any) => {
-            const appointmentDate = new Date(appointment.startTime);
-            const daysAgo = Math.floor(
-              (new Date().getTime() - appointmentDate.getTime()) /
-              (24 * 3600 * 1000)
-            );
-            if (daysAgo >= 0 && daysAgo < 7) {
-              dailyCounts[6 - daysAgo]++;
-            }
-          });
-          setAppointmentData(dailyCounts);
-        } else {
-          // Handle the case where the data is not an array
-          console.error('Appointments data in localStorage is not an array.');
+        const { data, error } = await supabase
+          .from('Maintenance_requests')
+          .select('request_date');
+
+        if (error) {
+          throw error;
         }
+
+        // Calculate the date one week ago from today
+        const oneWeekAgo = new Date();
+        oneWeekAgo.setDate(oneWeekAgo.getDate() - 7);
+
+        // Filter data for the last week
+        const filteredData = data.filter((entry) => {
+          const requestDate = new Date(entry.request_date);
+          return requestDate >= oneWeekAgo;
+        });
+
+        // Group data by request_date and count occurrences
+        const requestCounts = filteredData.reduce((counts:any, entry) => {
+          const requestDate = new Date(entry.request_date).toLocaleDateString();
+          counts[requestDate] = (counts[requestDate] || 0) + 1;
+          return counts;
+        }, {});
+
+        // Create an array of counts for the chart data
+        const chartData = Object.values(requestCounts).map((count) => Number(count));
+
+        setTicketData(chartData);
+        setLoading(false);
       } catch (error) {
-        // Handle any JSON parsing errors
-        console.error('Error parsing JSON data from localStorage:', error);
+        console.error('Error fetching data:', error);
       }
     }
+
+    fetchData();
   }, []);
-  
+
   // Dynamically generate labels for the last 7 days (e.g., Monday, Tuesday)
   const daysOfWeek = [
     'Sunday',
@@ -100,19 +86,22 @@ const LineChart = () => {
       const dayIndex = (currentDate.getDay() + 6 - index) % 7; // Calculate the day index for the label
       return daysOfWeek[dayIndex];
     });
+
   // Data for the chart
   const data = {
     labels,
     datasets: [
       {
-        fill: true,
-        label: 'Done Appointments (Last 7 Days)',
-        data: appointmentData,
-        borderColor: 'rgb(180, 205, 222)',
+        label: 'Requests per Day (Last 7 Days)',
+        data: ticketData,
         backgroundColor: 'rgba(53, 162, 235, 0.5)',
       },
     ],
   };
+
+  if (loading) {
+    return <p>Loading...</p>;
+  }
 
   return <Bar options={options} data={data} style={ChartStyles} />;
 };
