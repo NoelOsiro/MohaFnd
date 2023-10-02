@@ -71,7 +71,57 @@ const LandingPage = () => {
 
   return (
     <div className="container my-2">
-      {/* ... Rest of your component code ... */}
+      <div className="row p-4 pb-0 pe-lg-0 pt-lg-5 align-items-center rounded-3 border shadow-lg">
+        <div className="col-lg-6 p-3 p-lg-5 pt-lg-3">
+          <h1 className="display-4 fw-bold lh-1 text-center">MohaApts</h1>
+          <div className="card-header justify-content-center text-center">
+            <h3 className="fw-light my-4">Login</h3>
+          </div>
+          <Form onSubmit={handleSubmit}>
+            <FormGroup>
+              <Label htmlFor="inputEmailAddress">Email</Label>
+              <Input
+                type="email"
+                id="inputEmailAddress"
+                name="email"
+                placeholder="Enter email address"
+                value={formData.email}
+                onChange={handleChange}
+              />
+              {formErrors.email && <div className="text-danger">{formErrors.email}</div>}
+            </FormGroup>
+            <FormGroup>
+              <Label htmlFor="inputPassword">Password</Label>
+              <Input
+                type="password"
+                id="inputPassword"
+                name="password"
+                placeholder="Enter password"
+                value={formData.password}
+                onChange={handleChange}
+              />
+              {formErrors.password && <div className="text-danger">{formErrors.password}</div>}
+            </FormGroup>
+            <div className="d-flex align-items-center justify-content-between mt-4 mb-0">
+              <a className="small" href="auth-password-basic.html">
+                Forgot Password?
+              </a>
+              <LoginButton type="submit" className="btn-primary">
+                Login
+              </LoginButton>
+            </div>
+          </Form>
+        </div>
+        <div className="col-lg-5 offset-lg-1 p-0 overflow-hidden shadow-lg">
+          <img
+            className="rounded-lg-3"
+            src="/assets/img/demo/login.png"
+            alt=""
+            width="600"
+            height="500"
+          />
+        </div>
+      </div>
     </div>
   );
 };
