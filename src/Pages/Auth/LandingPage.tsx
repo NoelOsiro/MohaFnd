@@ -44,7 +44,7 @@ const LandingPage = () => {
     return Object.keys(errors).length === 0;
   };
 
-  const handleLogin = async () => {
+  const handleSubmit = async () => {
     if (validateForm()) {
       try {
         const { data, error } = await supabase.auth.signInWithPassword({
