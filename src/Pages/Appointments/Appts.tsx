@@ -9,6 +9,7 @@ import { FiCalendar } from 'react-icons/fi'
 
 const Appts = () => {
     return (
+        <Layout>
         <main>
                 <DashboardHeader title='Appointments' icon={FiCalendar} />
                 {/* <!-- Main page content--> */}
@@ -28,6 +29,7 @@ const Appts = () => {
                     </div>
                 </div>
             </main>
+        </Layout>
     )
 }
 
