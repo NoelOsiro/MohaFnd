@@ -6,13 +6,18 @@ import AlertsDropdown from './AlertsDropdown';
 import MessagesDropdown from './MessagesDropdowns';
 import { FiSettings, FiLogOut } from 'react-icons/fi';
 import { FcCancel } from 'react-icons/fc';
-import { useAuth0 } from '@auth0/auth0-react';
+import { useAuth } from '../../Pages/Auth/useAuth';
+import supabase from '../../auth/supabase';
+
 
 const HeaderDropdowns: React.FC = () => {
-  const { user } = useAuth0();
+  const { user } = useAuth();
   const handleLogout = async () => {
     try {
-      await Auth.signOut(); 
+      const {error} = await supabase.auth.signOut(); 
+      if (error) {
+        throw error;
+      }
     } catch (error) {
       window.alert('Error signing out:'+ error);
     }
@@ -31,7 +36,7 @@ const HeaderDropdowns: React.FC = () => {
             <h6 className="dropdown-header d-flex align-items-center">
               <img alt="Dropdown" className="dropdown-user-img" src="assets/img/illustrations/profiles/profile-1.png" />
               <div className="dropdown-user-details">
-                <div className="dropdown-user-details-name"> {user.name}</div>
+                <div className="dropdown-user-details-name"> {user.user_metadata?.first_name}</div>
                 <div className="dropdown-user-details-email">{user.email}</div>
               </div>
             </h6>

@@ -20,10 +20,6 @@ const Notifs = lazy(() => import('./Pages/Account/Notifs'));
 const Tasks = lazy(() => import('./Pages/Account/Tasks'));
 
 const App: React.FC = () => {
-  
-
-  
-
   return (
     <Routes>
       <Route path="/" element={<Suspense fallback={<PageLoader />}><LandingPage /></Suspense>} />
