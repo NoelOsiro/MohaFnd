@@ -12,6 +12,7 @@ import PatientsTable from '../../Components/Tables/PatientsTable'
 
 const Patients = () => {
     return (
+        <Layout>
         <main>
             <DashboardHeader title='Patients' icon={FaPills} />
             <div className="container-xl px-4 mt-n10">
@@ -71,6 +72,7 @@ const Patients = () => {
                 <Illustrate />
             </div>
         </main >
+    </Layout>
     )
 }
 
