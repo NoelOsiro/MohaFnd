@@ -5,11 +5,13 @@ import Illustrate from '../../Components/Illustration/Illustrate';
 import MyApptsTable from '../../Components/Tables/ApptsTable';
 import ApptsPieChart from '../../Components/Charts/ApptsPieChart';
 import { FaEyeSlash } from 'react-icons/fa';
+import Layout from '../../Layout/layout';
 // import { CreateAppointmentForm } from '../../ui-components'
 
 const ViewAppts = () => {
     return (
-        <main>
+        <Layout>
+            <main>
             <DashboardHeader title='View Appointments' icon={FaEyeSlash} />
             <div className="container-xl px-4 mt-n10">
                 <div className="row">
@@ -35,6 +37,8 @@ const ViewAppts = () => {
                 <Illustrate />
             </div>
         </main>
+        </Layout>
+        
     )
 }
 

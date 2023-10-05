@@ -5,12 +5,14 @@ import ActivityCard from '../../Components/Cards/ActivityCard'
 import PieChart from '../../Components/Charts/PieChart'
 import TeamsTable from '../../Components/Tables/TeamsTable'
 import { FaPeopleArrows } from 'react-icons/fa'
+import Layout from '../../Layout/layout'
 // import StaffCreateForm from '../../ui-components/StaffCreateForm'
 
 
 
 const Team = () => {
     return (
+        <Layout>
             <main>
                 <DashboardHeader title='My Team' icon={FaPeopleArrows} />
                 {/* <!-- Main page content--> */}
@@ -51,7 +53,9 @@ const Team = () => {
                 </div>
                 <Illustrate />
             </div>
-            </main>    
+            </main> 
+        </Layout>
+               
     )
 }
 

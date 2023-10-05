@@ -4,6 +4,7 @@ import { Auth } from 'aws-amplify';
 import { Rings } from 'react-loader-spinner';
 import { AccountSettings, TextField } from '@aws-amplify/ui-react';
 import { FaUserCircle } from 'react-icons/fa';
+import Layout from '../../Layout/layout';
 
 const Profile = () => {
     const [user, setUser] = useState<any>(null);
@@ -27,7 +28,8 @@ const Profile = () => {
         }
     };
     return (
-        <main>
+        <Layout>
+            <main>
             <DashboardHeader title='Profile' icon={FaUserCircle} />
             <div className="container-xl px-4 mt-n10">
                 {isLoading ? (
@@ -124,6 +126,8 @@ const Profile = () => {
                 </div>
             </div>
         </main>
+        </Layout>
+        
     )
 }
 

@@ -8,6 +8,7 @@ import { DataStore } from '@aws-amplify/datastore';
 import { Patient } from '../../models';
 import { IPatient } from '../../Services/CustomerService';
 import { FaBookDead } from 'react-icons/fa';
+import Layout from '../../Layout/layout';
 
 
 const BookAppts = () => {
@@ -49,7 +50,8 @@ const BookAppts = () => {
   };
 
   return (
-    <main>
+    <Layout>
+      <main>
       <DashboardHeader title="Book Appointment" icon={FaBookDead} />
       <div className="container-xl px-4 mt-n10">
         <div className="row">
@@ -119,6 +121,8 @@ const BookAppts = () => {
         </div>
       )}
     </main>
+    </Layout>
+    
   );
 };
 
