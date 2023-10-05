@@ -2,22 +2,22 @@ import React from 'react';
 
 const progressItems = [
   {
-    title: 'Server Setup',
+    title: 'Service Repairs',
     percentage: 25,
     color: 'bg-danger',
   },
   {
-    title: 'Database Migration',
+    title: 'Refurbishing',
     percentage: 50,
     color: 'bg-warning',
   },
   {
-    title: 'Version Release',
+    title: 'Lease Updates',
     percentage: 75,
     color: 'bg-primary',
   },
   {
-    title: 'Product Listings',
+    title: 'Property Listings',
     percentage: 100,
     color: 'bg-success',
   },

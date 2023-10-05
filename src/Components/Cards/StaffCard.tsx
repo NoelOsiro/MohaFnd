@@ -1,23 +1,29 @@
 import React, { useEffect, useState } from 'react';
-import { IStaff, getStaff } from '../../Services/StaffService';
+import supabase from '../../auth/supabase';
 
-const PeopleCard = () => {
-  const [teams, setTeams] = useState<IStaff[]>([]);
+const StaffCard = () => {
+  const [teams, setTeams] = useState<any[]>([]);
   useEffect(() => {
-    // Fetch the appointments for this week
-    const fetchStaff = async () => {
+    async function fetchStaffRequests() {
       try {
-        const team = await getStaff();
-        setTeams(team);
-      } catch (error) {
-        console.error('Error fetching appointments this week:', error);
-      }
-    };
+        const { data, error } = await supabase
+          .from('Staff')
+          .select('*')
+          .limit(3);
+        if (error) {
+          throw error;
+        }
 
-    fetchStaff();
-  }, [teams]);
+        setTeams(data);
+      } catch (error) {
+        console.error('Error fetching maintenance requests:', error);
+      }
+    }
+
+    fetchStaffRequests();
+  }, []);
   return (
-    <div className="col-lg-8 col-md-12">
+    <div className="col-lg-12 col-md-12">
       <div className="card mb-4">
         <div className="card-header">Staff</div>
         <div className="card-body">
@@ -48,6 +54,11 @@ const PeopleCard = () => {
               </div>
             ))}
           </div>
+          <div className="text-center mt-3">
+              <a className="btn btn-primary" href='/staff'>
+                See more
+              </a>
+            </div>
         </div>
       </div>
     </div>
@@ -55,4 +66,4 @@ const PeopleCard = () => {
   );
 };
 
-export default PeopleCard;
+export default StaffCard;

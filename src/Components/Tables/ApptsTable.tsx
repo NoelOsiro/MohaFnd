@@ -1,6 +1,5 @@
 import React, { useEffect, useState } from 'react';
 import DataTable from 'react-data-table-component';
-import { IAppointment, fetchAndStoreAppointments } from '../../Services/ApptsService';
 // @ts-ignore
 import DataTableExtensions from 'react-data-table-component-extensions';
 import 'react-data-table-component-extensions/dist/index.css';
@@ -8,7 +7,7 @@ import 'react-data-table-component-extensions/dist/index.css';
 const columns = [
   {
     name: 'Date',
-    selector: (row: IAppointment) => {
+    selector: (row: any) => {
       const datePart = row.startTime.split('T')[0];
       return datePart;
     },
@@ -16,7 +15,7 @@ const columns = [
   },
   {
     name: 'Start Time',
-    selector: (row: IAppointment) => {
+    selector: (row: any) => {
       const startTime = new Date(row.startTime);
       return startTime.toLocaleTimeString();;
     },
@@ -24,39 +23,30 @@ const columns = [
   },
   {
     name: 'Duration',
-    selector: (row: IAppointment) => row.duration,
+    selector: (row: any) => row.duration,
     sortable: true,
   },
   {
     name: 'Status',
-    selector: (row: IAppointment) => row.status,
+    selector: (row: any) => row.status,
     sortable: true,
   },
   {
     name: 'Assigned To',
-    selector: (row: IAppointment) => row.staff,
+    selector: (row: any) => row.staff,
     sortable: true,
   },
 ];
 
 const MyApptsTable = () => {
   const [appts, setAppointments] = useState<any[]>([]);
-  const [selectedRow, setSelectedRow] = useState<IAppointment | null>(null);
+  const [selectedRow, setSelectedRow] = useState<any | null>(null);
 
   useEffect(() => {
-    fetchAndStoreAppointments()
-      .then(() => {
-        const storedData = localStorage.getItem('appointments');
-        if (storedData) {
-          const appointments: IAppointment[] = JSON.parse(storedData);
-          setAppointments(appointments);
-        }
-      }).catch((error) => {
-        console.error('Error fetching and storing appointments:', error);
-      });
+    
   }, [appts]);
   // Function to handle row click and show the modal
-  const handleRowClick = (row: IAppointment) => {
+  const handleRowClick = (row: any) => {
     setSelectedRow(row);
   };
   // Function to close the modal

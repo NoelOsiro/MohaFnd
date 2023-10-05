@@ -72,7 +72,7 @@ const MyDataTable = () => {
   return (
     <DataTableExtensions columns={columns} data={maintenanceRequests}>
       <DataTable
-        title="Appointments This Week"
+        title="Requests This Week"
         columns={columns}
         data={maintenanceRequests}
         pagination

@@ -10,7 +10,6 @@ interface LayoutProps {
 const Layout: React.FC<LayoutProps> = ({ children }) => {
     const [isSidebarOpen, setSidebarOpen] = useState(false);
     const [bodyClass, setBodyClass] = useState('');
-    const { isAuthenticated, getAccessTokenSilently } = useAuth0();
     
     useEffect(() => {
         document.body.className = bodyClass;
@@ -18,23 +17,6 @@ const Layout: React.FC<LayoutProps> = ({ children }) => {
             document.body.className = '';
         };
     }, [bodyClass]);
-  useEffect(() => {
-    const storeTokenInLocalStorage = async () => {
-      if (isAuthenticated) {
-        try {
-          // Obtain the Auth0 access token
-          const accessToken = await getAccessTokenSilently();
-          localStorage.setItem('accessToken', accessToken);
-        } catch (error) {
-          console.error('Error storing access token:', error);
-        }
-      }
-    };
-
-    // Call the function to store the token when the component mounts
-    storeTokenInLocalStorage();
-  }, [isAuthenticated, getAccessTokenSilently]);
-
     const toggleSidebar = () => {
         setSidebarOpen((prevState) => !prevState);
         setBodyClass((prevClass) => (prevClass === 'nav-fixed' ? 'nav-fixed sidenav-toggled' : 'nav-fixed'));
