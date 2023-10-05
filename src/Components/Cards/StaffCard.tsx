@@ -1,21 +1,27 @@
 import React, { useEffect, useState } from 'react';
-import { IStaff, getStaff } from '../../Services/StaffService';
+import supabase from '../../auth/supabase';
 
-const PeopleCard = () => {
-  const [teams, setTeams] = useState<IStaff[]>([]);
+const StaffCard = () => {
+  const [teams, setTeams] = useState<any[]>([]);
   useEffect(() => {
-    // Fetch the appointments for this week
-    const fetchStaff = async () => {
+    async function fetchStaffRequests() {
       try {
-        const team = await getStaff();
-        setTeams(team);
-      } catch (error) {
-        console.error('Error fetching appointments this week:', error);
-      }
-    };
+        const { data, error } = await supabase
+          .from('Staff')
+          .select('*')
+          .limit(3);
+        if (error) {
+          throw error;
+        }
 
-    fetchStaff();
-  }, [teams]);
+        setTeams(data);
+      } catch (error) {
+        console.error('Error fetching maintenance requests:', error);
+      }
+    }
+
+    fetchStaffRequests();
+  }, []);
   return (
     <div className="col-lg-8 col-md-12">
       <div className="card mb-4">
@@ -23,7 +29,7 @@ const PeopleCard = () => {
         <div className="card-body">
           <div className="row">
             {teams.map((person, index) => (
-              <div className='col-6'>
+              <div className='col-4'>
                 <div className="d-flex align-items-center justify-content-between mb-4" key={index}>
                   <div className="d-flex align-items-center flex-shrink-0 me-3">
                     <div className="avatar avatar-xl me-3 bg-gray-200">
@@ -48,6 +54,11 @@ const PeopleCard = () => {
               </div>
             ))}
           </div>
+          <div className="text-center mt-3">
+              <a className="btn btn-primary" href='/staff'>
+                See more
+              </a>
+            </div>
         </div>
       </div>
     </div>
@@ -55,4 +66,4 @@ const PeopleCard = () => {
   );
 };
 
-export default PeopleCard;
+export default StaffCard;

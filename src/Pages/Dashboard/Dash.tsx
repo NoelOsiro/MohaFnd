@@ -3,13 +3,13 @@ import DashboardHeader from '../../Components/Header/DashBoardHeader'
 import TabDashBoard from '../../Components/Tabs/TabDashBoard'
 import Illustrate from '../../Components/Illustration/Illustrate'
 import ActivityCard from '../../Components/Cards/ActivityCard'
-import PeopleCard from '../../Components/Cards/PeopleCard'
 import TaskTrackerCard from '../../Components/Cards/TaskTrackerCard'
 import { FcHome } from 'react-icons/fc'
 import ApptsPieChart from '../../Components/Charts/ApptsPieChart'
 import Layout from '../../Layout/layout'
 import DashCards from './DashCards'
 import supabase from '../../auth/supabase';
+import StaffCard from '../../Components/Cards/StaffCard'
 
 
 const Dash = () => {
@@ -55,7 +55,7 @@ const Dash = () => {
                         <ApptsPieChart propertyStats={propertyStats} />
                     </div>
                     <div className="row">
-                        <PeopleCard />
+                        <StaffCard />
                         <TaskTrackerCard />
                     </div>
                     <div className='row'>
