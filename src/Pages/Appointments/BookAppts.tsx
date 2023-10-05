@@ -49,6 +49,7 @@ const BookAppts = () => {
   };
 
   return (
+    <Layout>
     <main>
       <DashboardHeader title="Book Appointment" icon={FaBookDead} />
       <div className="container-xl px-4 mt-n10">
@@ -119,6 +120,7 @@ const BookAppts = () => {
         </div>
       )}
     </main>
+      </Layout>
   );
 };
 
