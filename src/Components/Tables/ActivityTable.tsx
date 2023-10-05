@@ -3,84 +3,78 @@ import DataTable from 'react-data-table-component';
 // @ts-ignore
 import DataTableExtensions from 'react-data-table-component-extensions';
 import 'react-data-table-component-extensions/dist/index.css';
-import { IAppointment } from '../../Services/ApptsService';
-import { fetchAndStoreAppointments } from '../../Services/ApptsService'; // Import the function to fetch appointments
+import supabase from '../../auth/supabase';
+
+interface IService {
+  id: number;
+  created_at: string;
+  description: string;
+  property_id: number;
+  request_date: string;
+  request_status: string;
+}
 
 const columns = [
   {
     name: 'Date',
-    selector: (row: IAppointment) => {
-      const datePart = row.startTime.split('T')[0];
+    selector: (row: IService) => {
+      const datePart = row.created_at.split('T')[0];
       return datePart;
     },
     sortable: true,
   },
   {
-    name: 'Start Time',
-    selector: (row: IAppointment) => {
-      const startTime = new Date(row.startTime);
-      return startTime.toLocaleTimeString();;
+    name: 'House',
+    selector: (row: IService) => {
+      const property = row.property_id;
+      return property;
     },
     sortable: true,
   },
   {
-    name: 'Duration',
-    selector: (row: IAppointment) => row.duration,
-    sortable: true,
+    name: 'Description',
+    selector: (row: IService) => row.description,
+    sortable: false,
   },
   {
     name: 'Status',
-    selector: (row: IAppointment) => row.status,
+    selector: (row: IService) => row.request_status,
     sortable: true,
   },
   {
-    name: 'Assigned To',
-    selector: (row: IAppointment) => row.staff,
+    name: 'Resolved Date',
+    selector: (row: IService) => row.request_date,
     sortable: true,
   },
 ];
 const MyDataTable = () => {
-  const [appointmentsThisWeek, setAppointmentsThisWeek] = useState<IAppointment[]>([]);
+  const [maintenanceRequests, setMaintenanceRequests] = useState<any[]>([]);
+
   useEffect(() => {
-    // Retrieve appointment data from localStorage
-    const storedData = localStorage.getItem('appointments');
-    if (storedData) {
+    async function fetchMaintenanceRequests() {
       try {
-        const appointments = JSON.parse(storedData);
-        if (Array.isArray(appointments.data)) {
-          setAppointmentsThisWeek(appointments.data);
+        const { data, error } = await supabase
+          .from('Maintenance_requests')
+          .select('*'); // Fetch all columns
+
+        if (error) {
+          throw error;
         }
+
+        setMaintenanceRequests(data);
       } catch (error) {
-        // Handle any JSON parsing errors
-        console.error('Error parsing JSON data from localStorage:', error);
+        console.error('Error fetching maintenance requests:', error);
       }
     }
-    fetchAndStoreAppointments()
-      .then(() => {
-        const storedData = localStorage.getItem('appointments');
-        if (storedData) {
-          const appointments: IAppointment[] = JSON.parse(storedData);
-          const thisWeek = appointments.filter((appointment) => {
-            const appointmentDate = new Date(appointment.startTime);
-            const currentDate = new Date();
-            const sevenDaysAgo = new Date(currentDate);
-            sevenDaysAgo.setDate(currentDate.getDate() - 7);
-            return appointmentDate >= sevenDaysAgo && appointmentDate <= currentDate;
-          });
-          setAppointmentsThisWeek(thisWeek);
-        }
-      })
-      .catch((error) => {
-        console.error('Error fetching and storing appointments:', error);
-      });
-  }, [appointmentsThisWeek]);
 
+    fetchMaintenanceRequests();
+  }, []);
   return (
-    <DataTableExtensions columns={columns} data={appointmentsThisWeek}>
+    <DataTableExtensions columns={columns} data={maintenanceRequests}>
       <DataTable
         title="Appointments This Week"
         columns={columns}
-        data={appointmentsThisWeek}
+        data={maintenanceRequests}
         pagination
         highlightOnHover
       />

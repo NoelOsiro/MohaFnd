@@ -1,6 +1,7 @@
 import React from 'react'
 import DashboardHeader from '../../Components/Header/DashBoardHeader'
 import { FaPeopleCarry } from 'react-icons/fa'
+import Layout from '../../Layout/layout'
 
 const Payments = () => {
     return (

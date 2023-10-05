@@ -1,61 +1,40 @@
-import React, { useEffect, useState } from 'react'
+import React from 'react'
 import Card from '../../Components/Cards/DasCard'
-import { AppointmentSummary, fetchAndStoreDashAppointments } from '../../Services/DashService';
-import { FiBook, FiLayout, FiPackage } from 'react-icons/fi';
+import { FiBook, FiLayout, FiHome } from 'react-icons/fi';
 
-const DashCards = () => {
-    // eslint-disable-next-line @typescript-eslint/no-unused-vars
-    const [error, setError] = useState<string | null>(null);
-    // eslint-disable-next-line @typescript-eslint/no-unused-vars
-    const [data, setData] = useState<AppointmentSummary | null>(null);
-    useEffect(() => {
-        const storedApiData = localStorage.getItem('apptsSummary');
-        if (storedApiData) {
-            const parsedData = JSON.parse(storedApiData);
-            setData(parsedData.data);
-        }
-        else {
-            fetchAndStoreDashAppointments()
-                .catch((error) => {
-                    setError(error.message);
-                })
-            const storedApiData = localStorage.getItem('apptsSummary');
-            if (storedApiData) {
-                const parsedData = JSON.parse(storedApiData);
-                setData(parsedData.data);
-            }
-        }
-        ;
-    }, []);
+interface Iprops {
+  propertyStats: {
+    total:number;
+    vacant:number;
+    occupied:number;
+  }
+}
+
+const DashCards: React.FC<Iprops> = (props:Iprops) => {  
     return (
-        data ?
-            (
                 <>
                     <Card
-                        title={'Done'}
-                        icon={FiPackage}
+                        title={'My Properties'}
+                        icon={FiHome}
                         colorClass={'text-primary'}
-                        description={'This week'}
+                        description={'Total Properties'}
                         imageSrc={'assets/img/illustrations/browser-stats.svg'}
-                        count={data.DoneAppointments} />
+                        count={props.propertyStats.total} />
                     <Card
-                        title={'Missed'}
+                        title={'Vacant'}
                         icon={FiBook}
                         colorClass={'text-danger'}
                         description={'This week'}
                         imageSrc={'assets/img/illustrations/processing.svg'}
-                        count={data.MissedAppointments} />
+                        count={props.propertyStats.vacant} />
                     <Card
-                        title={'Pending'}
+                        title={'Occupied'}
                         icon={FiLayout}
-                        colorClass={'text-warning'}
+                        colorClass={'text-success'}
                         description={'This week'}
                         imageSrc={'assets/img/illustrations/windows.svg'}
-                        count={data.PendingAppointments} />
+                        count={props.propertyStats.occupied} />
                 </>
-            ) :
-            null
-
     )
 }
 

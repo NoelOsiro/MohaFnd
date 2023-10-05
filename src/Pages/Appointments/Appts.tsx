@@ -5,12 +5,12 @@ import PieChart from '../../Components/Charts/PieChart'
 import Illustrate from '../../Components/Illustration/Illustrate'
 import TabDashBoard from '../../Components/Tabs/TabDashBoard'
 import { FiCalendar } from 'react-icons/fi'
-// import { CreateAppointmentForm } from '../../ui-components'
+import Layout from '../../Layout/layout'
 
 const Appts = () => {
     return (
         <Layout>
-        <main>
+            <main>
                 <DashboardHeader title='Appointments' icon={FiCalendar} />
                 {/* <!-- Main page content--> */}
                 <div className="container-xl px-4 mt-n10">

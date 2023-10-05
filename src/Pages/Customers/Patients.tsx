@@ -3,10 +3,10 @@ import DashboardHeader from '../../Components/Header/DashBoardHeader'
 import Illustrate from '../../Components/Illustration/Illustrate'
 import PieChart from '../../Components/Charts/PieChart'
 import ActivityCard from '../../Components/Cards/ActivityCard'
-// import { PatientCreateForm } from '../../ui-components'
 import Card from '../../Components/Cards/DasCard'
 import { FaNewspaper, FaPills, FaServer } from 'react-icons/fa'
 import PatientsTable from '../../Components/Tables/PatientsTable'
+import Layout from '../../Layout/layout'
 
 
 
@@ -72,7 +72,7 @@ const Patients = () => {
                 <Illustrate />
             </div>
         </main >
-    </Layout>
+        </Layout>
     )
 }
 

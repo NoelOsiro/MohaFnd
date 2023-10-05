@@ -2,6 +2,7 @@ import React from 'react'
 import DashboardHeader from '../../Components/Header/DashBoardHeader'
 import Footer from '../../Components/Footer/Footer'
 import { FcClock } from 'react-icons/fc'
+import Layout from '../../Layout/layout'
 
 
 
@@ -13,9 +14,8 @@ const Roster = () => {
                 {/* <!-- Main page content--> */}
                 <div className="container-xl px-4 mt-n10">
                 </div>
-            </main>  
+            </main>
         </Layout>
-              
     )
 }
 

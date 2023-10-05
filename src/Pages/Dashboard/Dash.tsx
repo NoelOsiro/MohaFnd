@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { useEffect, useState } from 'react'
 import DashboardHeader from '../../Components/Header/DashBoardHeader'
 import TabDashBoard from '../../Components/Tabs/TabDashBoard'
 import Illustrate from '../../Components/Illustration/Illustrate'
@@ -9,21 +9,50 @@ import { FcHome } from 'react-icons/fc'
 import ApptsPieChart from '../../Components/Charts/ApptsPieChart'
 import Layout from '../../Layout/layout'
 import DashCards from './DashCards'
+import supabase from '../../auth/supabase';
 
 
 const Dash = () => {
+    const [propertyStats, setPropertyStats] = useState<{ total: number; vacant: number; occupied: number }>({
+        total: 0,
+        vacant: 0,
+        occupied: 0,
+      });
+      useEffect(() => {
+        async function fetchPropertyStats() {
+          try {
+            const { data, error } = await supabase
+              .from('Property')
+              .select('id, occupied_status');
+    
+            if (error) {
+              throw error;
+            }
+    
+            const total = data.length;
+            const vacant = data.filter(property => !property.occupied_status).length;
+            const occupied = total - vacant;
+    
+            setPropertyStats({ total, vacant, occupied });
+          } catch (error) {
+            console.error('Error fetching property statistics:', error);
+          }
+        }
+    
+        fetchPropertyStats();
+      }, []);
     return (
         <Layout>
             <main>
                 <DashboardHeader title='Home' icon={FcHome} />
                 <div className="container-xl px-4 mt-n10">
                 <div className="row">
-                    <DashCards />
+                    <DashCards propertyStats={propertyStats}  />
                     </div>
                     <TabDashBoard />
                     <div className="row">
                         <ActivityCard />
-                        <ApptsPieChart />
+                        <ApptsPieChart propertyStats={propertyStats} />
                     </div>
                     <div className="row">
                         <PeopleCard />
@@ -37,8 +66,6 @@ const Dash = () => {
                 </div>
             </main>
         </Layout>
-
-
     )
 }
 
