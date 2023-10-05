@@ -11,6 +11,7 @@ import { FaPeopleArrows } from 'react-icons/fa'
 
 const Team = () => {
     return (
+        <Layout>
             <main>
                 <DashboardHeader title='My Team' icon={FaPeopleArrows} />
                 {/* <!-- Main page content--> */}
@@ -51,7 +52,9 @@ const Team = () => {
                 </div>
                 <Illustrate />
             </div>
-            </main>    
+            </main>  
+        </Layout>
+              
     )
 }
 
