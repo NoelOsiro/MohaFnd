@@ -6,7 +6,6 @@ import Illustrate from '../../Components/Illustration/Illustrate'
 import TabDashBoard from '../../Components/Tabs/TabDashBoard'
 import { FiCalendar } from 'react-icons/fi'
 import Layout from '../../Layout/layout'
-// import { CreateAppointmentForm } from '../../ui-components'
 
 const Appts = () => {
     return (
@@ -31,7 +30,6 @@ const Appts = () => {
                 </div>
             </main>
         </Layout>
-        
     )
 }
 

@@ -38,7 +38,6 @@ const ViewAppts = () => {
             </div>
         </main>
         </Layout>
-        
     )
 }
 

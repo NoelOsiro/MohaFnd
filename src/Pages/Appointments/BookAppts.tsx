@@ -122,8 +122,6 @@ const BookAppts = () => {
       )}
     </main>
     </Layout>
-    
-  );
 };
 
 export default BookAppts;

@@ -16,7 +16,6 @@ const Roster = () => {
                 </div>
             </main>
         </Layout>
-                
     )
 }
 
