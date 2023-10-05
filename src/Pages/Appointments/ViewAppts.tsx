@@ -9,6 +9,7 @@ import { FaEyeSlash } from 'react-icons/fa';
 
 const ViewAppts = () => {
     return (
+        <Layout>
         <main>
             <DashboardHeader title='View Appointments' icon={FaEyeSlash} />
             <div className="container-xl px-4 mt-n10">
@@ -35,6 +36,7 @@ const ViewAppts = () => {
                 <Illustrate />
             </div>
         </main>
+            </Layout>
     )
 }
 
