@@ -9,7 +9,7 @@ import ErrorPage from './Pages/ErrorPage/ErrorPage';
 const LandingPage = lazy(() => import('./Pages/Auth/LandingPage'));
 const Dash = lazy(() => import('./Pages/Dashboard/Dash'));
 const Team = lazy(() => import('./Pages/Team/Team'));
-const Patients = lazy(() => import('./Pages/Customers/Patients'));
+const Patients = lazy(() => import('./Pages/Tenants/Tenants'));
 const ViewAppts = lazy(() => import('./Pages/Appointments/ViewAppts'));
 const BookAppts = lazy(() => import('./Pages/Appointments/BookAppts'));
 // const Appts = lazy(() => import('./Pages/Appointments/Appts'));
@@ -28,7 +28,7 @@ const App: React.FC = () => {
     <Routes>
       <Route path="/" element={<Suspense fallback={<PageLoader />}><LandingPage /></Suspense>} />
       <Route path="/dashboard" element={<Suspense fallback={<PageLoader />}><Dash /></Suspense>} />
-      <Route path="/staff/team" element={<Suspense fallback={<PageLoader />}><Team /></Suspense>} />
+      <Route path="/staff" element={<Suspense fallback={<PageLoader />}><Team /></Suspense>} />
       <Route path="/staff/roster" element={<Suspense fallback={<PageLoader />}><Team /></Suspense>} />
       <Route path="/tenants" element={<Suspense fallback={<PageLoader />}><Patients /></Suspense>} />
       <Route path="/tenants/records" element={<Suspense fallback={<PageLoader />}><Patients /></Suspense>} />

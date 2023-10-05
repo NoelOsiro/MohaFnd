@@ -1,7 +1,13 @@
-import React, { useEffect, useState } from 'react';
+import React from 'react';
 import { Doughnut } from 'react-chartjs-2';
 import { FaCircle } from 'react-icons/fa';
-import { AppointmentSummary, fetchAndStoreDashAppointments } from '../../Services/DashService';
+import {Chart, ArcElement, CategoryScale, LinearScale, BarElement} from 'chart.js'
+Chart.register(
+    ArcElement,
+    CategoryScale,
+    LinearScale,
+    BarElement);
+
 interface Iprops {
     propertyStats: {
       total:number;
@@ -11,11 +17,13 @@ interface Iprops {
   }
 
 const ApptsPieChart: React.FC<Iprops> = (props:Iprops) => {
-    const [chartData, setChartData] = useState({
+    const vacantPercent = ((props.propertyStats.vacant / props.propertyStats.total) * 100).toFixed(2);
+    const occupiedPercent = ((props.propertyStats.occupied  / props.propertyStats.total) * 100).toFixed(2);
+    const chartData = {
         datasets: [
             {
                 label: '# of Properties',
-                data: [0, 0],
+                data: [props.propertyStats.vacant, props.propertyStats.occupied],
                 backgroundColor: [
                     'rgba(232, 21, 0, 1.0)',
                     'rgb(81, 255, 0)',
@@ -27,9 +35,7 @@ const ApptsPieChart: React.FC<Iprops> = (props:Iprops) => {
                 borderWidth: 3,
             },
         ],
-    });
-    const vacantPercent = ((props.propertyStats.vacant / props.propertyStats.total) * 100).toFixed(2);
-    const occupiedPercent = ((props.propertyStats.vacant  / props.propertyStats.total) * 100).toFixed(2);
+    };
     return (
         <div className="col-lg-6 col-md-12 mb-4">
             <div className="card h-100">

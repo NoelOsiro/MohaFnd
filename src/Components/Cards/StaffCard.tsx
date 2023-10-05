@@ -23,13 +23,13 @@ const StaffCard = () => {
     fetchStaffRequests();
   }, []);
   return (
-    <div className="col-lg-8 col-md-12">
+    <div className="col-lg-12 col-md-12">
       <div className="card mb-4">
         <div className="card-header">Staff</div>
         <div className="card-body">
           <div className="row">
             {teams.map((person, index) => (
-              <div className='col-4'>
+              <div className='col-6'>
                 <div className="d-flex align-items-center justify-content-between mb-4" key={index}>
                   <div className="d-flex align-items-center flex-shrink-0 me-3">
                     <div className="avatar avatar-xl me-3 bg-gray-200">
