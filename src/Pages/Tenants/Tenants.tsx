@@ -1,99 +1,101 @@
-import React, { useEffect, useState } from 'react'
-import DashboardHeader from '../../Components/Header/DashBoardHeader'
-import Illustrate from '../../Components/Illustration/Illustrate'
-import PieChart from '../../Components/Charts/PieChart'
-import ActivityCard from '../../Components/Cards/ActivityCard'
-import Card from '../../Components/Cards/DasCard'
-import { FaNewspaper, FaPills, FaServer } from 'react-icons/fa'
-import Layout from '../../Layout/layout'
-import supabase from '../../auth/supabase'
-import TenantsTable from '../../Components/Tables/TenantsTable'
-
-
+import React, { useEffect, useState } from 'react';
+import DashboardHeader from '../../Components/Header/DashBoardHeader';
+import Illustrate from '../../Components/Illustration/Illustrate';
+import PieChart from '../../Components/Charts/PieChart';
+import ActivityCard from '../../Components/Cards/ActivityCard';
+import Card from '../../Components/Cards/DasCard';
+import { FaNewspaper, FaPills, FaServer } from 'react-icons/fa';
+import Layout from '../../Layout/layout';
+import supabase from '../../auth/supabase';
+import TenantsTable from './TenantsTable';
+import AddNewTenantForm from './Form/AddTenantForm';
 
 const Tenants = () => {
-    const [tenants, setTenants] = useState<any[]>([]);
-    useEffect(() => {
-        async function fetchTenants() {
-            try {
-                const { data, error } = await supabase
-                    .from('Tenants')
-                    .select('*')
-                if (error) {
-                    throw error;
-                }
+  const [tenants, setTenants] = useState<any[]>([]);
+  const [totalTenants, setTotalTenants] = useState<number>(0);
+  const [totalTenantsAddedThisWeek, setTotalTenantsAddedThisWeek] = useState<number>(0);
 
-                setTenants(data);
-            } catch (error) {
-                console.error('Error fetching maintenance requests:', error);
-            }
+  useEffect(() => {
+    async function fetchTenants() {
+      try {
+        const { data, error } = await supabase.from('Tenants').select('*');
+        if (error) {
+          throw error;
         }
 
-        fetchTenants();
-    }, []);
-    return (
-        <Layout>
-        <main>
-            <DashboardHeader title='Tenants' icon={FaPills} />
-            <div className="container-xl px-4 mt-n10">
-                <div className="row">
-                    <Card
-                        title={'Attended'}
-                        icon={FaServer}
-                        size={true}
+        setTenants(data);
 
-                        colorClass={'text-primary'}
-                        description={'This Week'}
-                        imageSrc={'assets/img/illustrations/windows.svg'} count={0} />
-                    <Card
-                        title={'New'}
-                        icon={FaNewspaper}
-                        size={true}
+        // Calculate total tenant count
+        setTotalTenants(data.length);
 
-                        colorClass={'text-success'}
-                        description={'This week'}
-                        imageSrc={'assets/img/illustrations/processing.svg'} count={0} />
+        // Calculate total tenants added this week
+        const today = new Date();
+        const oneWeekAgo = new Date(today);
+        oneWeekAgo.setDate(today.getDate() - 7);
+        const tenantsAddedThisWeek = data.filter((tenant) => {
+          const tenantAddedDate = new Date(tenant.created_at);
+          return tenantAddedDate >= oneWeekAgo;
+        });
+        setTotalTenantsAddedThisWeek(tenantsAddedThisWeek.length);
+      } catch (error) {
+        console.error('Error fetching tenants:', error);
+      }
+    }
 
+    fetchTenants();
+  }, []);
+
+  return (
+    <Layout>
+      <main>
+        <DashboardHeader title="Tenants" icon={FaPills} />
+        <div className="container-xl px-4 mt-n10">
+          <div className="row">
+            <Card
+              title={'Total'}
+              icon={FaServer}
+              size={true}
+              colorClass={'text-primary'}
+              description={'This Week'}
+              imageSrc={'assets/img/illustrations/windows.svg'}
+              count={totalTenantsAddedThisWeek} // Update count with totalTenantsAddedThisWeek
+            />
+            <Card
+              title={'New'}
+              icon={FaNewspaper}
+              size={true}
+              colorClass={'text-success'}
+              description={'Total'} // Change description to 'Total'
+              imageSrc={'assets/img/illustrations/processing.svg'}
+              count={totalTenants} // Update count with totalTenants
+            />
+          </div>
+          <div className="row">
+            <div className="col-xxl-8">
+              <div className="card mb-4">
+                <div className="card-header border-bottom">Tenants</div>
+                <div className="card-body">
+                  <div className="tab-content" id="dashboardNavContent">
+                    <TenantsTable data={tenants} />
+                  </div>
                 </div>
-                <div className="row">
-                    <div className="col-xxl-8">
-                        <div className="card mb-4">
-                            <div className="card-header border-bottom">
-                                Tenants
-                            </div>
-                            <div className="card-body">
-                                <div className="tab-content" id="dashboardNavContent">
-                                    <TenantsTable data={tenants} />
-                                </div>
-                            </div>
-                        </div>
-                    </div >
-                </div>
-                <div className='row'>
-                    <div className="col-8">
-                        <div className="card mb-4">
-                            <div className="card-header border-bottom">
-                                Add New Tenant
-                            </div>
-                            <div className="card-body">
-                                <div className="tab-content" id="dashboardNavContent">
-                                    {/* <PatientCreateForm /> */}
-                                </div>
-                            </div>
-                        </div>
-                    </div >
-                </div>
-                <div className="row">
-                    <div className="col-xl-6 mb-4">
-                        <ActivityCard />
-                    </div>
-                    <PieChart />
-                </div>
-                <Illustrate />
+              </div>
             </div>
-        </main >
-        </Layout>
-    )
-}
+          </div>
+          <div className="row">
+            <div className="col-12">
+              <AddNewTenantForm/>
+            </div>
+          </div>
+          <div className="row">
+              <ActivityCard />
+            <PieChart data={tenants} />
+          </div>
+          <Illustrate />
+        </div>
+      </main>
+    </Layout>
+  );
+};
 
 export default Tenants;

@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react';
+import React from 'react';
 import DataTable from 'react-data-table-component';
 // @ts-ignore
 import DataTableExtensions from "react-data-table-component-extensions";
@@ -10,12 +10,12 @@ interface IProps {
 const columns = [
   {
     name: 'First Name',
-    selector: (row: any) => row.first_name || '', // Use default value '' for null or undefined cases
+    selector: (row: any) => row.name.split(' ')[0] || '', // Use default value '' for null or undefined cases
     sortable: true,
   },
   {
     name: 'Last Name',
-    selector: (row: any) => row.last_name || '', // Use default value '' for null or undefined cases
+    selector: (row: any) => row.name.split(' ')[1] || '', // Use default value '' for null or undefined cases
     sortable: true,
   },
   {
@@ -25,7 +25,7 @@ const columns = [
   },
   {
     name: 'Phone',
-    selector: (row: any) => row.phone_number || '', // Use default value '' for null or undefined cases
+    selector: (row: any) => row.phone || '', // Use default value '' for null or undefined cases
     sortable: true,
   },
   {

@@ -88,7 +88,7 @@ const timelineItems = [
 
 const ActivityCard = () => {
   return (
-    <div className="col-lg-6 col-md-12 mb-4">
+    <div className="col-xl-6 mb-4">
       <div className="card card-header-actions h-100">
         <div className="card-header">
           Recent Activity
