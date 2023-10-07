@@ -10,6 +10,8 @@ import Layout from '../../Layout/layout'
 import DashCards from './DashCards'
 import supabase from '../../auth/supabase';
 import StaffCard from '../../Components/Cards/StaffCard'
+import LineChart from '../../Components/Charts/DashCharts'
+import MyDataTable from '../../Components/Tables/ActivityTable'
 
 
 const Dash = () => {
@@ -41,6 +43,14 @@ const Dash = () => {
     
         fetchPropertyStats();
       }, []);
+      const OverviewTabContent = () => (
+        <div className="chart-area mb-4 mb-lg-0" style={{ height: '24rem' }}>
+          <h3 className="lead">Service calls Trend</h3>
+          <LineChart />
+        </div>
+      );
+      
+      const ActivitiesTabContent = () => <MyDataTable />;
     return (
         <Layout>
             <main>
@@ -49,7 +59,7 @@ const Dash = () => {
                 <div className="row">
                     <DashCards propertyStats={propertyStats}  />
                     </div>
-                    <TabDashBoard />
+                    <TabDashBoard ActivitiesTabContent={ActivitiesTabContent} OverviewTabContent={OverviewTabContent} />
                     <div className="row">
                         <ActivityCard />
                         <ApptsPieChart propertyStats={propertyStats} />

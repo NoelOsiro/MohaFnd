@@ -93,7 +93,7 @@ const BookAppts = () => {
               <div className="col-xl-6 mb-4">
                 <ActivityCard />
               </div>
-              <PieChart />
+              {/* <PieChart /> */}
             </div>
           </div>
         </div>

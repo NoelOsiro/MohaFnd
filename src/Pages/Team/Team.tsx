@@ -67,7 +67,7 @@ const Team = () => {
                     </div>
                     <div className="row">
                         <ActivityCard />
-                        <PieChart />
+                        {/* <PieChart /> */}
                     </div>
                     <Illustrate />
                 </div>

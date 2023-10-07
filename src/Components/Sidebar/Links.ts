@@ -50,7 +50,7 @@ export const customItems: MenuItem[] = [
       {
         title: 'My Team',
         icon: FiUserCheck,
-        link:'/staff/team',
+        link:'/staff',
       },
       {
         title: 'Roster',

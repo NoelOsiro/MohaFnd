@@ -16,13 +16,13 @@ const Appts = () => {
                 <div className="container-xl px-4 mt-n10">
                     <div className="row">
                         <div className="col-xxl-8">
-                            <TabDashBoard />
+                            {/* <TabDashBoard /> */}
                             <Illustrate />
                             <div className="row">
                                 <div className="col-xl-6 mb-4">
                                     <ActivityCard />
                                 </div>
-                                <PieChart />
+                                {/* <PieChart /> */}
                             </div>
                         </div>
                         
