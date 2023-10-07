@@ -1,12 +1,21 @@
-import React from 'react';
-import MyDataTable from '../Tables/ActivityTable';
-import LineChart from '../Charts/DashCharts';
+import React, { useState } from 'react';
 
-const TabDashBoard = () => {
+interface TabContentProps {
+  ActivitiesTabContent: React.ComponentType;
+  OverviewTabContent: React.ComponentType;
+}
+
+const TabDashBoard: React.FC<TabContentProps> = ({ ActivitiesTabContent, OverviewTabContent }) => {
+  const [activeTab, setActiveTab] = useState('overview');
+
   const tabs = [
-    { id: 'overview', label: 'Overview', active: true },
-    { id: 'activities', label: 'Activities', active: false },
+    { id: 'overview', label: 'Overview' },
+    { id: 'activities', label: 'Activities' },
   ];
+
+  const handleTabClick = (tabId: string) => {
+    setActiveTab(tabId);
+  };
 
   return (
     <div className="row">
@@ -17,13 +26,14 @@ const TabDashBoard = () => {
               {tabs.map((tab) => (
                 <li className="nav-item me-1" key={tab.id}>
                   <a
-                    className={`nav-link ${tab.active ? 'active' : ''}`}
+                    className={`nav-link ${activeTab === tab.id ? 'active' : ''}`}
                     id={`${tab.id}-pill`}
                     href={`#${tab.id}`}
                     data-bs-toggle="tab"
                     role="tab"
                     aria-controls={tab.id}
-                    aria-selected={tab.active}
+                    aria-selected={activeTab === tab.id}
+                    onClick={() => handleTabClick(tab.id)}
                   >
                     {tab.label}
                   </a>
@@ -35,25 +45,18 @@ const TabDashBoard = () => {
             <div className="tab-content" id="dashboardNavContent">
               {tabs.map((tab) => (
                 <div
-                  className={`tab-pane fade ${tab.active ? 'show active' : ''}`}
+                  className={`tab-pane fade ${activeTab === tab.id ? 'show active' : ''}`}
                   id={tab.id}
                   role="tabpanel"
                   aria-labelledby={`${tab.id}-pill`}
                   key={tab.id}
                 >
-                  {tab.id === 'overview' ? (
-                    <div className="chart-area mb-4 mb-lg-0" style={{ height: '24rem' }}>
-                      <h3 className='lead'>Service calls Trend</h3>
-                      <LineChart />
-                    </div>
-                  ) : (
-                    <MyDataTable />
-                  )}
+                  {tab.id === 'overview' ? <OverviewTabContent /> : <ActivitiesTabContent />}
                 </div>
               ))}
             </div>
           </div>
-        </div >
+        </div>
       </div>
     </div>
   );
